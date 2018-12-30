@@ -3,16 +3,12 @@ namespace Lutron.CommandBuilder
     public class MyRoomPlusOutputCommandBuilder
     {
         private MyRoomPlusCommandOperation _operation;
-        private int _integrationId;
         private MyRoomPlusOutputCommandAction _action;
-        private OutputCommandLevelParameter _level;
-        private OutputCommandFadeParameter _fade;
-        private OutputCommandDelayParameter _delay;
-
-        private MyRoomPlusOutputCommandBuilder()
-        {
-           
-        }
+        private int _integrationId;
+        private string _fade;
+        private int _level;
+        private string _delay;
+        private readonly string _command = "OUTPUT";
         
         public static MyRoomPlusOutputCommandBuilder Create()
         {
@@ -37,35 +33,27 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithLevel(OutputCommandLevelParameter level)
-        {
-            _level = level;
-            return this;
-        }
-
-        public MyRoomPlusOutputCommandBuilder WithFade(OutputCommandFadeParameter fade)
+        public MyRoomPlusOutputCommandBuilder WithFade(string fade)
         {
             _fade = fade;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithDelay(OutputCommandDelayParameter delay)
+        public MyRoomPlusOutputCommandBuilder WithLevel(int level)
+        {
+            _level = level;
+            return this;
+        }
+
+        public MyRoomPlusOutputCommandBuilder WithDelay(string delay)
         {
             _delay = delay;
             return this;
         }
 
-        public MyRoomPlusOutputCommand BuildCommand()
+        public string BuildGetOutputLevelCommand()
         {
-            return new MyRoomPlusOutputCommand()
-            {
-                Operation = _operation,
-                IntegrationId = _integrationId,
-                CommandAction = _action,
-                Level = _level,
-                Fade = _fade,
-                Delay = _delay
-            };
+            return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_level},{_fade},{_delay}<CR><LF>";
         }
     }
 }
