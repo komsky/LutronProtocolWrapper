@@ -2,6 +2,7 @@ namespace Lutron.CommandBuilder
 {
     public enum MyRoomPlusOutputCommandAction
     {
-        Level = 1
+        OutputLevel = 1,
+        StartRaisingLevel = 2
     }
 }

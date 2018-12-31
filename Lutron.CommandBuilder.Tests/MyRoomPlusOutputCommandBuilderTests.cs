@@ -19,7 +19,7 @@ namespace Lutron.CommandBuilder.Tests
                 var command  =  MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
                     .WithIntegrationId(integrationId)
-                    .WithAction(MyRoomPlusOutputCommandAction.Level)
+                    .WithAction(MyRoomPlusOutputCommandAction.OutputLevel)
                     .WithLevel(level)
                     .WithFade(fade)
                     .WithDelay(delay)
@@ -46,6 +46,27 @@ namespace Lutron.CommandBuilder.Tests
                     .BuildGetOutputLevelCommand();
                 
                 Assert.AreEqual("?OUTPUT,2<CR><LF>", command);
+            }
+        }  
+        
+        [TestFixture]
+        public class BuildStartRaisingOutputLevelCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                const int integrationId = 2;
+                const int level = 70;
+                const string fade = "4";
+                const string delay = "2";
+                
+                var command  =  MyRoomPlusOutputCommandBuilder.Create()
+                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithIntegrationId(integrationId)
+                    .WithAction(MyRoomPlusOutputCommandAction.StartRaisingLevel)
+                    .BuildStartRaisingOutputLevelCommand();
+                
+                Assert.AreEqual("#OUTPUT,2,2<CR><LF>", command);
             }
         }
     }
