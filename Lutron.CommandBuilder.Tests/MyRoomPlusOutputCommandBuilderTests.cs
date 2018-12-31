@@ -6,7 +6,7 @@ namespace Lutron.CommandBuilder.Tests
     public class MyRoomPlusOutputCommandBuilderTests
     {
         [TestFixture]
-        public class BuildGetOutputLevelCommand
+        public class BuildSetOutputLevelCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -23,7 +23,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithLevel(level)
                     .WithFade(fade)
                     .WithDelay(delay)
-                    .BuildGetOutputLevelCommand();
+                    .BuildSetOutputLevelCommand();
                 
                 Assert.AreEqual("#OUTPUT,2,1,70,4,2<CR><LF>", command);
             }
