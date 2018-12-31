@@ -55,5 +55,10 @@ namespace Lutron.CommandBuilder
         {
             return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_level},{_fade},{_delay}<CR><LF>";
         }
+
+        public string BuildGetOutputLevelCommand()
+        {
+            return $"{(char)_operation}{_command},{_integrationId}<CR><LF>";
+        }
     }
 }
