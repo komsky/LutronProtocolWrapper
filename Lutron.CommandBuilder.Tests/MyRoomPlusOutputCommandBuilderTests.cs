@@ -57,12 +57,12 @@ namespace Lutron.CommandBuilder.Tests
                 var command  =  MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
                     .WithIntegrationId(integrationId)
-                    .WithAction(MyRoomPlusOutputCommandAction.StartRaisingLevel)
+                    .WithAction(MyRoomPlusOutputCommandAction.StartRaisingOutputLevel)
                     .BuildStartRaisingOutputLevelCommand();
                 
                 Assert.AreEqual("#OUTPUT,2,2<CR><LF>", command);
             }
-        }     
+        }      
         
         [TestFixture]
         public class BuildStartLoweringOutputLevelCommand
@@ -75,10 +75,28 @@ namespace Lutron.CommandBuilder.Tests
                 var command  =  MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
                     .WithIntegrationId(integrationId)
-                    .WithAction(MyRoomPlusOutputCommandAction.StartLoweringLevel)
+                    .WithAction(MyRoomPlusOutputCommandAction.StartLoweringOutputLevel)
                     .BuildStartLoweringOutputLevelCommand();
                 
                 Assert.AreEqual("#OUTPUT,2,3<CR><LF>", command);
+            }
+        } 
+        
+        [TestFixture]
+        public class BuildStopRaisingOrLoweringOutputLevelCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                const int integrationId = 2;
+                
+                var command  =  MyRoomPlusOutputCommandBuilder.Create()
+                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithIntegrationId(integrationId)
+                    .WithAction(MyRoomPlusOutputCommandAction.StopRaisingOrLoweringOutputLevel)
+                    .BuildStopRaisingOrLoweringOutputLevelCommand();
+                
+                Assert.AreEqual("#OUTPUT,2,4<CR><LF>", command);
             }
         }
     }

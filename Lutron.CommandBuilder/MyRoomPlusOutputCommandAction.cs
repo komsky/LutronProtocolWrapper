@@ -3,7 +3,8 @@ namespace Lutron.CommandBuilder
     public enum MyRoomPlusOutputCommandAction
     {
         OutputLevel = 1,
-        StartRaisingLevel = 2,
-        StartLoweringLevel =3,
+        StartRaisingOutputLevel = 2,
+        StartLoweringOutputLevel =3,
+        StopRaisingOrLoweringOutputLevel=4,
     }
 }
