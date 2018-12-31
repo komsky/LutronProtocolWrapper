@@ -1,3 +1,5 @@
+using Lutron.Common;
+using Lutron.Common.Models;
 using NUnit.Framework;
 
 namespace Lutron.CommandBuilder.Tests
@@ -21,7 +23,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithIntegrationId(integrationId)
                     .WithAction(MyRoomPlusOutputCommandAction.OutputLevel)
                     .WithLevel(level)
-                    .WithFade(fade)
+                    .WithFade(new Fade(0,0,4,0))
                     .WithDelay(delay)
                     .BuildSetOutputLevelCommand();
                 
@@ -97,6 +99,26 @@ namespace Lutron.CommandBuilder.Tests
                     .BuildStopRaisingOrLoweringOutputLevelCommand();
                 
                 Assert.AreEqual("#OUTPUT,2,4<CR><LF>", command);
+            }
+        }   
+        
+        [TestFixture]
+        public class BuildGetFlashFrequencyCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                const int integrationId = 2;
+                
+                var command  =  MyRoomPlusOutputCommandBuilder.Create()
+                    .WithOperation(MyRoomPlusCommandOperation.Get)
+                    .WithIntegrationId(integrationId)
+                    .WithAction(MyRoomPlusOutputCommandAction.FlashFrequency)
+                    .WithFade(new Fade(0,0,2,0))
+                    .WithDelay("45")
+                    .BuildGetFlashFrequencyCommand();
+                
+                Assert.AreEqual("?OUTPUT,2,5,2,45<CR><LF>", command);
             }
         }
     }

@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Tests
+namespace Lutron.Service.Tests
 {
     public class Tests
     {

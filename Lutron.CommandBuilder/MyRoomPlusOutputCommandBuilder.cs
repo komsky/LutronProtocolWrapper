@@ -1,3 +1,6 @@
+using Lutron.Common;
+using Lutron.Common.Models;
+
 namespace Lutron.CommandBuilder
 {
     public class MyRoomPlusOutputCommandBuilder
@@ -5,7 +8,7 @@ namespace Lutron.CommandBuilder
         private MyRoomPlusCommandOperation _operation;
         private MyRoomPlusOutputCommandAction _action;
         private int _integrationId;
-        private string _fade;
+        private Fade _fade;
         private int _level;
         private string _delay;
         private readonly string _command = "OUTPUT";
@@ -33,7 +36,7 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithFade(string fade)
+        public MyRoomPlusOutputCommandBuilder WithFade(Fade fade)
         {
             _fade = fade;
             return this;
@@ -74,6 +77,11 @@ namespace Lutron.CommandBuilder
         public string BuildStopRaisingOrLoweringOutputLevelCommand()
         {
             return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";
+        }
+
+        public string BuildGetFlashFrequencyCommand()
+        {
+            return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_fade},{_delay}<CR><LF>";
         }
     }
 }

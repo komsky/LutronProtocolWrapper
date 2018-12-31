@@ -6,5 +6,6 @@ namespace Lutron.CommandBuilder
         StartRaisingOutputLevel = 2,
         StartLoweringOutputLevel =3,
         StopRaisingOrLoweringOutputLevel=4,
+        FlashFrequency=5
     }
 }
