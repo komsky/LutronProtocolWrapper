@@ -65,5 +65,10 @@ namespace Lutron.CommandBuilder
         {
             return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";
         }
+
+        public string BuildStartLoweringOutputLevelCommand()
+        {
+            return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";
+        }
     }
 }
