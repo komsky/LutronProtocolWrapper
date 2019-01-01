@@ -26,9 +26,12 @@ namespace Lutron.Common.Models
 
         public override string ToString()
         {
-            if (_hours > 0 && _minutes > 0 && _seconds > 0) return $"{_hours}:{_minutes}:{_seconds}";
+            if (_hours > 0 && _minutes > 0 && _seconds > 0) return $"{_hours:D2}:{_minutes:D2}:{_seconds:D2}";
+            if (_hours > 0 && _minutes > 0 ) return $"{_hours:D2}:{_minutes:D2}:00";
+            if (_hours > 0 ) return $"{_hours:D2}:00:00";
 
-            if (_minutes > 0 && _seconds > 0) return $"{_minutes}:{_seconds}";
+            if (_minutes > 0 && _seconds > 0) return $"{_minutes:D2}:{_seconds:D2}";
+            if (_minutes > 0) return $"{_minutes:D2}:00";
 
             if (_seconds > 0 && _fractional > 0) return $"{_seconds}.{_fractional}";
 

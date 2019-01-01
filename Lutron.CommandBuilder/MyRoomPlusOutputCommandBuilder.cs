@@ -1,4 +1,3 @@
-using Lutron.Common;
 using Lutron.Common.Models;
 
 namespace Lutron.CommandBuilder

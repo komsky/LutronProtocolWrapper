@@ -104,7 +104,7 @@ namespace Lutron.Common.Tests.Models
                 {
                     var fade = new Fade(0,16,4,0);
                     
-                    Assert.AreEqual("16:4", fade.ToString());
+                    Assert.AreEqual("16:04", fade.ToString());
                 }
             }    
             
@@ -115,7 +115,7 @@ namespace Lutron.Common.Tests.Models
                 {
                     var fade = new Fade(3,16,4,0);
                     
-                    Assert.AreEqual("3:16:4", fade.ToString());
+                    Assert.AreEqual("03:16:04", fade.ToString());
                 }
             }  
             
@@ -127,6 +127,39 @@ namespace Lutron.Common.Tests.Models
                     var fade = new Fade();
                     
                     Assert.AreEqual("0", fade.ToString());
+                }
+            }    
+            
+            public class WhenThereAreMinutesOnly
+            {
+                [Test]
+                public void ShouldReturnMinutesAndZeroSecondsOnly()
+                {
+                    var fade = new Fade(minutes:15);
+                    
+                    Assert.AreEqual("15:00", fade.ToString());
+                }
+            }   
+            
+            public class WhenThereAreHoursAndMinutesOnly
+            {
+                [Test]
+                public void ShouldReturnHoursMinutesAndZeroSecondsOnly()
+                {
+                    var fade = new Fade(hours:2, minutes:15);
+                    
+                    Assert.AreEqual("02:15:00", fade.ToString());
+                }
+            }
+            
+            public class WhenThereAreHoursOnly
+            {
+                [Test]
+                public void ShouldReturnHoursZeroMinutesAndZeroSecondsOnly()
+                {
+                    var fade = new Fade(hours:2);
+                    
+                    Assert.AreEqual("02:00:00", fade.ToString());
                 }
             }
         }
