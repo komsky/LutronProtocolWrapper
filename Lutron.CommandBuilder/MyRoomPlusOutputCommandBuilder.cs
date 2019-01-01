@@ -10,7 +10,7 @@ namespace Lutron.CommandBuilder
         private int _integrationId;
         private Fade _fade;
         private int _level;
-        private string _delay;
+        private Delay _delay;
         private readonly string _command = "OUTPUT";
         
         public static MyRoomPlusOutputCommandBuilder Create()
@@ -48,7 +48,7 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithDelay(string delay)
+        public MyRoomPlusOutputCommandBuilder WithDelay(Delay delay)
         {
             _delay = delay;
             return this;

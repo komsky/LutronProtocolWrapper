@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Lutron.Common.Tests.Models
 {
-    public class FadeTests
+    public class DelayTests
     {
     
         public class Constructor
@@ -14,7 +14,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Fade(-1, 0, 0, 0));
+                    Assert.Throws<ArgumentException>(() => new Delay(-1, 0, 0, 0));
                 }
             }  
             
@@ -23,7 +23,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Fade(0, -1, 0, 0));
+                    Assert.Throws<ArgumentException>(() => new Delay(0, -1, 0, 0));
                 }
             }         
             
@@ -32,7 +32,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Fade(0, 60, 0, 0));
+                    Assert.Throws<ArgumentException>(() => new Delay(0, 60, 0, 0));
                 }
             }  
             
@@ -41,7 +41,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Fade(0, 0, -1, 0));
+                    Assert.Throws<ArgumentException>(() => new Delay(0, 0, -1, 0));
                 }
             }         
             
@@ -50,7 +50,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Fade(0, 0, 60, 0));
+                    Assert.Throws<ArgumentException>(() => new Delay(0, 0, 60, 0));
                 }
             }   
             
@@ -59,7 +59,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Fade(0, 0, 0, -1));
+                    Assert.Throws<ArgumentException>(() => new Delay(0, 0, 0, -1));
                 }
             }         
             
@@ -68,7 +68,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Fade(0, 0, 0, 100));
+                    Assert.Throws<ArgumentException>(() => new Delay(0, 0, 0, 100));
                 }
             }
         }
@@ -80,7 +80,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldIncludeSecondsAndFractionalOnly()
                 {
-                    var fade = new Fade(0,0,4,25);
+                    var fade = new Delay(0,0,4,25);
                     
                     Assert.AreEqual("4.25", fade.ToString());
                 }
@@ -91,7 +91,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldIncludeSecondsOnly()
                 {
-                    var fade = new Fade(0,0,4,0);
+                    var fade = new Delay(0,0,4,0);
                     
                     Assert.AreEqual("4", fade.ToString());
                 }
@@ -102,7 +102,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldIncludeMinutestAndSecondsOnly()
                 {
-                    var fade = new Fade(0,16,4,0);
+                    var fade = new Delay(0,16,4,0);
                     
                     Assert.AreEqual("16:4", fade.ToString());
                 }
@@ -113,7 +113,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldIncludeHoursMinutesAndSecondsOnly()
                 {
-                    var fade = new Fade(3,16,4,0);
+                    var fade = new Delay(3,16,4,0);
                     
                     Assert.AreEqual("3:16:4", fade.ToString());
                 }
@@ -124,7 +124,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldReturnZeroString()
                 {
-                    var fade = new Fade();
+                    var fade = new Delay();
                     
                     Assert.AreEqual("0", fade.ToString());
                 }

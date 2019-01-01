@@ -15,8 +15,6 @@ namespace Lutron.CommandBuilder.Tests
             {
                 const int integrationId = 2;
                 const int level = 70;
-                const string fade = "4";
-                const string delay = "2";
                 
                 var command  =  MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
@@ -24,7 +22,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithAction(MyRoomPlusOutputCommandAction.OutputLevel)
                     .WithLevel(level)
                     .WithFade(new Fade(0,0,4,0))
-                    .WithDelay(delay)
+                    .WithDelay(new Delay(seconds:2))
                     .BuildSetOutputLevelCommand();
                 
                 Assert.AreEqual("#OUTPUT,2,1,70,4,2<CR><LF>", command);
@@ -115,7 +113,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithIntegrationId(integrationId)
                     .WithAction(MyRoomPlusOutputCommandAction.FlashFrequency)
                     .WithFade(new Fade(0,0,2,0))
-                    .WithDelay("45")
+                    .WithDelay(new Delay(seconds:45))
                     .BuildGetFlashFrequencyCommand();
                 
                 Assert.AreEqual("?OUTPUT,2,5,2,45<CR><LF>", command);
