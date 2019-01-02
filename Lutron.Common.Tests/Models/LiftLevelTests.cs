@@ -7,7 +7,6 @@ namespace Lutron.Common.Tests.Models
     [TestFixture]
     public class LiftLevelTests
     {
-    
         [TestFixture]
         public class Constructor
         {
@@ -19,8 +18,8 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new LiftLevel(-1));
                 }
-            }  
-            
+            }
+
             [TestFixture]
             public class WhenLiftLevelIsGreaterThan100
             {
@@ -29,7 +28,7 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new LiftLevel(101));
                 }
-            }         
+            }
         }
 
         [TestFixture]
@@ -39,7 +38,7 @@ namespace Lutron.Common.Tests.Models
             public void ShouldReturnLiftLevel()
             {
                 var fade = new LiftLevel(34);
-                    
+
                 Assert.AreEqual("34", fade.ToString());
             }
         }

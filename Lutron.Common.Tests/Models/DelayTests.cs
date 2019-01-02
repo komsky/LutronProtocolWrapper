@@ -7,7 +7,6 @@ namespace Lutron.Common.Tests.Models
     [TestFixture]
     public class DelayTests
     {
-    
         [TestFixture]
         public class Constructor
         {
@@ -19,8 +18,8 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new Delay(-1, 0, 0, 0));
                 }
-            }  
-            
+            }
+
             [TestFixture]
             public class WhenMinutesAreLessThanZero
             {
@@ -29,8 +28,8 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new Delay(0, -1, 0, 0));
                 }
-            }         
-            
+            }
+
             [TestFixture]
             public class WhenMinutesAreGreaterThan59
             {
@@ -39,8 +38,8 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new Delay(0, 60, 0, 0));
                 }
-            }  
-            
+            }
+
             [TestFixture]
             public class WhenSecondsAreLessThanZero
             {
@@ -49,8 +48,8 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new Delay(0, 0, -1, 0));
                 }
-            }         
-            
+            }
+
             [TestFixture]
             public class WhenSecondsAreGreaterThan59
             {
@@ -59,8 +58,8 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new Delay(0, 0, 60, 0));
                 }
-            }   
-            
+            }
+
             [TestFixture]
             public class WhenFractionalIsLessThanZero
             {
@@ -69,8 +68,8 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new Delay(0, 0, 0, -1));
                 }
-            }         
-            
+            }
+
             [TestFixture]
             public class WhenFractionalIsGreaterThan99
             {
@@ -91,48 +90,48 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldIncludeSecondsAndFractionalOnly()
                 {
-                    var fade = new Delay(0,0,4,25);
-                    
+                    var fade = new Delay(0, 0, 4, 25);
+
                     Assert.AreEqual("4.25", fade.ToString());
                 }
-            }     
-            
+            }
+
             [TestFixture]
             public class WhenThereAreSecondsOnly
             {
                 [Test]
                 public void ShouldIncludeSecondsOnly()
                 {
-                    var fade = new Delay(0,0,4,0);
-                    
+                    var fade = new Delay(0, 0, 4, 0);
+
                     Assert.AreEqual("4", fade.ToString());
                 }
             }
-            
+
             [TestFixture]
             public class WhenThereMinutesAndSecondsOnly
             {
                 [Test]
                 public void ShouldIncludeMinutestAndSecondsOnly()
                 {
-                    var fade = new Delay(0,16,4,0);
-                    
+                    var fade = new Delay(0, 16, 4, 0);
+
                     Assert.AreEqual("16:04", fade.ToString());
                 }
-            }    
-            
+            }
+
             [TestFixture]
             public class WhenThereHoursMinutesAndSecondsOnly
             {
                 [Test]
                 public void ShouldIncludeHoursMinutesAndSecondsOnly()
                 {
-                    var fade = new Delay(3,16,4,0);
-                    
+                    var fade = new Delay(3, 16, 4, 0);
+
                     Assert.AreEqual("03:16:04", fade.ToString());
                 }
-            }  
-            
+            }
+
             [TestFixture]
             public class WhenThereAreNoHoursMinutesSecondsOrFractional
             {
@@ -140,47 +139,46 @@ namespace Lutron.Common.Tests.Models
                 public void ShouldReturnZeroString()
                 {
                     var fade = new Delay();
-                    
+
                     Assert.AreEqual("0", fade.ToString());
                 }
             }
-             
+
             [TestFixture]
             public class WhenThereAreMinutesOnly
             {
                 [Test]
                 public void ShouldReturnMinutesAndZeroSecondsOnly()
                 {
-                    var fade = new Delay(minutes:15);
-                    
+                    var fade = new Delay(minutes: 15);
+
                     Assert.AreEqual("15:00", fade.ToString());
                 }
-            }   
-            
+            }
+
             [TestFixture]
             public class WhenThereAreHoursAndMinutesOnly
             {
                 [Test]
                 public void ShouldReturnHoursMinutesAndZeroSecondsOnly()
                 {
-                    var fade = new Delay(hours:2, minutes:15);
-                    
+                    var fade = new Delay(hours: 2, minutes: 15);
+
                     Assert.AreEqual("02:15:00", fade.ToString());
                 }
             }
-            
+
             [TestFixture]
             public class WhenThereAreHoursOnly
             {
                 [Test]
                 public void ShouldReturnHoursZeroMinutesAndZeroSecondsOnly()
                 {
-                    var fade = new Delay(hours:2);
-                    
+                    var fade = new Delay(hours: 2);
+
                     Assert.AreEqual("02:00:00", fade.ToString());
                 }
             }
-            
         }
     }
 }

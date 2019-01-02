@@ -232,7 +232,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("#OUTPUT,2,9,10,13,21<CR><LF>", command);
                 }
             }
-            
+
             [TestFixture]
             public class GivenTiltLevelAndFade
             {
@@ -249,8 +249,8 @@ namespace Lutron.CommandBuilder.Tests
 
                     Assert.AreEqual("#OUTPUT,2,9,10,13<CR><LF>", command);
                 }
-            }   
-            
+            }
+
             [TestFixture]
             public class GivenTiltLevelAndDelayButNoFade
             {
@@ -270,7 +270,7 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
-        
+
         [TestFixture]
         public class BuildSetLiftAndTiltLevelCommand
         {
@@ -309,7 +309,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The required parameter, lift level, is not provided", exception.Message);
                 }
             }
-            
+
             [TestFixture]
             public class GivenNoTiltLevel
             {
@@ -347,7 +347,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("#OUTPUT,2,10,30,10,13,21<CR><LF>", command);
                 }
             }
-            
+
             [TestFixture]
             public class GivenLiftLevelTiltLevelAndFade
             {
@@ -365,8 +365,8 @@ namespace Lutron.CommandBuilder.Tests
 
                     Assert.AreEqual("#OUTPUT,2,10,30,10,13<CR><LF>", command);
                 }
-            }   
-            
+            }
+
             [TestFixture]
             public class GivenLiftLevelTiltLevelAndDelayButNoFade
             {
@@ -387,29 +387,29 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
-        
+
         [TestFixture]
         public class BuildStartRaisingTiltCommand
         {
-                [Test]
-                public void ShouldReturnCommandString()
-                {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
-                        .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt)
-                        .BuildStartRaisingTiltCommand();
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MyRoomPlusOutputCommandBuilder.Create()
+                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt)
+                    .BuildStartRaisingTiltCommand();
 
-                    Assert.AreEqual("#OUTPUT,2,11<CR><LF>", command);
-                }
-            
+                Assert.AreEqual("#OUTPUT,2,11<CR><LF>", command);
+            }
+
             [TestFixture]
             public class GivenNoIntegrationId
             {
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var exception = Assert.Throws<IntegrationIdNotProvided>( ()
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt)
@@ -417,15 +417,15 @@ namespace Lutron.CommandBuilder.Tests
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
-            }  
-            
+            }
+
             [TestFixture]
             public class GivenNoActionNumber
             {
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var exception = Assert.Throws<ActionNumberNotProvided>( ()
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
@@ -434,21 +434,88 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
             }
-            
+
             [TestFixture]
             public class GivenIncorrectActionNumber
             {
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>( ()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartRaisingTiltCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 11 and not 10", exception.Message);
+                    Assert.AreEqual("The action number provided is incorrect. Expected 11 and not 10",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildStartLoweringTiltCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MyRoomPlusOutputCommandBuilder.Create()
+                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringTilt)
+                    .BuildStartLoweringTiltCommand();
+
+                Assert.AreEqual("#OUTPUT,2,12<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringTilt)
+                            .BuildStartLoweringTiltCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildStartLoweringTiltCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .BuildStartLoweringTiltCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 12 and not 10",
+                        exception.Message);
                 }
             }
         }

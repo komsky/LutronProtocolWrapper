@@ -197,6 +197,17 @@ namespace Lutron.CommandBuilder
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
+        public string BuildStartLoweringTiltCommand()
+        {
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartLoweringTilt);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
         private void CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber expectedActionNumber)
         {
             if (_actionNumber != expectedActionNumber)

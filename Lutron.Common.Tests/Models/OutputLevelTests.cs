@@ -7,7 +7,6 @@ namespace Lutron.Common.Tests.Models
     [TestFixture]
     public class OutputLevelTests
     {
-    
         [TestFixture]
         public class Constructor
         {
@@ -19,8 +18,8 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new OutputLevel(-1));
                 }
-            }  
-            
+            }
+
             [TestFixture]
             public class WhenLevelIsGreaterThan100
             {
@@ -29,19 +28,19 @@ namespace Lutron.Common.Tests.Models
                 {
                     Assert.Throws<ArgumentException>(() => new OutputLevel(101));
                 }
-            }         
+            }
         }
 
         [TestFixture]
         public class WhenToString
         {
-                [Test]
-                public void ShouldReturnLevel()
-                {
-                    var fade = new OutputLevel(34);
-                    
-                    Assert.AreEqual("34", fade.ToString());
-                }
+            [Test]
+            public void ShouldReturnLevel()
+            {
+                var fade = new OutputLevel(34);
+
+                Assert.AreEqual("34", fade.ToString());
+            }
         }
     }
 }

@@ -8,8 +8,8 @@ namespace Lutron.Common.Models
 
         public OutputLevel(double level)
         {
-            if(level < 0) throw new ArgumentException(nameof(level));
-            if(level > 100) throw new ArgumentException(nameof(level));
+            if (level < 0) throw new ArgumentException(nameof(level));
+            if (level > 100) throw new ArgumentException(nameof(level));
             _level = level;
         }
 
