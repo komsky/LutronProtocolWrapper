@@ -15,6 +15,7 @@ namespace Lutron.Common
         StopRaisingOrLoweringTilt = 13,
         StartRaisingLift=14,
         StartLoweringLift=15,
-        StopRaisingOrLoweringLift=16
+        StopRaisingOrLoweringLift=16,
+        HorizontalSheerShadeRegion=28
     }
 }

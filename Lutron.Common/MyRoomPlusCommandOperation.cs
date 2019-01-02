@@ -1,4 +1,4 @@
-namespace Lutron.CommandBuilder
+namespace Lutron.Common
 {
     public enum MyRoomPlusCommandOperation
     {

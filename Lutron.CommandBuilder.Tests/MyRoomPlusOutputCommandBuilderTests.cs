@@ -783,5 +783,143 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
+        
+        [TestFixture]
+        public class BuildGetHorizontalSheerShadeRegionCommand
+        {
+            [TestFixture]
+            public class GivenLiftRegion
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Get)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                        .WithHorizontalSheerShadeRegion(MyRoomPlusHorizontalSheerShadeRegion.Lift)
+                        .BuildGetHorizontalSheerShadeRegionCommand();
+
+                    Assert.AreEqual("?OUTPUT,2,28,0<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenTiltRegion
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Get)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                        .WithHorizontalSheerShadeRegion(MyRoomPlusHorizontalSheerShadeRegion.Tilt)
+                        .BuildGetHorizontalSheerShadeRegionCommand();
+
+                    Assert.AreEqual("?OUTPUT,2,28,1<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoLiftOrTiltRegion
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Get)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                        .BuildGetHorizontalSheerShadeRegionCommand();
+
+                    Assert.AreEqual("?OUTPUT,2,28,0<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                            .BuildGetHorizontalSheerShadeRegionCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                            .BuildGetHorizontalSheerShadeRegionCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+            
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                            .BuildGetHorizontalSheerShadeRegionCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetHorizontalSheerShadeRegionCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .BuildGetHorizontalSheerShadeRegionCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 28 and not 10",
+                        exception.Message);
+                }
+            }
+        }
     }
 }

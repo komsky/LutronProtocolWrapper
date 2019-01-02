@@ -15,6 +15,7 @@ namespace Lutron.CommandBuilder
         private Pulse _pulse;
         private TiltLevel _tiltLevel;
         private LiftLevel _liftLevel;
+        private MyRoomPlusHorizontalSheerShadeRegion _region;
 
         public static MyRoomPlusOutputCommandBuilder Create()
         {
@@ -72,6 +73,12 @@ namespace Lutron.CommandBuilder
         public MyRoomPlusOutputCommandBuilder WithLiftLevel(LiftLevel liftLevel)
         {
             _liftLevel = liftLevel;
+            return this;
+        }
+
+        public MyRoomPlusOutputCommandBuilder WithHorizontalSheerShadeRegion(MyRoomPlusHorizontalSheerShadeRegion region)
+        {
+            _region = region;
             return this;
         }
 
@@ -250,6 +257,26 @@ namespace Lutron.CommandBuilder
             CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildGetHorizontalSheerShadeRegionCommand()
+        {
+            if (_operation == default(MyRoomPlusCommandOperation))
+            {
+                throw new OperationNotProvided();
+            }
+            
+            if (_operation != MyRoomPlusCommandOperation.Get)
+            {
+                throw new IncorrectOperationProvided(_operation, MyRoomPlusCommandOperation.Get);
+            }
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int)_region}<CR><LF>";
         }
 
         private void CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber expectedActionNumber)
