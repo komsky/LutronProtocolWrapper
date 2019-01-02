@@ -5,29 +5,29 @@ using NUnit.Framework;
 namespace Lutron.Common.Tests.Models
 {
     [TestFixture]
-    public class TiltLevelTests
+    public class LiftLevelTests
     {
     
         [TestFixture]
         public class Constructor
         {
             [TestFixture]
-            public class WhenTiltLevelIsLessThanZero
+            public class WhenLiftLevelIsLessThanZero
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new TiltLevel(-1));
+                    Assert.Throws<ArgumentException>(() => new LiftLevel(-1));
                 }
             }  
             
             [TestFixture]
-            public class WhenTiltLevelIsGreaterThan100
+            public class WhenLiftLevelIsGreaterThan100
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new TiltLevel(101));
+                    Assert.Throws<ArgumentException>(() => new LiftLevel(101));
                 }
             }         
         }
@@ -36,9 +36,9 @@ namespace Lutron.Common.Tests.Models
         public class WhenToString
         {
             [Test]
-            public void ShouldReturnTiltLevel()
+            public void ShouldReturnLiftLevel()
             {
-                var fade = new TiltLevel(34);
+                var fade = new LiftLevel(34);
                     
                 Assert.AreEqual("34", fade.ToString());
             }

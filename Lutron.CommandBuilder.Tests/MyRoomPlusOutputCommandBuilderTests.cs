@@ -270,5 +270,122 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
+        
+        [TestFixture]
+        public class BuildSetLiftAndTiltLevelCommand
+        {
+            [TestFixture]
+            public class GivenLiftAndTiltLevel
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                        .WithLiftLevel(new LiftLevel(30))
+                        .WithTiltLevel(new TiltLevel(45))
+                        .BuildSetLiftAndTiltLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,10,30,45<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoLiftLevel
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                        MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                            .WithTiltLevel(new TiltLevel(45))
+                            .BuildSetLiftAndTiltLevelCommand());
+
+                    Assert.AreEqual("The required parameter, lift level, was not provided", exception.Message);
+                }
+            }
+            
+            [TestFixture]
+            public class GivenNoTiltLevel
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                        MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                            .WithLiftLevel(new LiftLevel(30))
+                            .BuildSetLiftAndTiltLevelCommand());
+
+                    Assert.AreEqual("The required parameter, tilt level, was not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenLiftLevelTiltLevelFadeAndDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                        .WithLiftLevel(new LiftLevel(30))
+                        .WithTiltLevel(new TiltLevel(10))
+                        .WithFade(new Fade(seconds: 13))
+                        .WithDelay(new Delay(seconds: 21))
+                        .BuildSetLiftAndTiltLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,10,30,10,13,21<CR><LF>", command);
+                }
+            }
+            
+            [TestFixture]
+            public class GivenLiftLevelTiltLevelAndFade
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                        .WithLiftLevel(new LiftLevel(30))
+                        .WithTiltLevel(new TiltLevel(10))
+                        .WithFade(new Fade(seconds: 13))
+                        .BuildSetLiftAndTiltLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,10,30,10,13<CR><LF>", command);
+                }
+            }   
+            
+            [TestFixture]
+            public class GivenLiftLevelTiltLevelAndDelayButNoFade
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                        MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                            .WithLiftLevel(new LiftLevel(30))
+                            .WithTiltLevel(new TiltLevel(10))
+                            .WithDelay(new Delay(seconds: 21))
+                            .BuildSetLiftAndTiltLevelCommand());
+
+                    Assert.AreEqual("The required parameter, fade, was not provided", exception.Message);
+                }
+            }
+        }
     }
 }

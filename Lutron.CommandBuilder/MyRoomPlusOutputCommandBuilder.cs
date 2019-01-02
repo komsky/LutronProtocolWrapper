@@ -14,6 +14,7 @@ namespace Lutron.CommandBuilder
         private readonly string _command = "OUTPUT";
         private Pulse _pulse;
         private TiltLevel _tiltLevel;
+        private LiftLevel _liftLevel;
 
         public static MyRoomPlusOutputCommandBuilder Create()
         {
@@ -68,9 +69,16 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
+        public MyRoomPlusOutputCommandBuilder WithLiftLevel(LiftLevel liftLevel)
+        {
+            _liftLevel = liftLevel;
+            return this;
+        }
+
         public string BuildSetOutputLevelCommand()
         {
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_outputLevel},{_fade},{_delay}<CR><LF>";
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_outputLevel},{_fade},{_delay}<CR><LF>";
         }
 
         public string BuildGetOutputLevelCommand()
@@ -124,12 +132,12 @@ namespace Lutron.CommandBuilder
             {
                 throw new RequiredParameterNotProvided("tilt level");
             }
-            
-            if ( _fade is null && _delay != null)
+
+            if (_fade is null && _delay != null)
             {
                 throw new RequiredParameterNotProvided("fade");
             }
-            
+
             if (_fade != null && _delay != null)
             {
                 return
@@ -141,8 +149,40 @@ namespace Lutron.CommandBuilder
                 return
                     $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_tiltLevel},{_fade}<CR><LF>";
             }
-            
+
             return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_tiltLevel}<CR><LF>";
+        }
+
+        public string BuildSetLiftAndTiltLevelCommand()
+        {
+            if (_liftLevel is null)
+            {
+                throw new RequiredParameterNotProvided("lift level");
+            }
+
+            if (_tiltLevel is null)
+            {
+                throw new RequiredParameterNotProvided("tilt level");
+            }
+
+            if (_fade is null && _delay != null)
+            {
+                throw new RequiredParameterNotProvided("fade");
+            }
+            
+            if (_fade != null && _delay != null)
+            {
+                return
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_liftLevel},{_tiltLevel},{_fade},{_delay}<CR><LF>";
+            }
+
+            if (_fade != null)
+            {
+                return
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_liftLevel},{_tiltLevel},{_fade}<CR><LF>";
+            }
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_liftLevel},{_tiltLevel}<CR><LF>";
         }
     }
 }
