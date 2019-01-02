@@ -12,14 +12,11 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                const int integrationId = 2;
-                const int level = 70;
-
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
-                    .WithIntegrationId(integrationId)
+                    .WithIntegrationId(2)
                     .WithAction(MyRoomPlusOutputCommandAction.OutputLevel)
-                    .WithLevel(level)
+                    .WithLevel(new Level(70))
                     .WithFade(new Fade(seconds: 4))
                     .WithDelay(new Delay(seconds: 2))
                     .BuildSetOutputLevelCommand();
@@ -34,11 +31,9 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                const int integrationId = 2;
-
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Get)
-                    .WithIntegrationId(integrationId)
+                    .WithIntegrationId(2)
                     .BuildGetOutputLevelCommand();
 
                 Assert.AreEqual("?OUTPUT,2<CR><LF>", command);
@@ -51,11 +46,9 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                const int integrationId = 2;
-
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
-                    .WithIntegrationId(integrationId)
+                    .WithIntegrationId(2)
                     .WithAction(MyRoomPlusOutputCommandAction.StartRaisingOutputLevel)
                     .BuildStartRaisingOutputLevelCommand();
 
@@ -69,11 +62,9 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                const int integrationId = 2;
-
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
-                    .WithIntegrationId(integrationId)
+                    .WithIntegrationId(2)
                     .WithAction(MyRoomPlusOutputCommandAction.StartLoweringOutputLevel)
                     .BuildStartLoweringOutputLevelCommand();
 
@@ -87,11 +78,9 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                const int integrationId = 2;
-
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
-                    .WithIntegrationId(integrationId)
+                    .WithIntegrationId(2)
                     .WithAction(MyRoomPlusOutputCommandAction.StopRaisingOrLoweringOutputLevel)
                     .BuildStopRaisingOrLoweringOutputLevelCommand();
 
@@ -105,11 +94,9 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                const int integrationId = 2;
-
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Get)
-                    .WithIntegrationId(integrationId)
+                    .WithIntegrationId(2)
                     .WithAction(MyRoomPlusOutputCommandAction.FlashFrequency)
                     .WithFade(new Fade(seconds: 2))
                     .WithDelay(new Delay(seconds: 45))

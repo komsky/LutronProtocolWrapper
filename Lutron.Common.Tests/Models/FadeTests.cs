@@ -4,11 +4,14 @@ using NUnit.Framework;
 
 namespace Lutron.Common.Tests.Models
 {
+    [TestFixture]
     public class FadeTests
     {
     
+        [TestFixture]
         public class Constructor
         {
+            [TestFixture]
             public class WhenHoursAreLessThanZero
             {
                 [Test]
@@ -18,6 +21,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }  
             
+            [TestFixture]
             public class WhenMinutesAreLessThanZero
             {
                 [Test]
@@ -27,6 +31,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }         
             
+            [TestFixture]
             public class WhenMinutesAreGreaterThan59
             {
                 [Test]
@@ -36,6 +41,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }  
             
+            [TestFixture]
             public class WhenSecondsAreLessThanZero
             {
                 [Test]
@@ -45,6 +51,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }         
             
+            [TestFixture]
             public class WhenSecondsAreGreaterThan59
             {
                 [Test]
@@ -54,6 +61,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }   
             
+            [TestFixture]
             public class WhenFractionalIsLessThanZero
             {
                 [Test]
@@ -63,6 +71,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }         
             
+            [TestFixture]
             public class WhenFractionalIsGreaterThan99
             {
                 [Test]
@@ -73,8 +82,10 @@ namespace Lutron.Common.Tests.Models
             }
         }
 
-        public class ToString
+        [TestFixture]
+        public class WhenToString
         {
+            [TestFixture]
             public class WhenThereAreSecondsWithFractional
             {
                 [Test]
@@ -86,6 +97,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }     
             
+            [TestFixture]
             public class WhenThereAreSecondsOnly
             {
                 [Test]
@@ -97,6 +109,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }
             
+            [TestFixture]
             public class WhenThereMinutesAndSecondsOnly
             {
                 [Test]
@@ -108,6 +121,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }    
             
+            [TestFixture]
             public class WhenThereHoursMinutesAndSecondsOnly
             {
                 [Test]
@@ -119,6 +133,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }  
             
+            [TestFixture]
             public class WhenThereAreNoHoursMinutesSecondsOrFractional
             {
                 [Test]
@@ -130,6 +145,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }    
             
+            [TestFixture]
             public class WhenThereAreMinutesOnly
             {
                 [Test]
@@ -141,6 +157,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }   
             
+            [TestFixture]
             public class WhenThereAreHoursAndMinutesOnly
             {
                 [Test]
@@ -152,6 +169,7 @@ namespace Lutron.Common.Tests.Models
                 }
             }
             
+            [TestFixture]
             public class WhenThereAreHoursOnly
             {
                 [Test]

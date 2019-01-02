@@ -8,7 +8,7 @@ namespace Lutron.CommandBuilder
         private MyRoomPlusOutputCommandAction _action;
         private int _integrationId;
         private Fade _fade;
-        private int _level;
+        private Level _level;
         private Delay _delay;
         private readonly string _command = "OUTPUT";
         
@@ -41,7 +41,7 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithLevel(int level)
+        public MyRoomPlusOutputCommandBuilder WithLevel(Level level)
         {
             _level = level;
             return this;
