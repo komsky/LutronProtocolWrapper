@@ -7,6 +7,7 @@ namespace Lutron.CommandBuilder
         StartLoweringOutputLevel =3,
         StopRaisingOrLoweringOutputLevel=4,
         FlashFrequency=5,
-        ContactClosureOutputPulseTime=6
+        ContactClosureOutputPulseTime=6,
+        TiltLevel=9
     }
 }

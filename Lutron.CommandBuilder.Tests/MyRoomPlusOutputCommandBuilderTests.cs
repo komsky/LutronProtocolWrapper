@@ -1,3 +1,4 @@
+using Lutron.Common;
 using Lutron.Common.Models;
 using NUnit.Framework;
 
@@ -172,6 +173,100 @@ namespace Lutron.CommandBuilder.Tests
                         .BuildSetContactClosureOutputPulseTimeCommand();
 
                     Assert.AreEqual("#OUTPUT,2,6<CR><LF>", command);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetTiltLevelCommand
+        {
+            [TestFixture]
+            public class GivenTiltLevel
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                        .WithTiltLevel(new TiltLevel(45))
+                        .BuildSetTiltLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,9,45<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoTiltLevel
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                        MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                            .BuildSetTiltLevelCommand());
+
+                    Assert.AreEqual("The required parameter, tilt level, was not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenTiltLevelFadeAndDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                        .WithTiltLevel(new TiltLevel(10))
+                        .WithFade(new Fade(seconds: 13))
+                        .WithDelay(new Delay(seconds: 21))
+                        .BuildSetTiltLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,9,10,13,21<CR><LF>", command);
+                }
+            }
+            
+            [TestFixture]
+            public class GivenTiltLevelAndFade
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                        .WithTiltLevel(new TiltLevel(10))
+                        .WithFade(new Fade(seconds: 13))
+                        .BuildSetTiltLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,9,10,13<CR><LF>", command);
+                }
+            }   
+            
+            [TestFixture]
+            public class GivenTiltLevelAndDelayButNoFade
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                        MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                            .WithTiltLevel(new TiltLevel(10))
+                            .WithDelay(new Delay(seconds: 21))
+                            .BuildSetTiltLevelCommand());
+
+                    Assert.AreEqual("The required parameter, fade, was not provided", exception.Message);
                 }
             }
         }

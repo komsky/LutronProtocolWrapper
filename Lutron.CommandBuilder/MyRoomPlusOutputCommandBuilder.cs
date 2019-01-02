@@ -1,3 +1,4 @@
+using Lutron.Common;
 using Lutron.Common.Models;
 
 namespace Lutron.CommandBuilder
@@ -12,6 +13,7 @@ namespace Lutron.CommandBuilder
         private Delay _delay;
         private readonly string _command = "OUTPUT";
         private Pulse _pulse;
+        private TiltLevel _tiltLevel;
 
         public static MyRoomPlusOutputCommandBuilder Create()
         {
@@ -59,55 +61,88 @@ namespace Lutron.CommandBuilder
             _pulse = pulse;
             return this;
         }
-        
+
+        public MyRoomPlusOutputCommandBuilder WithTiltLevel(TiltLevel tiltLevel)
+        {
+            _tiltLevel = tiltLevel;
+            return this;
+        }
+
         public string BuildSetOutputLevelCommand()
         {
-            return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_level},{_fade},{_delay}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_level},{_fade},{_delay}<CR><LF>";
         }
 
         public string BuildGetOutputLevelCommand()
         {
-            return $"{(char)_operation}{_command},{_integrationId}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId}<CR><LF>";
         }
 
         public string BuildStartRaisingOutputLevelCommand()
         {
-            return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
         }
 
         public string BuildStartLoweringOutputLevelCommand()
         {
-            return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
         }
 
         public string BuildStopRaisingOrLoweringOutputLevelCommand()
         {
-            return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
         }
 
         public string BuildGetFlashFrequencyCommand()
         {
-            return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
         }
 
         public string BuildSetFlashFrequencyCommand()
         {
-            return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_fade},{_delay}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_fade},{_delay}<CR><LF>";
         }
 
         public string BuildSetContactClosureOutputPulseTimeCommand()
         {
             if (_pulse != null)
             {
-                return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_pulse}<CR><LF>";                
-            }
-            
-            if (_delay != null)
-            {
-                return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_delay}<CR><LF>";                
+                return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_pulse}<CR><LF>";
             }
 
-            return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";                
+            if (_delay != null)
+            {
+                return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_delay}<CR><LF>";
+            }
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
+        }
+
+        public string BuildSetTiltLevelCommand()
+        {
+            if (_tiltLevel is null)
+            {
+                throw new RequiredParameterNotProvided("tilt level");
+            }
+            
+            if ( _fade is null && _delay != null)
+            {
+                throw new RequiredParameterNotProvided("fade");
+            }
+            
+            if (_fade != null && _delay != null)
+            {
+                return
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_tiltLevel},{_fade},{_delay}<CR><LF>";
+            }
+
+            if (_fade != null)
+            {
+                return
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_tiltLevel},{_fade}<CR><LF>";
+            }
+            
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_tiltLevel}<CR><LF>";
         }
     }
 }
