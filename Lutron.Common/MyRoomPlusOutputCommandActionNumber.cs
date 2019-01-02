@@ -11,6 +11,7 @@ namespace Lutron.Common
         TiltLevel = 9,
         LiftAndTiltLevel = 10,
         StartRaisingTilt = 11,
-        StartLoweringTilt = 12
+        StartLoweringTilt = 12,
+        StopRaisingOrLoweringTilt = 13,
     }
 }
