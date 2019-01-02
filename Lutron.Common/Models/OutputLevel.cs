@@ -2,11 +2,11 @@ using System;
 
 namespace Lutron.Common.Models
 {
-    public class Level
+    public class OutputLevel
     {
         private readonly double _level;
 
-        public Level(double level)
+        public OutputLevel(double level)
         {
             if(level < 0) throw new ArgumentException(nameof(level));
             if(level > 100) throw new ArgumentException(nameof(level));

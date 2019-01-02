@@ -17,7 +17,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(MyRoomPlusCommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(MyRoomPlusOutputCommandAction.OutputLevel)
-                    .WithLevel(new Level(70))
+                    .WithLevel(new OutputLevel(70))
                     .WithFade(new Fade(seconds: 4))
                     .WithDelay(new Delay(seconds: 2))
                     .BuildSetOutputLevelCommand();

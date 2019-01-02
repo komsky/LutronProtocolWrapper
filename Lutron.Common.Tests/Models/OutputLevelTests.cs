@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Lutron.Common.Tests.Models
 {
     [TestFixture]
-    public class LevelTests
+    public class OutputLevelTests
     {
     
         [TestFixture]
@@ -17,7 +17,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Level(-1));
+                    Assert.Throws<ArgumentException>(() => new OutputLevel(-1));
                 }
             }  
             
@@ -27,7 +27,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Level(101));
+                    Assert.Throws<ArgumentException>(() => new OutputLevel(101));
                 }
             }         
         }
@@ -38,7 +38,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldReturnLevel()
                 {
-                    var fade = new Level(34);
+                    var fade = new OutputLevel(34);
                     
                     Assert.AreEqual("34", fade.ToString());
                 }
