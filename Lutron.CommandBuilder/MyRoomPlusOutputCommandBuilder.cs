@@ -11,7 +11,8 @@ namespace Lutron.CommandBuilder
         private Level _level;
         private Delay _delay;
         private readonly string _command = "OUTPUT";
-        
+        private Pulse _pulse;
+
         public static MyRoomPlusOutputCommandBuilder Create()
         {
             return new MyRoomPlusOutputCommandBuilder();
@@ -53,6 +54,12 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
+        public MyRoomPlusOutputCommandBuilder WithPulse(Pulse pulse)
+        {
+            _pulse = pulse;
+            return this;
+        }
+        
         public string BuildSetOutputLevelCommand()
         {
             return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_level},{_fade},{_delay}<CR><LF>";
@@ -86,6 +93,21 @@ namespace Lutron.CommandBuilder
         public string BuildSetFlashFrequencyCommand()
         {
             return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_fade},{_delay}<CR><LF>";
+        }
+
+        public string BuildSetContactClosureOutputPulseTimeCommand()
+        {
+            if (_pulse != null)
+            {
+                return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_pulse}<CR><LF>";                
+            }
+            
+            if (_delay != null)
+            {
+                return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_delay}<CR><LF>";                
+            }
+
+            return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";                
         }
     }
 }

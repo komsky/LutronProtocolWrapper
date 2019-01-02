@@ -103,7 +103,7 @@ namespace Lutron.CommandBuilder.Tests
                 Assert.AreEqual("?OUTPUT,2,5<CR><LF>", command);
             }
         }
-        
+
         [TestFixture]
         public class BuildSetFlashFrequencyCommand
         {
@@ -119,6 +119,60 @@ namespace Lutron.CommandBuilder.Tests
                     .BuildSetFlashFrequencyCommand();
 
                 Assert.AreEqual("#OUTPUT,2,5,2,45<CR><LF>", command);
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetContactClosureOutputPulseTimeCommand
+        {
+            [TestFixture]
+            public class GivenPulse
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandAction.ContactClosureOutputPulseTime)
+                        .WithPulse(new Pulse(seconds: 45))
+                        .BuildSetContactClosureOutputPulseTimeCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,6,45<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandAction.ContactClosureOutputPulseTime)
+                        .WithDelay(new Delay(seconds: 10))
+                        .BuildSetContactClosureOutputPulseTimeCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,6,10<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoPulseOrDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandAction.ContactClosureOutputPulseTime)
+                        .BuildSetContactClosureOutputPulseTimeCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,6<CR><LF>", command);
+                }
             }
         }
     }
