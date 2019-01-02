@@ -216,7 +216,41 @@ namespace Lutron.CommandBuilder
 
             CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringTilt);
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";        }
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildStartRaisingLiftCommand()
+        {
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartRaisingLift);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildStartLoweringLiftCommand()
+        {
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartLoweringLift);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildStopRaisingOrLoweringLiftCommand()
+        {
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
 
         private void CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber expectedActionNumber)
         {
@@ -234,6 +268,7 @@ namespace Lutron.CommandBuilder
                 throw new ActionNumberNotProvided();
             }
         }
+
 
         private void CheckIfIntegrationIdIsProvided()
         {

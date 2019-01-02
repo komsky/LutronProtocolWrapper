@@ -585,5 +585,203 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
+
+        [TestFixture]
+        public class BuildStartRaisingLiftCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MyRoomPlusOutputCommandBuilder.Create()
+                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingLift)
+                    .BuildStartRaisingLiftCommand();
+
+                Assert.AreEqual("#OUTPUT,2,14<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingLift)
+                            .BuildStartRaisingLiftCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildStartRaisingLiftCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .BuildStartRaisingLiftCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 14 and not 10",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildStartLoweringLiftCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MyRoomPlusOutputCommandBuilder.Create()
+                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringLift)
+                    .BuildStartLoweringLiftCommand();
+
+                Assert.AreEqual("#OUTPUT,2,15<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringLift)
+                            .BuildStartLoweringLiftCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildStartLoweringLiftCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .BuildStartLoweringLiftCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 15 and not 10",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildStopRaisingOrLoweringLiftCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MyRoomPlusOutputCommandBuilder.Create()
+                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift)
+                    .BuildStopRaisingOrLoweringLiftCommand();
+
+                Assert.AreEqual("#OUTPUT,2,16<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift)
+                            .BuildStopRaisingOrLoweringLiftCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildStopRaisingOrLoweringLiftCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .BuildStopRaisingOrLoweringLiftCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 16 and not 10",
+                        exception.Message);
+                }
+            }
+        }
     }
 }

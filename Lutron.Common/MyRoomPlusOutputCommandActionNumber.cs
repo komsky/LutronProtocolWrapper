@@ -13,5 +13,8 @@ namespace Lutron.Common
         StartRaisingTilt = 11,
         StartLoweringTilt = 12,
         StopRaisingOrLoweringTilt = 13,
+        StartRaisingLift=14,
+        StartLoweringLift=15,
+        StopRaisingOrLoweringLift=16
     }
 }
