@@ -1,6 +1,6 @@
-namespace Lutron.CommandBuilder
+namespace Lutron.Common
 {
-    public enum MyRoomPlusOutputCommandAction
+    public enum MyRoomPlusOutputCommandActionNumber
     {
         OutputLevel = 1,
         StartRaisingOutputLevel = 2,
@@ -9,6 +9,7 @@ namespace Lutron.CommandBuilder
         FlashFrequency=5,
         ContactClosureOutputPulseTime=6,
         TiltLevel=9,
-        LiftAndTiltLevel=10
+        LiftAndTiltLevel=10,
+        StartRaisingTilt=11
     }
 }

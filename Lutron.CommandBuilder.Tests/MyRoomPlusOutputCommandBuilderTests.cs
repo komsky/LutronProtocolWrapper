@@ -16,7 +16,7 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandAction.OutputLevel)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
                     .WithLevel(new OutputLevel(70))
                     .WithFade(new Fade(seconds: 4))
                     .WithDelay(new Delay(seconds: 2))
@@ -50,7 +50,7 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandAction.StartRaisingOutputLevel)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingOutputLevel)
                     .BuildStartRaisingOutputLevelCommand();
 
                 Assert.AreEqual("#OUTPUT,2,2<CR><LF>", command);
@@ -66,7 +66,7 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandAction.StartLoweringOutputLevel)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringOutputLevel)
                     .BuildStartLoweringOutputLevelCommand();
 
                 Assert.AreEqual("#OUTPUT,2,3<CR><LF>", command);
@@ -82,7 +82,7 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandAction.StopRaisingOrLoweringOutputLevel)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
                     .BuildStopRaisingOrLoweringOutputLevelCommand();
 
                 Assert.AreEqual("#OUTPUT,2,4<CR><LF>", command);
@@ -98,7 +98,7 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Get)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandAction.FlashFrequency)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
                     .BuildGetFlashFrequencyCommand();
 
                 Assert.AreEqual("?OUTPUT,2,5<CR><LF>", command);
@@ -114,7 +114,7 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MyRoomPlusOutputCommandBuilder.Create()
                     .WithOperation(MyRoomPlusCommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandAction.FlashFrequency)
+                    .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
                     .WithFade(new Fade(seconds: 2))
                     .WithDelay(new Delay(seconds: 45))
                     .BuildSetFlashFrequencyCommand();
@@ -135,7 +135,7 @@ namespace Lutron.CommandBuilder.Tests
                     var command = MyRoomPlusOutputCommandBuilder.Create()
                         .WithOperation(MyRoomPlusCommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandAction.ContactClosureOutputPulseTime)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
                         .WithPulse(new Pulse(seconds: 45))
                         .BuildSetContactClosureOutputPulseTimeCommand();
 
@@ -152,7 +152,7 @@ namespace Lutron.CommandBuilder.Tests
                     var command = MyRoomPlusOutputCommandBuilder.Create()
                         .WithOperation(MyRoomPlusCommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandAction.ContactClosureOutputPulseTime)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
                         .WithDelay(new Delay(seconds: 10))
                         .BuildSetContactClosureOutputPulseTimeCommand();
 
@@ -169,7 +169,7 @@ namespace Lutron.CommandBuilder.Tests
                     var command = MyRoomPlusOutputCommandBuilder.Create()
                         .WithOperation(MyRoomPlusCommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandAction.ContactClosureOutputPulseTime)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
                         .BuildSetContactClosureOutputPulseTimeCommand();
 
                     Assert.AreEqual("#OUTPUT,2,6<CR><LF>", command);
@@ -189,7 +189,7 @@ namespace Lutron.CommandBuilder.Tests
                     var command = MyRoomPlusOutputCommandBuilder.Create()
                         .WithOperation(MyRoomPlusCommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(45))
                         .BuildSetTiltLevelCommand();
 
@@ -207,10 +207,10 @@ namespace Lutron.CommandBuilder.Tests
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
                             .BuildSetTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, tilt level, was not provided", exception.Message);
+                    Assert.AreEqual("The required parameter, tilt level, is not provided", exception.Message);
                 }
             }
 
@@ -223,7 +223,7 @@ namespace Lutron.CommandBuilder.Tests
                     var command = MyRoomPlusOutputCommandBuilder.Create()
                         .WithOperation(MyRoomPlusCommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
                         .WithDelay(new Delay(seconds: 21))
@@ -242,7 +242,7 @@ namespace Lutron.CommandBuilder.Tests
                     var command = MyRoomPlusOutputCommandBuilder.Create()
                         .WithOperation(MyRoomPlusCommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
                         .BuildSetTiltLevelCommand();
@@ -261,12 +261,12 @@ namespace Lutron.CommandBuilder.Tests
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandAction.TiltLevel)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
                             .WithTiltLevel(new TiltLevel(10))
                             .WithDelay(new Delay(seconds: 21))
                             .BuildSetTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, fade, was not provided", exception.Message);
+                    Assert.AreEqual("The required parameter, fade, is not provided", exception.Message);
                 }
             }
         }
@@ -283,7 +283,7 @@ namespace Lutron.CommandBuilder.Tests
                     var command = MyRoomPlusOutputCommandBuilder.Create()
                         .WithOperation(MyRoomPlusCommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(45))
                         .BuildSetLiftAndTiltLevelCommand();
@@ -302,11 +302,11 @@ namespace Lutron.CommandBuilder.Tests
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
                             .WithTiltLevel(new TiltLevel(45))
                             .BuildSetLiftAndTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, lift level, was not provided", exception.Message);
+                    Assert.AreEqual("The required parameter, lift level, is not provided", exception.Message);
                 }
             }
             
@@ -320,11 +320,11 @@ namespace Lutron.CommandBuilder.Tests
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
                             .WithLiftLevel(new LiftLevel(30))
                             .BuildSetLiftAndTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, tilt level, was not provided", exception.Message);
+                    Assert.AreEqual("The required parameter, tilt level, is not provided", exception.Message);
                 }
             }
 
@@ -337,7 +337,7 @@ namespace Lutron.CommandBuilder.Tests
                     var command = MyRoomPlusOutputCommandBuilder.Create()
                         .WithOperation(MyRoomPlusCommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
@@ -357,7 +357,7 @@ namespace Lutron.CommandBuilder.Tests
                     var command = MyRoomPlusOutputCommandBuilder.Create()
                         .WithOperation(MyRoomPlusCommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
@@ -377,13 +377,78 @@ namespace Lutron.CommandBuilder.Tests
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandAction.LiftAndTiltLevel)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
                             .WithLiftLevel(new LiftLevel(30))
                             .WithTiltLevel(new TiltLevel(10))
                             .WithDelay(new Delay(seconds: 21))
                             .BuildSetLiftAndTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, fade, was not provided", exception.Message);
+                    Assert.AreEqual("The required parameter, fade, is not provided", exception.Message);
+                }
+            }
+        }
+        
+        [TestFixture]
+        public class BuildStartRaisingTiltCommand
+        {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt)
+                        .BuildStartRaisingTiltCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,11<CR><LF>", command);
+                }
+            
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>( ()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt)
+                            .BuildStartRaisingTiltCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }  
+            
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>( ()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildStartRaisingTiltCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+            
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>( ()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .BuildStartRaisingTiltCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 11 and not 10", exception.Message);
                 }
             }
         }

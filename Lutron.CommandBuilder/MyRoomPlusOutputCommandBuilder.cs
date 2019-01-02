@@ -6,7 +6,7 @@ namespace Lutron.CommandBuilder
     public class MyRoomPlusOutputCommandBuilder
     {
         private MyRoomPlusCommandOperation _operation;
-        private MyRoomPlusOutputCommandAction _action;
+        private MyRoomPlusOutputCommandActionNumber _actionNumber;
         private int _integrationId;
         private Fade _fade;
         private OutputLevel _outputLevel;
@@ -33,9 +33,9 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithAction(MyRoomPlusOutputCommandAction action)
+        public MyRoomPlusOutputCommandBuilder WithAction(MyRoomPlusOutputCommandActionNumber actionNumber)
         {
-            _action = action;
+            _actionNumber = actionNumber;
             return this;
         }
 
@@ -78,7 +78,7 @@ namespace Lutron.CommandBuilder
         public string BuildSetOutputLevelCommand()
         {
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_outputLevel},{_fade},{_delay}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_outputLevel},{_fade},{_delay}<CR><LF>";
         }
 
         public string BuildGetOutputLevelCommand()
@@ -88,42 +88,42 @@ namespace Lutron.CommandBuilder
 
         public string BuildStartRaisingOutputLevelCommand()
         {
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildStartLoweringOutputLevelCommand()
         {
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildStopRaisingOrLoweringOutputLevelCommand()
         {
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildGetFlashFrequencyCommand()
         {
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildSetFlashFrequencyCommand()
         {
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_fade},{_delay}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_fade},{_delay}<CR><LF>";
         }
 
         public string BuildSetContactClosureOutputPulseTimeCommand()
         {
             if (_pulse != null)
             {
-                return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_pulse}<CR><LF>";
+                return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_pulse}<CR><LF>";
             }
 
             if (_delay != null)
             {
-                return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_delay}<CR><LF>";
+                return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_delay}<CR><LF>";
             }
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _action}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildSetTiltLevelCommand()
@@ -141,16 +141,16 @@ namespace Lutron.CommandBuilder
             if (_fade != null && _delay != null)
             {
                 return
-                    $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_tiltLevel},{_fade},{_delay}<CR><LF>";
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_tiltLevel},{_fade},{_delay}<CR><LF>";
             }
 
             if (_fade != null)
             {
                 return
-                    $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_tiltLevel},{_fade}<CR><LF>";
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_tiltLevel},{_fade}<CR><LF>";
             }
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_tiltLevel}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_tiltLevel}<CR><LF>";
         }
 
         public string BuildSetLiftAndTiltLevelCommand()
@@ -169,20 +169,57 @@ namespace Lutron.CommandBuilder
             {
                 throw new RequiredParameterNotProvided("fade");
             }
-            
+
             if (_fade != null && _delay != null)
             {
                 return
-                    $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_liftLevel},{_tiltLevel},{_fade},{_delay}<CR><LF>";
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_liftLevel},{_tiltLevel},{_fade},{_delay}<CR><LF>";
             }
 
             if (_fade != null)
             {
                 return
-                    $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_liftLevel},{_tiltLevel},{_fade}<CR><LF>";
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_liftLevel},{_tiltLevel},{_fade}<CR><LF>";
             }
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _action},{_liftLevel},{_tiltLevel}<CR><LF>";
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_liftLevel},{_tiltLevel}<CR><LF>";
+        }
+
+        public string BuildStartRaisingTiltCommand()
+        {
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        private void CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber expectedActionNumber)
+        {
+            if (_actionNumber != expectedActionNumber)
+            {
+                throw new IncorrectActionNumberProvided(_actionNumber,
+                    expectedActionNumber);
+            }
+        }
+
+        private void CheckIfActionNumberIsProvided()
+        {
+            if (_actionNumber == default(MyRoomPlusOutputCommandActionNumber))
+            {
+                throw new ActionNumberNotProvided();
+            }
+        }
+
+        private void CheckIfIntegrationIdIsProvided()
+        {
+            if (_integrationId == default(int))
+            {
+                throw new IntegrationIdNotProvided();
+            }
         }
     }
 }
