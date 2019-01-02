@@ -98,11 +98,27 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(MyRoomPlusCommandOperation.Get)
                     .WithIntegrationId(2)
                     .WithAction(MyRoomPlusOutputCommandAction.FlashFrequency)
-                    .WithFade(new Fade(seconds: 2))
-                    .WithDelay(new Delay(seconds: 45))
                     .BuildGetFlashFrequencyCommand();
 
-                Assert.AreEqual("?OUTPUT,2,5,2,45<CR><LF>", command);
+                Assert.AreEqual("?OUTPUT,2,5<CR><LF>", command);
+            }
+        }
+        
+        [TestFixture]
+        public class BuildSetFlashFrequencyCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MyRoomPlusOutputCommandBuilder.Create()
+                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(MyRoomPlusOutputCommandAction.FlashFrequency)
+                    .WithFade(new Fade(seconds: 2))
+                    .WithDelay(new Delay(seconds: 45))
+                    .BuildSetFlashFrequencyCommand();
+
+                Assert.AreEqual("#OUTPUT,2,5,2,45<CR><LF>", command);
             }
         }
     }

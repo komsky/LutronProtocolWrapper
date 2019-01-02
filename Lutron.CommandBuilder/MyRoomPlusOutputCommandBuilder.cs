@@ -80,6 +80,11 @@ namespace Lutron.CommandBuilder
 
         public string BuildGetFlashFrequencyCommand()
         {
+            return $"{(char)_operation}{_command},{_integrationId},{(int)_action}<CR><LF>";
+        }
+
+        public string BuildSetFlashFrequencyCommand()
+        {
             return $"{(char)_operation}{_command},{_integrationId},{(int)_action},{_fade},{_delay}<CR><LF>";
         }
     }
