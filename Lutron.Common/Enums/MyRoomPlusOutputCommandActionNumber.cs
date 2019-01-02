@@ -1,4 +1,4 @@
-namespace Lutron.Common
+namespace Lutron.Common.Enums
 {
     public enum MyRoomPlusOutputCommandActionNumber
     {

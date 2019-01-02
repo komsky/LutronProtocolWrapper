@@ -1,4 +1,5 @@
 using Lutron.Common;
+using Lutron.Common.Enums;
 using Lutron.Common.Exceptions;
 using Lutron.Common.Models;
 using NUnit.Framework;

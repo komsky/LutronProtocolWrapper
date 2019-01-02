@@ -1,4 +1,5 @@
 using System;
+using Lutron.Common.Enums;
 
 namespace Lutron.Common.Exceptions
 {
