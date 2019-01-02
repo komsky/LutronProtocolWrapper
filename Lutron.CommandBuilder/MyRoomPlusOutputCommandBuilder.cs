@@ -1,4 +1,5 @@
 using Lutron.Common;
+using Lutron.Common.Exceptions;
 using Lutron.Common.Models;
 
 namespace Lutron.CommandBuilder
@@ -137,12 +138,12 @@ namespace Lutron.CommandBuilder
         {
             if (_tiltLevel is null)
             {
-                throw new RequiredParameterNotProvided("tilt level");
+                throw new ParameterNotProvided("tilt level");
             }
 
             if (_fade is null && _delay != null)
             {
-                throw new RequiredParameterNotProvided("fade");
+                throw new ParameterNotProvided("fade");
             }
 
             if (_fade != null && _delay != null)
@@ -164,17 +165,17 @@ namespace Lutron.CommandBuilder
         {
             if (_liftLevel is null)
             {
-                throw new RequiredParameterNotProvided("lift level");
+                throw new ParameterNotProvided("lift level");
             }
 
             if (_tiltLevel is null)
             {
-                throw new RequiredParameterNotProvided("tilt level");
+                throw new ParameterNotProvided("tilt level");
             }
 
             if (_fade is null && _delay != null)
             {
-                throw new RequiredParameterNotProvided("fade");
+                throw new ParameterNotProvided("fade");
             }
 
             if (_fade != null && _delay != null)

@@ -1,4 +1,5 @@
 using Lutron.Common;
+using Lutron.Common.Exceptions;
 using Lutron.Common.Models;
 using NUnit.Framework;
 
@@ -203,14 +204,14 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                    var exception = Assert.Throws<ParameterNotProvided>(() =>
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
                             .BuildSetTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, tilt level, is not provided", exception.Message);
+                    Assert.AreEqual("The parameter, tilt level, is not provided", exception.Message);
                 }
             }
 
@@ -257,7 +258,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                    var exception = Assert.Throws<ParameterNotProvided>(() =>
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
@@ -266,7 +267,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithDelay(new Delay(seconds: 21))
                             .BuildSetTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, fade, is not provided", exception.Message);
+                    Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
                 }
             }
         }
@@ -298,7 +299,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                    var exception = Assert.Throws<ParameterNotProvided>(() =>
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
@@ -306,7 +307,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithTiltLevel(new TiltLevel(45))
                             .BuildSetLiftAndTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, lift level, is not provided", exception.Message);
+                    Assert.AreEqual("The parameter, lift level, is not provided", exception.Message);
                 }
             }
 
@@ -316,7 +317,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                    var exception = Assert.Throws<ParameterNotProvided>(() =>
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
@@ -324,7 +325,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithLiftLevel(new LiftLevel(30))
                             .BuildSetLiftAndTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, tilt level, is not provided", exception.Message);
+                    Assert.AreEqual("The parameter, tilt level, is not provided", exception.Message);
                 }
             }
 
@@ -373,7 +374,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<RequiredParameterNotProvided>(() =>
+                    var exception = Assert.Throws<ParameterNotProvided>(() =>
                         MyRoomPlusOutputCommandBuilder.Create()
                             .WithOperation(MyRoomPlusCommandOperation.Set)
                             .WithIntegrationId(2)
@@ -383,7 +384,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithDelay(new Delay(seconds: 21))
                             .BuildSetLiftAndTiltLevelCommand());
 
-                    Assert.AreEqual("The required parameter, fade, is not provided", exception.Message);
+                    Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
                 }
             }
         }

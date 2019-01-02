@@ -1,6 +1,6 @@
 using System;
 
-namespace Lutron.Common
+namespace Lutron.Common.Exceptions
 {
     public class HorizontalSheerShadeRegionNotProvided : Exception
     {
