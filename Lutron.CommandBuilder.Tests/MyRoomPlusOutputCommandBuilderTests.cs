@@ -1838,6 +1838,40 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#OUTPUT,2,15<CR><LF>", command);
             }
+       
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringLift)
+                            .BuildStartLoweringLiftCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringLift)
+                            .BuildStartLoweringLiftCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
 
             [TestFixture]
             public class GivenNoIntegrationId
