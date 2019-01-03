@@ -96,7 +96,7 @@ namespace Lutron.CommandBuilder
 
             CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.OutputLevel);
 
-            CheckIfOutputLevelIsProvided();
+            CheckIfOutputLevelParameterIsProvided();
 
             CheckIfFadeParameterIsProvided();
 
@@ -220,6 +220,16 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetContactClosureOutputPulseTimeCommand()
         {
+            CheckIfOperationIsProvided();
+            
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime);
+
             if (_pulse != null)
             {
                 return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_pulse}<CR><LF>";
@@ -235,15 +245,20 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetTiltLevelCommand()
         {
-            if (_tiltLevel is null)
-            {
-                throw new ParameterNotProvided("tilt level");
-            }
+            CheckIfOperationIsProvided();
+            
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            
+            CheckIfIntegrationIdIsProvided();
 
-            if (_fade is null && _delay != null)
-            {
-                throw new ParameterNotProvided("fade");
-            }
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.TiltLevel);
+
+            CheckIfTiltLevelParameterIsProvided();
+            
+            CheckIfFadeParameterIsProvided();
+
 
             if (_fade != null && _delay != null)
             {
@@ -374,6 +389,14 @@ namespace Lutron.CommandBuilder
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _region}<CR><LF>";
         }
 
+        private void CheckIfTiltLevelParameterIsProvided()
+        {
+            if (_tiltLevel is null)
+            {
+                throw new ParameterNotProvided("tilt level");
+            }
+        }
+
         private void CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation expectedOperation)
         {
             if (_operation != expectedOperation)
@@ -398,7 +421,7 @@ namespace Lutron.CommandBuilder
             }
         }
 
-        private void CheckIfOutputLevelIsProvided()
+        private void CheckIfOutputLevelParameterIsProvided()
         {
             if (_outputLevel is null)
             {

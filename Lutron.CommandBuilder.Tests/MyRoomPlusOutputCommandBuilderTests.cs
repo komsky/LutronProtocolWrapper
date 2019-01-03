@@ -905,6 +905,90 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("#OUTPUT,2,6<CR><LF>", command);
                 }
             }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
+                            .BuildSetContactClosureOutputPulseTimeCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
+                            .BuildSetContactClosureOutputPulseTimeCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
+                            .BuildSetContactClosureOutputPulseTimeCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetContactClosureOutputPulseTimeCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .BuildSetContactClosureOutputPulseTimeCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 6 and not 10",
+                        exception.Message);
+                }
+            }
         }
 
         [TestFixture]
@@ -994,6 +1078,144 @@ namespace Lutron.CommandBuilder.Tests
                             .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
                             .WithTiltLevel(new TiltLevel(10))
                             .WithDelay(new Delay(seconds: 21))
+                            .BuildSetTiltLevelCommand());
+
+                    Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                            .BuildSetTiltLevelCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                            .BuildSetTiltLevelCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                            .BuildSetTiltLevelCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetTiltLevelCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .BuildSetTiltLevelCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 9 and not 10",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoFadeAndNoDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                        .WithTiltLevel(new TiltLevel(45))
+                        .BuildSetTiltLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,9,45<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenFadeAndNoDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                        .WithTiltLevel(new TiltLevel(45))
+                        .WithFade(new Fade(seconds: 4))
+                        .BuildSetTiltLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,9,45,4<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoFadeButDelay
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                            .WithTiltLevel(new TiltLevel(45))
+                            .WithDelay(new Delay(seconds: 2))
                             .BuildSetTiltLevelCommand());
 
                     Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
