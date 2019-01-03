@@ -86,16 +86,19 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetOutputLevelCommand()
         {
+            CheckIfOperationIsProvided();
+            
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.OutputLevel);
 
-            if (_outputLevel is null)
-            {
-                throw new OutputLevelNotProvided();
-            }
+            CheckIfOutputLevelIsProvided();
+
+            CheckIfFadeParameterIsProvided();
 
             if (_fade is null && _delay is null)
             {
@@ -108,18 +111,23 @@ namespace Lutron.CommandBuilder
                     $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_outputLevel},{_fade}<CR><LF>";
             }
 
-            if (_fade is null && _delay != null)
-            {
-                throw new ParameterNotProvided("fade");
-            }
-
             return
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_outputLevel},{_fade},{_delay}<CR><LF>";
         }
 
         public string BuildGetOutputLevelCommand()
         {
-            return $"{(char) _operation}{_command},{_integrationId}<CR><LF>";
+            CheckIfOperationIsProvided();
+            
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Get);
+            
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.OutputLevel);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildStartRaisingOutputLevelCommand()
@@ -290,15 +298,9 @@ namespace Lutron.CommandBuilder
 
         public string BuildGetHorizontalSheerShadeRegionCommand()
         {
-            if (_operation == default(MyRoomPlusCommandOperation))
-            {
-                throw new OperationNotProvided();
-            }
+            CheckIfOperationIsProvided();
 
-            if (_operation != MyRoomPlusCommandOperation.Get)
-            {
-                throw new IncorrectOperationProvided(_operation, MyRoomPlusCommandOperation.Get);
-            }
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Get);
 
             CheckIfIntegrationIdIsProvided();
 
@@ -307,6 +309,38 @@ namespace Lutron.CommandBuilder
             CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _region}<CR><LF>";
+        }
+
+        private void CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation expectedOperation)
+        {
+            if (_operation != expectedOperation)
+            {
+                throw new IncorrectOperationProvided(_operation, expectedOperation);
+            }
+        }
+
+        private void CheckIfOperationIsProvided()
+        {
+            if (_operation == default(MyRoomPlusCommandOperation))
+            {
+                throw new OperationNotProvided();
+            }
+        }
+
+        private void CheckIfFadeParameterIsProvided()
+        {
+            if (_fade is null && _delay != null)
+            {
+                throw new ParameterNotProvided("fade");
+            }
+        }
+
+        private void CheckIfOutputLevelIsProvided()
+        {
+            if (_outputLevel is null)
+            {
+                throw new OutputLevelNotProvided();
+            }
         }
 
         private void CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber expectedActionNumber)
