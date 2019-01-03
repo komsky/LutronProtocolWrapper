@@ -340,6 +340,10 @@ namespace Lutron.CommandBuilder
 
         public string BuildStopRaisingOrLoweringTiltCommand()
         {
+            CheckIfOperationIsProvided();
+            
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
