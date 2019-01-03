@@ -147,6 +147,16 @@ namespace Lutron.CommandBuilder
 
         public string BuildStartLoweringOutputLevelCommand()
         {
+            CheckIfOperationIsProvided();
+            
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartLoweringOutputLevel);
+
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
