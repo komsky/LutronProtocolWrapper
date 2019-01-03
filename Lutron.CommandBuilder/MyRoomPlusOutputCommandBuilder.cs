@@ -192,6 +192,29 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetFlashFrequencyCommand()
         {
+            CheckIfOperationIsProvided();
+            
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.FlashFrequency);
+            
+            CheckIfFadeParameterIsProvided();
+
+            if (_fade is null && _delay is null)
+            {
+                return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+            }
+
+            if (_fade != null && _delay is null)
+            {
+                return
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_fade}<CR><LF>";
+            }
+
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_fade},{_delay}<CR><LF>";
         }
 

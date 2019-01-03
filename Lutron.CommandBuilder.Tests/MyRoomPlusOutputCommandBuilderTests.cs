@@ -62,6 +62,25 @@ namespace Lutron.CommandBuilder.Tests
             }
 
             [TestFixture]
+            public class GivenNoFadeButDelay
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithLevel(new OutputLevel(70))
+                            .WithDelay(new Delay(seconds: 2))
+                            .BuildSetOutputLevelCommand());
+
+                    Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
             public class GivenNoOutputLevel
             {
                 [Test]
@@ -78,25 +97,6 @@ namespace Lutron.CommandBuilder.Tests
 
                     Assert.AreEqual("The output level is not provided",
                         exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoFadeButDelay
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
-                            .WithLevel(new OutputLevel(70))
-                            .WithDelay(new Delay(seconds: 2))
-                            .BuildSetOutputLevelCommand());
-
-                    Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
                 }
             }
 
@@ -715,6 +715,141 @@ namespace Lutron.CommandBuilder.Tests
                     .BuildSetFlashFrequencyCommand();
 
                 Assert.AreEqual("#OUTPUT,2,5,2,45<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                            .BuildSetFlashFrequencyCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                            .BuildSetFlashFrequencyCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                            .BuildSetFlashFrequencyCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetFlashFrequencyCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .BuildSetFlashFrequencyCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 5 and not 10",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoFadeAndNoDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                        .BuildSetFlashFrequencyCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,5<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenFadeAndNoDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                        .WithFade(new Fade(seconds: 4))
+                        .BuildSetFlashFrequencyCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,5,4<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoFadeButDelay
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                            .WithDelay(new Delay(seconds: 2))
+                            .BuildSetFlashFrequencyCommand());
+
+                    Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
+                }
             }
         }
 
