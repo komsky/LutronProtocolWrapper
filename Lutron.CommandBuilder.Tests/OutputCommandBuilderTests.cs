@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Lutron.CommandBuilder.Tests
 {
     [TestFixture]
-    public class MyRoomPlusOutputCommandBuilderTests
+    public class OutputCommandBuilderTests
     {
         [TestFixture]
         public class BuildSetOutputLevelCommand
@@ -14,10 +14,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                    .WithAction(OutputCommandActionNumber.OutputLevel)
                     .WithLevel(new OutputLevel(70))
                     .WithFade(new Fade(seconds: 4))
                     .WithDelay(new Delay(seconds: 2))
@@ -32,10 +32,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                        .WithAction(OutputCommandActionNumber.OutputLevel)
                         .WithLevel(new OutputLevel(70))
                         .BuildSetOutputLevelCommand();
 
@@ -49,10 +49,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                        .WithAction(OutputCommandActionNumber.OutputLevel)
                         .WithLevel(new OutputLevel(70))
                         .WithFade(new Fade(seconds: 4))
                         .BuildSetOutputLevelCommand();
@@ -68,10 +68,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithAction(OutputCommandActionNumber.OutputLevel)
                             .WithLevel(new OutputLevel(70))
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetOutputLevelCommand());
@@ -87,10 +87,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OutputLevelNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithAction(OutputCommandActionNumber.OutputLevel)
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetOutputLevelCommand());
@@ -107,9 +107,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithAction(OutputCommandActionNumber.OutputLevel)
                             .WithLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
@@ -126,10 +126,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithAction(OutputCommandActionNumber.OutputLevel)
                             .WithLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
@@ -147,9 +147,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.OutputLevel)
                             .WithLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
@@ -166,8 +166,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
@@ -185,10 +185,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .WithLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
@@ -206,10 +206,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Get)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                    .WithAction(OutputCommandActionNumber.OutputLevel)
                     .BuildGetOutputLevelCommand();
 
                 Assert.AreEqual("?OUTPUT,2,1<CR><LF>", command);
@@ -222,9 +222,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithAction(OutputCommandActionNumber.OutputLevel)
                             .BuildGetOutputLevelCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -238,10 +238,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithAction(OutputCommandActionNumber.OutputLevel)
                             .BuildGetOutputLevelCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
@@ -256,9 +256,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithAction(OutputCommandActionNumber.OutputLevel)
                             .BuildGetOutputLevelCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -272,8 +272,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .BuildGetOutputLevelCommand());
 
@@ -288,10 +288,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildGetOutputLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 1 and not 10",
@@ -306,10 +306,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingOutputLevel)
+                    .WithAction(OutputCommandActionNumber.StartRaisingOutputLevel)
                     .BuildStartRaisingOutputLevelCommand();
 
                 Assert.AreEqual("#OUTPUT,2,2<CR><LF>", command);
@@ -322,9 +322,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingOutputLevel)
+                            .WithAction(OutputCommandActionNumber.StartRaisingOutputLevel)
                             .BuildStartRaisingOutputLevelCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -338,10 +338,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingOutputLevel)
+                            .WithAction(OutputCommandActionNumber.StartRaisingOutputLevel)
                             .BuildStartRaisingOutputLevelCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -356,9 +356,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingOutputLevel)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.StartRaisingOutputLevel)
                             .BuildStartRaisingOutputLevelCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -372,8 +372,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartRaisingOutputLevelCommand());
 
@@ -388,10 +388,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartRaisingOutputLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 2 and not 10",
@@ -406,10 +406,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringOutputLevel)
+                    .WithAction(OutputCommandActionNumber.StartLoweringOutputLevel)
                     .BuildStartLoweringOutputLevelCommand();
 
                 Assert.AreEqual("#OUTPUT,2,3<CR><LF>", command);
@@ -422,9 +422,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringOutputLevel)
+                            .WithAction(OutputCommandActionNumber.StartLoweringOutputLevel)
                             .BuildStartLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -438,10 +438,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringOutputLevel)
+                            .WithAction(OutputCommandActionNumber.StartLoweringOutputLevel)
                             .BuildStartLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -456,9 +456,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringOutputLevel)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.StartLoweringOutputLevel)
                             .BuildStartLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -472,8 +472,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartLoweringOutputLevelCommand());
 
@@ -488,10 +488,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 3 and not 10",
@@ -506,10 +506,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
+                    .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
                     .BuildStopRaisingOrLoweringOutputLevelCommand();
 
                 Assert.AreEqual("#OUTPUT,2,4<CR><LF>", command);
@@ -522,9 +522,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
+                            .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
                             .BuildStopRaisingOrLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -538,10 +538,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
+                            .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
                             .BuildStopRaisingOrLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -556,9 +556,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
                             .BuildStopRaisingOrLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -572,8 +572,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStopRaisingOrLoweringOutputLevelCommand());
 
@@ -588,10 +588,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStopRaisingOrLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 4 and not 10",
@@ -606,10 +606,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Get)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                    .WithAction(OutputCommandActionNumber.FlashFrequency)
                     .BuildGetFlashFrequencyCommand();
 
                 Assert.AreEqual("?OUTPUT,2,5<CR><LF>", command);
@@ -622,9 +622,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                            .WithAction(OutputCommandActionNumber.FlashFrequency)
                             .BuildGetFlashFrequencyCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -638,10 +638,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                            .WithAction(OutputCommandActionNumber.FlashFrequency)
                             .BuildGetFlashFrequencyCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
@@ -656,9 +656,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithAction(OutputCommandActionNumber.FlashFrequency)
                             .BuildGetFlashFrequencyCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -672,8 +672,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .BuildGetFlashFrequencyCommand());
 
@@ -688,10 +688,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildGetFlashFrequencyCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 5 and not 10",
@@ -706,10 +706,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                    .WithAction(OutputCommandActionNumber.FlashFrequency)
                     .WithFade(new Fade(seconds: 2))
                     .WithDelay(new Delay(seconds: 45))
                     .BuildSetFlashFrequencyCommand();
@@ -724,9 +724,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                            .WithAction(OutputCommandActionNumber.FlashFrequency)
                             .BuildSetFlashFrequencyCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -740,10 +740,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                            .WithAction(OutputCommandActionNumber.FlashFrequency)
                             .BuildSetFlashFrequencyCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -758,9 +758,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.FlashFrequency)
                             .BuildSetFlashFrequencyCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -774,8 +774,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildSetFlashFrequencyCommand());
 
@@ -790,10 +790,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetFlashFrequencyCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 5 and not 10",
@@ -807,10 +807,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                        .WithAction(OutputCommandActionNumber.FlashFrequency)
                         .BuildSetFlashFrequencyCommand();
 
                     Assert.AreEqual("#OUTPUT,2,5<CR><LF>", command);
@@ -823,10 +823,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                        .WithAction(OutputCommandActionNumber.FlashFrequency)
                         .WithFade(new Fade(seconds: 4))
                         .BuildSetFlashFrequencyCommand();
 
@@ -841,10 +841,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.FlashFrequency)
+                            .WithAction(OutputCommandActionNumber.FlashFrequency)
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetFlashFrequencyCommand());
 
@@ -862,10 +862,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
+                        .WithAction(OutputCommandActionNumber.ContactClosureOutputPulseTime)
                         .WithPulse(new Pulse(seconds: 45))
                         .BuildSetContactClosureOutputPulseTimeCommand();
 
@@ -879,10 +879,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
+                        .WithAction(OutputCommandActionNumber.ContactClosureOutputPulseTime)
                         .WithDelay(new Delay(seconds: 10))
                         .BuildSetContactClosureOutputPulseTimeCommand();
 
@@ -896,10 +896,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
+                        .WithAction(OutputCommandActionNumber.ContactClosureOutputPulseTime)
                         .BuildSetContactClosureOutputPulseTimeCommand();
 
                     Assert.AreEqual("#OUTPUT,2,6<CR><LF>", command);
@@ -913,9 +913,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
+                            .WithAction(OutputCommandActionNumber.ContactClosureOutputPulseTime)
                             .BuildSetContactClosureOutputPulseTimeCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -929,10 +929,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
+                            .WithAction(OutputCommandActionNumber.ContactClosureOutputPulseTime)
                             .BuildSetContactClosureOutputPulseTimeCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -947,9 +947,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.ContactClosureOutputPulseTime)
                             .BuildSetContactClosureOutputPulseTimeCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -963,8 +963,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildSetContactClosureOutputPulseTimeCommand());
 
@@ -979,10 +979,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetContactClosureOutputPulseTimeCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 6 and not 10",
@@ -1000,10 +1000,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                        .WithAction(OutputCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(45))
                         .BuildSetTiltLevelCommand();
 
@@ -1018,10 +1018,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
-                        MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                            .WithAction(OutputCommandActionNumber.TiltLevel)
                             .BuildSetTiltLevelCommand());
 
                     Assert.AreEqual("The parameter, tilt level, is not provided", exception.Message);
@@ -1034,10 +1034,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                        .WithAction(OutputCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
                         .WithDelay(new Delay(seconds: 21))
@@ -1053,10 +1053,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                        .WithAction(OutputCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
                         .BuildSetTiltLevelCommand();
@@ -1072,10 +1072,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
-                        MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                            .WithAction(OutputCommandActionNumber.TiltLevel)
                             .WithTiltLevel(new TiltLevel(10))
                             .WithDelay(new Delay(seconds: 21))
                             .BuildSetTiltLevelCommand());
@@ -1091,9 +1091,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                            .WithAction(OutputCommandActionNumber.TiltLevel)
                             .BuildSetTiltLevelCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -1107,10 +1107,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                            .WithAction(OutputCommandActionNumber.TiltLevel)
                             .BuildSetTiltLevelCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -1125,9 +1125,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.TiltLevel)
                             .BuildSetTiltLevelCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -1141,8 +1141,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildSetTiltLevelCommand());
 
@@ -1157,10 +1157,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetTiltLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 9 and not 10",
@@ -1174,10 +1174,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                        .WithAction(OutputCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(45))
                         .BuildSetTiltLevelCommand();
 
@@ -1191,10 +1191,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                        .WithAction(OutputCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(45))
                         .WithFade(new Fade(seconds: 4))
                         .BuildSetTiltLevelCommand();
@@ -1210,10 +1210,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.TiltLevel)
+                            .WithAction(OutputCommandActionNumber.TiltLevel)
                             .WithTiltLevel(new TiltLevel(45))
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetTiltLevelCommand());
@@ -1232,10 +1232,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                        .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(45))
                         .BuildSetLiftAndTiltLevelCommand();
@@ -1251,10 +1251,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
-                        MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .WithTiltLevel(new TiltLevel(45))
                             .BuildSetLiftAndTiltLevelCommand());
 
@@ -1269,10 +1269,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
-                        MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .WithLiftLevel(new LiftLevel(30))
                             .BuildSetLiftAndTiltLevelCommand());
 
@@ -1286,10 +1286,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                        .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
@@ -1306,10 +1306,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                        .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
@@ -1326,10 +1326,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
-                        MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .WithLiftLevel(new LiftLevel(30))
                             .WithTiltLevel(new TiltLevel(10))
                             .WithDelay(new Delay(seconds: 21))
@@ -1346,9 +1346,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetLiftAndTiltLevelCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -1362,10 +1362,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetLiftAndTiltLevelCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -1380,9 +1380,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetLiftAndTiltLevelCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -1396,8 +1396,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildSetLiftAndTiltLevelCommand());
 
@@ -1412,10 +1412,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringOutputLevel)
+                            .WithAction(OutputCommandActionNumber.StartLoweringOutputLevel)
                             .BuildSetLiftAndTiltLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 10 and not 3",
@@ -1430,10 +1430,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt)
+                    .WithAction(OutputCommandActionNumber.StartRaisingTilt)
                     .BuildStartRaisingTiltCommand();
 
                 Assert.AreEqual("#OUTPUT,2,11<CR><LF>", command);
@@ -1446,9 +1446,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt)
+                            .WithAction(OutputCommandActionNumber.StartRaisingTilt)
                             .BuildStartRaisingTiltCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -1462,10 +1462,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt)
+                            .WithAction(OutputCommandActionNumber.StartRaisingTilt)
                             .BuildStartRaisingTiltCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -1480,9 +1480,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.StartRaisingTilt)
                             .BuildStartRaisingTiltCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -1496,8 +1496,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartRaisingTiltCommand());
 
@@ -1512,10 +1512,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartRaisingTiltCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 11 and not 10",
@@ -1530,10 +1530,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringTilt)
+                    .WithAction(OutputCommandActionNumber.StartLoweringTilt)
                     .BuildStartLoweringTiltCommand();
 
                 Assert.AreEqual("#OUTPUT,2,12<CR><LF>", command);
@@ -1546,9 +1546,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringTilt)
+                            .WithAction(OutputCommandActionNumber.StartLoweringTilt)
                             .BuildStartLoweringTiltCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -1562,10 +1562,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringTilt)
+                            .WithAction(OutputCommandActionNumber.StartLoweringTilt)
                             .BuildStartLoweringTiltCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -1580,9 +1580,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringTilt)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.StartLoweringTilt)
                             .BuildStartLoweringTiltCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -1596,8 +1596,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartLoweringTiltCommand());
 
@@ -1612,10 +1612,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartLoweringTiltCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 12 and not 10",
@@ -1630,10 +1630,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringTilt)
+                    .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringTilt)
                     .BuildStopRaisingOrLoweringTiltCommand();
 
                 Assert.AreEqual("#OUTPUT,2,13<CR><LF>", command);
@@ -1646,9 +1646,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringTilt)
+                            .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringTilt)
                             .BuildStopRaisingOrLoweringTiltCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -1662,10 +1662,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringTilt)
+                            .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringTilt)
                             .BuildStopRaisingOrLoweringTiltCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -1680,9 +1680,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringTilt)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringTilt)
                             .BuildStopRaisingOrLoweringTiltCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -1696,8 +1696,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStopRaisingOrLoweringTiltCommand());
 
@@ -1712,10 +1712,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStopRaisingOrLoweringTiltCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 13 and not 10",
@@ -1730,10 +1730,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingLift)
+                    .WithAction(OutputCommandActionNumber.StartRaisingLift)
                     .BuildStartRaisingLiftCommand();
 
                 Assert.AreEqual("#OUTPUT,2,14<CR><LF>", command);
@@ -1746,9 +1746,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingLift)
+                            .WithAction(OutputCommandActionNumber.StartRaisingLift)
                             .BuildStartRaisingLiftCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -1762,10 +1762,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingLift)
+                            .WithAction(OutputCommandActionNumber.StartRaisingLift)
                             .BuildStartRaisingLiftCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -1780,9 +1780,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartRaisingLift)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.StartRaisingLift)
                             .BuildStartRaisingLiftCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -1796,8 +1796,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartRaisingLiftCommand());
 
@@ -1812,10 +1812,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartRaisingLiftCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 14 and not 10",
@@ -1830,10 +1830,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringLift)
+                    .WithAction(OutputCommandActionNumber.StartLoweringLift)
                     .BuildStartLoweringLiftCommand();
 
                 Assert.AreEqual("#OUTPUT,2,15<CR><LF>", command);
@@ -1846,9 +1846,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringLift)
+                            .WithAction(OutputCommandActionNumber.StartLoweringLift)
                             .BuildStartLoweringLiftCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -1862,10 +1862,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringLift)
+                            .WithAction(OutputCommandActionNumber.StartLoweringLift)
                             .BuildStartLoweringLiftCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -1880,9 +1880,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StartLoweringLift)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.StartLoweringLift)
                             .BuildStartLoweringLiftCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -1896,8 +1896,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartLoweringLiftCommand());
 
@@ -1912,10 +1912,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartLoweringLiftCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 15 and not 10",
@@ -1930,10 +1930,10 @@ namespace Lutron.CommandBuilder.Tests
             [Test]
             public void ShouldReturnCommandString()
             {
-                var command = MyRoomPlusOutputCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                var command = OutputCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift)
+                    .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringLift)
                     .BuildStopRaisingOrLoweringLiftCommand();
 
                 Assert.AreEqual("#OUTPUT,2,16<CR><LF>", command);
@@ -1946,9 +1946,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift)
+                            .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringLift)
                             .BuildStopRaisingOrLoweringLiftCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -1962,10 +1962,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift)
+                            .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringLift)
                             .BuildStopRaisingOrLoweringLiftCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
@@ -1980,9 +1980,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringLift)
                             .BuildStopRaisingOrLoweringLiftCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -1996,8 +1996,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStopRaisingOrLoweringLiftCommand());
 
@@ -2012,10 +2012,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildStopRaisingOrLoweringLiftCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 16 and not 10",
@@ -2033,11 +2033,11 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Get)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Get)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
-                        .WithHorizontalSheerShadeRegion(MyRoomPlusHorizontalSheerShadeRegion.Lift)
+                        .WithAction(OutputCommandActionNumber.HorizontalSheerShadeRegion)
+                        .WithHorizontalSheerShadeRegion(HorizontalSheerShadeRegion.Lift)
                         .BuildGetHorizontalSheerShadeRegionCommand();
 
                     Assert.AreEqual("?OUTPUT,2,28,0<CR><LF>", command);
@@ -2050,11 +2050,11 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Get)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Get)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
-                        .WithHorizontalSheerShadeRegion(MyRoomPlusHorizontalSheerShadeRegion.Tilt)
+                        .WithAction(OutputCommandActionNumber.HorizontalSheerShadeRegion)
+                        .WithHorizontalSheerShadeRegion(HorizontalSheerShadeRegion.Tilt)
                         .BuildGetHorizontalSheerShadeRegionCommand();
 
                     Assert.AreEqual("?OUTPUT,2,28,1<CR><LF>", command);
@@ -2067,10 +2067,10 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var command = MyRoomPlusOutputCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Get)
+                    var command = OutputCommandBuilder.Create()
+                        .WithOperation(CommandOperation.Get)
                         .WithIntegrationId(2)
-                        .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                        .WithAction(OutputCommandActionNumber.HorizontalSheerShadeRegion)
                         .BuildGetHorizontalSheerShadeRegionCommand();
 
                     Assert.AreEqual("?OUTPUT,2,28,0<CR><LF>", command);
@@ -2084,9 +2084,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var exception = Assert.Throws<OperationNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
+                        => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                            .WithAction(OutputCommandActionNumber.HorizontalSheerShadeRegion)
                             .BuildGetHorizontalSheerShadeRegionCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
@@ -2100,10 +2100,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                            .WithAction(OutputCommandActionNumber.HorizontalSheerShadeRegion)
                             .BuildGetHorizontalSheerShadeRegionCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
@@ -2118,9 +2118,9 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithAction(OutputCommandActionNumber.HorizontalSheerShadeRegion)
                             .BuildGetHorizontalSheerShadeRegionCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
@@ -2134,8 +2134,8 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .BuildGetHorizontalSheerShadeRegionCommand());
 
@@ -2151,10 +2151,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MyRoomPlusOutputCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                        => OutputCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
                             .BuildGetHorizontalSheerShadeRegionCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 28 and not 10",

@@ -6,7 +6,7 @@ namespace Lutron.CommandBuilder
 {
     public class ShadeGroupCommandBuilder
     {
-        private MyRoomPlusCommandOperation _operation;
+        private CommandOperation _operation;
         private ShadeGroupCommandActionNumber _actionNumber;
         private int _integrationId;
         private Fade _fade;
@@ -15,7 +15,7 @@ namespace Lutron.CommandBuilder
         private readonly string _command = "SHADEGRP";
         private TiltLevel _tiltLevel;
         private LiftLevel _liftLevel;
-        private MyRoomPlusHorizontalSheerShadeRegion _region;
+        private HorizontalSheerShadeRegion _region;
         private PresetNumber _presetNumber;
 
         public static ShadeGroupCommandBuilder Create()
@@ -23,7 +23,7 @@ namespace Lutron.CommandBuilder
             return new ShadeGroupCommandBuilder();
         }
 
-        public ShadeGroupCommandBuilder WithOperation(MyRoomPlusCommandOperation operation)
+        public ShadeGroupCommandBuilder WithOperation(CommandOperation operation)
         {
             _operation = operation;
             return this;
@@ -79,7 +79,7 @@ namespace Lutron.CommandBuilder
         }
 
         public ShadeGroupCommandBuilder WithHorizontalSheerShadeRegion(
-            MyRoomPlusHorizontalSheerShadeRegion region)
+            HorizontalSheerShadeRegion region)
         {
             _region = region;
             return this;
@@ -89,7 +89,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -120,7 +120,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Get);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -135,7 +135,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -150,7 +150,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -165,7 +165,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -180,7 +180,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Get);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -195,7 +195,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -212,7 +212,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -243,7 +243,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -277,7 +277,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
@@ -292,7 +292,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
@@ -307,7 +307,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
@@ -322,7 +322,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
@@ -337,7 +337,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
@@ -352,7 +352,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
@@ -367,7 +367,7 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
 
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Get);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
 
             CheckIfIntegrationIdIsProvided();
 
@@ -402,7 +402,7 @@ namespace Lutron.CommandBuilder
             }
         }
 
-        private void CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation expectedOperation)
+        private void CheckIfCorrectOperationIsProvided(CommandOperation expectedOperation)
         {
             if (_operation != expectedOperation)
             {
@@ -412,7 +412,7 @@ namespace Lutron.CommandBuilder
 
         private void CheckIfOperationIsProvided()
         {
-            if (_operation == default(MyRoomPlusCommandOperation))
+            if (_operation == default(CommandOperation))
             {
                 throw new OperationNotProvided();
             }

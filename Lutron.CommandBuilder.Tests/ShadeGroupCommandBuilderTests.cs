@@ -15,7 +15,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                     .WithLevel(new ShadeGroupLevel(70))
@@ -33,7 +33,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                         .WithLevel(new ShadeGroupLevel(70))
@@ -50,7 +50,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                         .WithLevel(new ShadeGroupLevel(70))
@@ -69,7 +69,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                             .WithLevel(new ShadeGroupLevel(70))
@@ -88,7 +88,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ShadeGroupLevelNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                             .WithFade(new Fade(seconds: 4))
@@ -127,7 +127,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                             .WithLevel(new ShadeGroupLevel(70))
@@ -148,7 +148,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                             .WithLevel(new ShadeGroupLevel(70))
                             .WithFade(new Fade(seconds: 4))
@@ -167,7 +167,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithLevel(new ShadeGroupLevel(70))
                             .WithFade(new Fade(seconds: 4))
@@ -186,7 +186,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .WithLevel(new ShadeGroupLevel(70))
@@ -207,7 +207,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Get)
+                    .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                     .BuildGetShadeGroupLevelCommand();
@@ -239,7 +239,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                             .BuildGetShadeGroupLevelCommand());
@@ -257,7 +257,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithAction(ShadeGroupCommandActionNumber.ShadeGroupLevel)
                             .BuildGetShadeGroupLevelCommand());
 
@@ -273,7 +273,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .BuildGetShadeGroupLevelCommand());
 
@@ -289,7 +289,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildGetShadeGroupLevelCommand());
@@ -307,7 +307,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.StartRaisingShadeGroupLevel)
                     .BuildStartRaisingShadeGroupLevelCommand();
@@ -339,7 +339,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StartRaisingShadeGroupLevel)
                             .BuildStartRaisingShadeGroupLevelCommand());
@@ -357,7 +357,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.StartRaisingShadeGroupLevel)
                             .BuildStartRaisingShadeGroupLevelCommand());
 
@@ -373,7 +373,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartRaisingShadeGroupLevelCommand());
 
@@ -389,7 +389,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartRaisingShadeGroupLevelCommand());
@@ -407,7 +407,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.StartLoweringShadeGroupLevel)
                     .BuildStartLoweringShadeGroupLevelCommand();
@@ -439,7 +439,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StartLoweringShadeGroupLevel)
                             .BuildStartLoweringShadeGroupLevelCommand());
@@ -457,7 +457,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.StartLoweringShadeGroupLevel)
                             .BuildStartLoweringShadeGroupLevelCommand());
 
@@ -473,7 +473,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartLoweringShadeGroupLevelCommand());
 
@@ -489,7 +489,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartLoweringShadeGroupLevelCommand());
@@ -507,7 +507,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.StopRaisingOrLoweringShadeGroupLevel)
                     .BuildStopRaisingOrLoweringShadeGroupLevelCommand();
@@ -539,7 +539,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StopRaisingOrLoweringShadeGroupLevel)
                             .BuildStopRaisingOrLoweringShadeGroupLevelCommand());
@@ -557,7 +557,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.StopRaisingOrLoweringShadeGroupLevel)
                             .BuildStopRaisingOrLoweringShadeGroupLevelCommand());
 
@@ -573,7 +573,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStopRaisingOrLoweringShadeGroupLevelCommand());
 
@@ -589,7 +589,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildStopRaisingOrLoweringShadeGroupLevelCommand());
@@ -607,7 +607,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Get)
+                    .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.CurrentPreset)
                     .BuildGetCurrentPresetCommand();
@@ -639,7 +639,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.CurrentPreset)
                             .BuildGetCurrentPresetCommand());
@@ -657,7 +657,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithAction(ShadeGroupCommandActionNumber.CurrentPreset)
                             .BuildGetCurrentPresetCommand());
 
@@ -673,7 +673,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .BuildGetCurrentPresetCommand());
 
@@ -689,7 +689,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildGetCurrentPresetCommand());
@@ -707,7 +707,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.CurrentPreset)
                     .WithPresetNumber(new PresetNumber( 2))
@@ -724,7 +724,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<PresetNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.CurrentPreset)
                             .BuildSetCurrentPresetCommand());
@@ -757,7 +757,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.CurrentPreset)
                             .BuildSetCurrentPresetCommand());
@@ -775,7 +775,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.CurrentPreset)
                             .BuildSetCurrentPresetCommand());
 
@@ -791,7 +791,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildSetCurrentPresetCommand());
 
@@ -807,7 +807,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetCurrentPresetCommand());
@@ -829,7 +829,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(45))
@@ -847,7 +847,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
                         ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                             .BuildSetTiltLevelCommand());
@@ -863,7 +863,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(10))
@@ -882,7 +882,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(10))
@@ -901,7 +901,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
                         ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                             .WithTiltLevel(new TiltLevel(10))
@@ -936,7 +936,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                             .BuildSetTiltLevelCommand());
@@ -954,7 +954,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                             .BuildSetTiltLevelCommand());
 
@@ -970,7 +970,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildSetTiltLevelCommand());
 
@@ -986,7 +986,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetTiltLevelCommand());
@@ -1003,7 +1003,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(45))
@@ -1020,7 +1020,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                         .WithTiltLevel(new TiltLevel(45))
@@ -1039,7 +1039,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.TiltLevel)
                             .WithTiltLevel(new TiltLevel(45))
@@ -1061,7 +1061,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                         .WithLiftLevel(new LiftLevel(30))
@@ -1080,7 +1080,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
                         ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .WithTiltLevel(new TiltLevel(45))
@@ -1098,7 +1098,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
                         ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .WithLiftLevel(new LiftLevel(30))
@@ -1115,7 +1115,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                         .WithLiftLevel(new LiftLevel(30))
@@ -1135,7 +1135,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                         .WithLiftLevel(new LiftLevel(30))
@@ -1155,7 +1155,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ParameterNotProvided>(() =>
                         ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .WithLiftLevel(new LiftLevel(30))
@@ -1191,7 +1191,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetLiftAndTiltLevelCommand());
@@ -1209,7 +1209,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildSetLiftAndTiltLevelCommand());
 
@@ -1225,7 +1225,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildSetLiftAndTiltLevelCommand());
 
@@ -1241,7 +1241,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StartLoweringShadeGroupLevel)
                             .BuildSetLiftAndTiltLevelCommand());
@@ -1259,7 +1259,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.StartRaisingTilt)
                     .BuildStartRaisingTiltCommand();
@@ -1291,7 +1291,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StartRaisingTilt)
                             .BuildStartRaisingTiltCommand());
@@ -1309,7 +1309,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.StartRaisingTilt)
                             .BuildStartRaisingTiltCommand());
 
@@ -1325,7 +1325,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartRaisingTiltCommand());
 
@@ -1341,7 +1341,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartRaisingTiltCommand());
@@ -1359,7 +1359,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.StartLoweringTilt)
                     .BuildStartLoweringTiltCommand();
@@ -1391,7 +1391,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StartLoweringTilt)
                             .BuildStartLoweringTiltCommand());
@@ -1409,7 +1409,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.StartLoweringTilt)
                             .BuildStartLoweringTiltCommand());
 
@@ -1425,7 +1425,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartLoweringTiltCommand());
 
@@ -1441,7 +1441,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartLoweringTiltCommand());
@@ -1459,7 +1459,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.StopRaisingOrLoweringTilt)
                     .BuildStopRaisingOrLoweringTiltCommand();
@@ -1491,7 +1491,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StopRaisingOrLoweringTilt)
                             .BuildStopRaisingOrLoweringTiltCommand());
@@ -1509,7 +1509,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.StopRaisingOrLoweringTilt)
                             .BuildStopRaisingOrLoweringTiltCommand());
 
@@ -1525,7 +1525,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStopRaisingOrLoweringTiltCommand());
 
@@ -1541,7 +1541,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildStopRaisingOrLoweringTiltCommand());
@@ -1559,7 +1559,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.StartRaisingLift)
                     .BuildStartRaisingLiftCommand();
@@ -1591,7 +1591,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StartRaisingLift)
                             .BuildStartRaisingLiftCommand());
@@ -1609,7 +1609,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.StartRaisingLift)
                             .BuildStartRaisingLiftCommand());
 
@@ -1625,7 +1625,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartRaisingLiftCommand());
 
@@ -1641,7 +1641,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartRaisingLiftCommand());
@@ -1659,7 +1659,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.StartLoweringLift)
                     .BuildStartLoweringLiftCommand();
@@ -1691,7 +1691,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StartLoweringLift)
                             .BuildStartLoweringLiftCommand());
@@ -1709,7 +1709,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.StartLoweringLift)
                             .BuildStartLoweringLiftCommand());
 
@@ -1725,7 +1725,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStartLoweringLiftCommand());
 
@@ -1741,7 +1741,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildStartLoweringLiftCommand());
@@ -1759,7 +1759,7 @@ namespace Lutron.CommandBuilder.Tests
             public void ShouldReturnCommandString()
             {
                 var command = ShadeGroupCommandBuilder.Create()
-                    .WithOperation(MyRoomPlusCommandOperation.Set)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.StopRaisingOrLoweringLift)
                     .BuildStopRaisingOrLoweringLiftCommand();
@@ -1791,7 +1791,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StopRaisingOrLoweringLift)
                             .BuildStopRaisingOrLoweringLiftCommand());
@@ -1809,7 +1809,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithAction(ShadeGroupCommandActionNumber.StopRaisingOrLoweringLift)
                             .BuildStopRaisingOrLoweringLiftCommand());
 
@@ -1825,7 +1825,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .BuildStopRaisingOrLoweringLiftCommand());
 
@@ -1841,7 +1841,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildStopRaisingOrLoweringLiftCommand());
@@ -1862,10 +1862,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Get)
+                        .WithOperation(CommandOperation.Get)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.HorizontalSheerShadeRegion)
-                        .WithHorizontalSheerShadeRegion(MyRoomPlusHorizontalSheerShadeRegion.Lift)
+                        .WithHorizontalSheerShadeRegion(HorizontalSheerShadeRegion.Lift)
                         .BuildGetHorizontalSheerShadeRegionCommand();
 
                     Assert.AreEqual("?SHADEGRP,2,28,0<CR><LF>", command);
@@ -1879,10 +1879,10 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Get)
+                        .WithOperation(CommandOperation.Get)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.HorizontalSheerShadeRegion)
-                        .WithHorizontalSheerShadeRegion(MyRoomPlusHorizontalSheerShadeRegion.Tilt)
+                        .WithHorizontalSheerShadeRegion(HorizontalSheerShadeRegion.Tilt)
                         .BuildGetHorizontalSheerShadeRegionCommand();
 
                     Assert.AreEqual("?SHADEGRP,2,28,1<CR><LF>", command);
@@ -1896,7 +1896,7 @@ namespace Lutron.CommandBuilder.Tests
                 public void ShouldReturnCommandString()
                 {
                     var command = ShadeGroupCommandBuilder.Create()
-                        .WithOperation(MyRoomPlusCommandOperation.Get)
+                        .WithOperation(CommandOperation.Get)
                         .WithIntegrationId(2)
                         .WithAction(ShadeGroupCommandActionNumber.HorizontalSheerShadeRegion)
                         .BuildGetHorizontalSheerShadeRegionCommand();
@@ -1929,7 +1929,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.HorizontalSheerShadeRegion)
                             .BuildGetHorizontalSheerShadeRegionCommand());
@@ -1947,7 +1947,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithAction(ShadeGroupCommandActionNumber.HorizontalSheerShadeRegion)
                             .BuildGetHorizontalSheerShadeRegionCommand());
 
@@ -1963,7 +1963,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .BuildGetHorizontalSheerShadeRegionCommand());
 
@@ -1980,7 +1980,7 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
-                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
                             .BuildGetHorizontalSheerShadeRegionCommand());

@@ -1,6 +1,6 @@
 namespace Lutron.Common.Enums
 {
-    public enum MyRoomPlusCommandOperation
+    public enum CommandOperation
     {
         Set = '#',
         Get = '?'

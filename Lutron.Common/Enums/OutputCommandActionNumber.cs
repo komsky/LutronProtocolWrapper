@@ -1,6 +1,6 @@
 namespace Lutron.Common.Enums
 {
-    public enum MyRoomPlusOutputCommandActionNumber
+    public enum OutputCommandActionNumber
     {
         OutputLevel = 1,
         StartRaisingOutputLevel = 2,

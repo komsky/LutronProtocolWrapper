@@ -4,10 +4,10 @@ using Lutron.Common.Models;
 
 namespace Lutron.CommandBuilder
 {
-    public class MyRoomPlusOutputCommandBuilder
+    public class OutputCommandBuilder
     {
-        private MyRoomPlusCommandOperation _operation;
-        private MyRoomPlusOutputCommandActionNumber _actionNumber;
+        private CommandOperation _operation;
+        private OutputCommandActionNumber _actionNumber;
         private int _integrationId;
         private Fade _fade;
         private OutputLevel _outputLevel;
@@ -16,69 +16,69 @@ namespace Lutron.CommandBuilder
         private Pulse _pulse;
         private TiltLevel _tiltLevel;
         private LiftLevel _liftLevel;
-        private MyRoomPlusHorizontalSheerShadeRegion _region;
+        private HorizontalSheerShadeRegion _region;
 
-        public static MyRoomPlusOutputCommandBuilder Create()
+        public static OutputCommandBuilder Create()
         {
-            return new MyRoomPlusOutputCommandBuilder();
+            return new OutputCommandBuilder();
         }
 
-        public MyRoomPlusOutputCommandBuilder WithOperation(MyRoomPlusCommandOperation operation)
+        public OutputCommandBuilder WithOperation(CommandOperation operation)
         {
             _operation = operation;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithIntegrationId(int integrationId)
+        public OutputCommandBuilder WithIntegrationId(int integrationId)
         {
             _integrationId = integrationId;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithAction(MyRoomPlusOutputCommandActionNumber actionNumber)
+        public OutputCommandBuilder WithAction(OutputCommandActionNumber actionNumber)
         {
             _actionNumber = actionNumber;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithFade(Fade fade)
+        public OutputCommandBuilder WithFade(Fade fade)
         {
             _fade = fade;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithLevel(OutputLevel outputLevel)
+        public OutputCommandBuilder WithLevel(OutputLevel outputLevel)
         {
             _outputLevel = outputLevel;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithDelay(Delay delay)
+        public OutputCommandBuilder WithDelay(Delay delay)
         {
             _delay = delay;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithPulse(Pulse pulse)
+        public OutputCommandBuilder WithPulse(Pulse pulse)
         {
             _pulse = pulse;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithTiltLevel(TiltLevel tiltLevel)
+        public OutputCommandBuilder WithTiltLevel(TiltLevel tiltLevel)
         {
             _tiltLevel = tiltLevel;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithLiftLevel(LiftLevel liftLevel)
+        public OutputCommandBuilder WithLiftLevel(LiftLevel liftLevel)
         {
             _liftLevel = liftLevel;
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithHorizontalSheerShadeRegion(
-            MyRoomPlusHorizontalSheerShadeRegion region)
+        public OutputCommandBuilder WithHorizontalSheerShadeRegion(
+            HorizontalSheerShadeRegion region)
         {
             _region = region;
             return this;
@@ -88,13 +88,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.OutputLevel);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.OutputLevel);
 
             CheckIfOutputLevelParameterIsProvided();
 
@@ -119,13 +119,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Get);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.OutputLevel);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.OutputLevel);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int)_actionNumber}<CR><LF>";
         }
@@ -134,13 +134,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartRaisingOutputLevel);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StartRaisingOutputLevel);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -149,13 +149,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartLoweringOutputLevel);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StartLoweringOutputLevel);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -164,13 +164,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringOutputLevel);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StopRaisingOrLoweringOutputLevel);
             
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -179,13 +179,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Get);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.FlashFrequency);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.FlashFrequency);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -194,13 +194,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.FlashFrequency);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.FlashFrequency);
             
             CheckIfFadeParameterIsProvided();
 
@@ -222,13 +222,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.ContactClosureOutputPulseTime);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.ContactClosureOutputPulseTime);
 
             if (_pulse != null)
             {
@@ -247,13 +247,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.TiltLevel);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.TiltLevel);
 
             CheckIfTiltLevelParameterIsProvided();
             
@@ -278,13 +278,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.LiftAndTiltLevel);
 
             CheckIfLiftLevelParameterIsProvided();
 
@@ -312,13 +312,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
             
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartRaisingTilt);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StartRaisingTilt);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -327,13 +327,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartLoweringTilt);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StartLoweringTilt);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -342,13 +342,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringTilt);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StopRaisingOrLoweringTilt);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -357,13 +357,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartRaisingLift);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StartRaisingLift);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -372,13 +372,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StartLoweringLift);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StartLoweringLift);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -387,13 +387,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
             
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StopRaisingOrLoweringLift);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -402,13 +402,13 @@ namespace Lutron.CommandBuilder
         {
             CheckIfOperationIsProvided();
 
-            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Get);
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
 
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.HorizontalSheerShadeRegion);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _region}<CR><LF>";
         }
@@ -429,7 +429,7 @@ namespace Lutron.CommandBuilder
             }
         }
 
-        private void CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation expectedOperation)
+        private void CheckIfCorrectOperationIsProvided(CommandOperation expectedOperation)
         {
             if (_operation != expectedOperation)
             {
@@ -439,7 +439,7 @@ namespace Lutron.CommandBuilder
 
         private void CheckIfOperationIsProvided()
         {
-            if (_operation == default(MyRoomPlusCommandOperation))
+            if (_operation == default(CommandOperation))
             {
                 throw new OperationNotProvided();
             }
@@ -461,7 +461,7 @@ namespace Lutron.CommandBuilder
             }
         }
 
-        private void CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber expectedActionNumber)
+        private void CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber expectedActionNumber)
         {
             if (_actionNumber != expectedActionNumber)
             {
@@ -472,7 +472,7 @@ namespace Lutron.CommandBuilder
 
         private void CheckIfActionNumberIsProvided()
         {
-            if (_actionNumber == default(MyRoomPlusOutputCommandActionNumber))
+            if (_actionNumber == default(OutputCommandActionNumber))
             {
                 throw new ActionNumberNotProvided();
             }
