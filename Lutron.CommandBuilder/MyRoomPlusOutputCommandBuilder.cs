@@ -259,7 +259,6 @@ namespace Lutron.CommandBuilder
             
             CheckIfFadeParameterIsProvided();
 
-
             if (_fade != null && _delay != null)
             {
                 return
@@ -277,20 +276,21 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetLiftAndTiltLevelCommand()
         {
-            if (_liftLevel is null)
-            {
-                throw new ParameterNotProvided("lift level");
-            }
+            CheckIfOperationIsProvided();
+            
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+            
+            CheckIfIntegrationIdIsProvided();
 
-            if (_tiltLevel is null)
-            {
-                throw new ParameterNotProvided("tilt level");
-            }
+            CheckIfActionNumberIsProvided();
 
-            if (_fade is null && _delay != null)
-            {
-                throw new ParameterNotProvided("fade");
-            }
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel);
+
+            CheckIfLiftLevelParameterIsProvided();
+
+            CheckIfTiltLevelParameterIsProvided();
+            
+            CheckIfFadeParameterIsProvided();
 
             if (_fade != null && _delay != null)
             {
@@ -387,6 +387,14 @@ namespace Lutron.CommandBuilder
             CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _region}<CR><LF>";
+        }
+
+        private void CheckIfLiftLevelParameterIsProvided()
+        {
+            if (_liftLevel is null)
+            {
+                throw new ParameterNotProvided("lift level");
+            }
         }
 
         private void CheckIfTiltLevelParameterIsProvided()
