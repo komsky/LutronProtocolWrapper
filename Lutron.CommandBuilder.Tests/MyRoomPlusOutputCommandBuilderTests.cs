@@ -1677,7 +1677,7 @@ namespace Lutron.CommandBuilder.Tests
             public class GivenNoIntegrationId
             {
                 [Test]
-                public void ShouldReturnCommandString()
+                public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
@@ -1693,7 +1693,7 @@ namespace Lutron.CommandBuilder.Tests
             public class GivenNoActionNumber
             {
                 [Test]
-                public void ShouldReturnCommandString()
+                public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
@@ -1709,7 +1709,7 @@ namespace Lutron.CommandBuilder.Tests
             public class GivenIncorrectActionNumber
             {
                 [Test]
-                public void ShouldReturnCommandString()
+                public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
@@ -1777,7 +1777,7 @@ namespace Lutron.CommandBuilder.Tests
             public class GivenNoIntegrationId
             {
                 [Test]
-                public void ShouldReturnCommandString()
+                public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
@@ -1793,7 +1793,7 @@ namespace Lutron.CommandBuilder.Tests
             public class GivenNoActionNumber
             {
                 [Test]
-                public void ShouldReturnCommandString()
+                public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
@@ -1809,7 +1809,7 @@ namespace Lutron.CommandBuilder.Tests
             public class GivenIncorrectActionNumber
             {
                 [Test]
-                public void ShouldReturnCommandString()
+                public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
@@ -1877,7 +1877,7 @@ namespace Lutron.CommandBuilder.Tests
             public class GivenNoIntegrationId
             {
                 [Test]
-                public void ShouldReturnCommandString()
+                public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
@@ -1893,7 +1893,7 @@ namespace Lutron.CommandBuilder.Tests
             public class GivenNoActionNumber
             {
                 [Test]
-                public void ShouldReturnCommandString()
+                public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
@@ -1909,7 +1909,7 @@ namespace Lutron.CommandBuilder.Tests
             public class GivenIncorrectActionNumber
             {
                 [Test]
-                public void ShouldReturnCommandString()
+                public void ShouldThrowException()
                 {
                     var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => MyRoomPlusOutputCommandBuilder.Create()
@@ -1937,6 +1937,40 @@ namespace Lutron.CommandBuilder.Tests
                     .BuildStopRaisingOrLoweringLiftCommand();
 
                 Assert.AreEqual("#OUTPUT,2,16<CR><LF>", command);
+            }
+       
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift)
+                            .BuildStopRaisingOrLoweringLiftCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.StopRaisingOrLoweringLift)
+                            .BuildStopRaisingOrLoweringLiftCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
             }
 
             [TestFixture]
