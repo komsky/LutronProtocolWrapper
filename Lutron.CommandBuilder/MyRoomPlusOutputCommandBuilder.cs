@@ -325,6 +325,10 @@ namespace Lutron.CommandBuilder
 
         public string BuildStartLoweringTiltCommand()
         {
+            CheckIfOperationIsProvided();
+            
+            CheckIfCorrectOperationIsProvided(MyRoomPlusCommandOperation.Set);
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
