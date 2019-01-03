@@ -1,4 +1,3 @@
-using Lutron.Common;
 using Lutron.Common.Enums;
 using Lutron.Common.Exceptions;
 using Lutron.Common.Models;
@@ -78,7 +77,8 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
-        public MyRoomPlusOutputCommandBuilder WithHorizontalSheerShadeRegion(MyRoomPlusHorizontalSheerShadeRegion region)
+        public MyRoomPlusOutputCommandBuilder WithHorizontalSheerShadeRegion(
+            MyRoomPlusHorizontalSheerShadeRegion region)
         {
             _region = region;
             return this;
@@ -86,6 +86,33 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetOutputLevelCommand()
         {
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.OutputLevel);
+
+            if (_outputLevel is null)
+            {
+                throw new OutputLevelNotProvided();
+            }
+
+            if (_fade is null && _delay is null)
+            {
+                return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_outputLevel}<CR><LF>";
+            }
+
+            if (_fade != null && _delay is null)
+            {
+                return
+                    $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_outputLevel},{_fade}<CR><LF>";
+            }
+
+            if (_fade is null && _delay != null)
+            {
+                throw new ParameterNotProvided("fade");
+            }
+
             return
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_outputLevel},{_fade},{_delay}<CR><LF>";
         }
@@ -267,18 +294,19 @@ namespace Lutron.CommandBuilder
             {
                 throw new OperationNotProvided();
             }
-            
+
             if (_operation != MyRoomPlusCommandOperation.Get)
             {
                 throw new IncorrectOperationProvided(_operation, MyRoomPlusCommandOperation.Get);
             }
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber.HorizontalSheerShadeRegion);
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int)_region}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _region}<CR><LF>";
         }
 
         private void CheckIfProvidedActionNumberIsCorrect(MyRoomPlusOutputCommandActionNumber expectedActionNumber)

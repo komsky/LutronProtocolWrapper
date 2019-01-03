@@ -1,4 +1,3 @@
-using Lutron.Common;
 using Lutron.Common.Enums;
 using Lutron.Common.Exceptions;
 using Lutron.Common.Models;
@@ -25,6 +24,139 @@ namespace Lutron.CommandBuilder.Tests
                     .BuildSetOutputLevelCommand();
 
                 Assert.AreEqual("#OUTPUT,2,1,70,4,2<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoFadeAndNoDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                        .WithLevel(new OutputLevel(70))
+                        .BuildSetOutputLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,1,70<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenFadeAndNoDelay
+            {
+                [Test]
+                public void ShouldReturnCommandString()
+                {
+                    var command = MyRoomPlusOutputCommandBuilder.Create()
+                        .WithOperation(MyRoomPlusCommandOperation.Set)
+                        .WithIntegrationId(2)
+                        .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                        .WithLevel(new OutputLevel(70))
+                        .WithFade(new Fade(seconds: 4))
+                        .BuildSetOutputLevelCommand();
+
+                    Assert.AreEqual("#OUTPUT,2,1,70,4<CR><LF>", command);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoFadeButDelay
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithLevel(new OutputLevel(70))
+                            .WithDelay(new Delay(seconds: 2))
+                            .BuildSetOutputLevelCommand());
+
+                    Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithLevel(new OutputLevel(70))
+                            .WithFade(new Fade(seconds: 4))
+                            .WithDelay(new Delay(seconds: 2))
+                            .BuildSetOutputLevelCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithLevel(new OutputLevel(70))
+                            .WithFade(new Fade(seconds: 4))
+                            .WithDelay(new Delay(seconds: 2))
+                            .BuildSetOutputLevelCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithLevel(new OutputLevel(70))
+                            .WithFade(new Fade(seconds: 4))
+                            .WithDelay(new Delay(seconds: 2))
+                            .BuildSetOutputLevelCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 1 and not 10",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoOutputLevel
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OutputLevelNotProvided>(()
+                        => MyRoomPlusOutputCommandBuilder.Create()
+                            .WithOperation(MyRoomPlusCommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MyRoomPlusOutputCommandActionNumber.OutputLevel)
+                            .WithFade(new Fade(seconds: 4))
+                            .WithDelay(new Delay(seconds: 2))
+                            .BuildSetOutputLevelCommand());
+
+                    Assert.AreEqual("The output level is not provided",
+                        exception.Message);
+                }
             }
         }
 
