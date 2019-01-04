@@ -9,14 +9,7 @@ namespace Lutron.CommandBuilder
         private CommandOperation _operation;
         private TimeClockCommandActionNumber _actionNumber;
         private int _integrationId;
-        private Fade _fade;
-        private ShadeGroupLevel _outputLevel;
-        private Delay _delay;
         private readonly string _command = "TIMECLOCK";
-        private TiltLevel _tiltLevel;
-        private LiftLevel _liftLevel;
-        private HorizontalSheerShadeRegion _region;
-        private PresetNumber _presetNumber;
         private EventIndex _eventIndex;
         private TimeClockEnableState _enableState;
 
@@ -40,50 +33,6 @@ namespace Lutron.CommandBuilder
         public TimeClockCommandBuilder WithAction(TimeClockCommandActionNumber actionNumber)
         {
             _actionNumber = actionNumber;
-            return this;
-        }
-
-        public TimeClockCommandBuilder WithFade(Fade fade)
-        {
-            _fade = fade;
-            return this;
-        }
-
-        public TimeClockCommandBuilder WithLevel(ShadeGroupLevel outputLevel)
-        {
-            _outputLevel = outputLevel;
-            return this;
-        }
-
-        public TimeClockCommandBuilder WithDelay(Delay delay)
-        {
-            _delay = delay;
-            return this;
-        }
-
-        public TimeClockCommandBuilder WithPresetNumber(PresetNumber presetNumber)
-        {
-            _presetNumber = presetNumber;
-            return this;
-        }
-
-
-        public TimeClockCommandBuilder WithTiltLevel(TiltLevel tiltLevel)
-        {
-            _tiltLevel = tiltLevel;
-            return this;
-        }
-
-        public TimeClockCommandBuilder WithLiftLevel(LiftLevel liftLevel)
-        {
-            _liftLevel = liftLevel;
-            return this;
-        }
-
-        public TimeClockCommandBuilder WithHorizontalSheerShadeRegion(
-            HorizontalSheerShadeRegion region)
-        {
-            _region = region;
             return this;
         }
 
@@ -186,30 +135,6 @@ namespace Lutron.CommandBuilder
             }
         }
 
-        private void CheckIfPresetNumberIsProvided()
-        {
-            if (_presetNumber is null)
-            {
-                throw new PresetNumberNotProvided();
-            }
-        }
-
-        private void CheckIfLiftLevelParameterIsProvided()
-        {
-            if (_liftLevel is null)
-            {
-                throw new ParameterNotProvided("lift level");
-            }
-        }
-
-        private void CheckIfTiltLevelParameterIsProvided()
-        {
-            if (_tiltLevel is null)
-            {
-                throw new ParameterNotProvided("tilt level");
-            }
-        }
-
         private void CheckIfCorrectOperationIsProvided(CommandOperation expectedOperation)
         {
             if (_operation != expectedOperation)
@@ -223,22 +148,6 @@ namespace Lutron.CommandBuilder
             if (_operation == default(CommandOperation))
             {
                 throw new OperationNotProvided();
-            }
-        }
-
-        private void CheckIfFadeParameterIsProvided()
-        {
-            if (_fade is null && _delay != null)
-            {
-                throw new ParameterNotProvided("fade");
-            }
-        }
-
-        private void CheckIfShadeGroupLevelParameterIsProvided()
-        {
-            if (_outputLevel is null)
-            {
-                throw new ShadeGroupLevelNotProvided();
             }
         }
 

@@ -325,6 +325,23 @@ namespace Lutron.CommandBuilder.Tests
             }
 
             [TestFixture]
+            public class GivenNoEventIndex
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => TimeClockCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(TimeClockCommandActionNumber.ExecuteIndexedEvent)
+                            .BuildSetExecuteIndexedEventCommand());
+
+                    Assert.AreEqual("The parameter, event index, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
             public class GivenNoOperation
             {
                 [Test]
@@ -413,7 +430,7 @@ namespace Lutron.CommandBuilder.Tests
         public class BuildSetIndexedEventEnableStateCommand
         {
             [TestFixture]
-            public class GivenEventStateIsEnable
+            public class GivenEnableStateIsEnable
             {
                 [Test]
                 public void ShouldReturnCommandString()
@@ -431,7 +448,7 @@ namespace Lutron.CommandBuilder.Tests
             }
 
             [TestFixture]
-            public class GivenEventStateIsDisable
+            public class GivenEnableStateIsDisable
             {
                 [Test]
                 public void ShouldReturnCommandString()
@@ -446,6 +463,23 @@ namespace Lutron.CommandBuilder.Tests
 
                     Assert.AreEqual("#TIMECLOCK,2,6,3,2<CR><LF>", command);
                 }                
+            }
+
+            [TestFixture]
+            public class GivenNoEventIndex
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => TimeClockCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(TimeClockCommandActionNumber.IndexedEventEnableState)
+                            .BuildSetIndexedEventEnableStateCommand());
+
+                    Assert.AreEqual("The parameter, event index, is not provided", exception.Message);
+                }
             }
 
             [TestFixture]
