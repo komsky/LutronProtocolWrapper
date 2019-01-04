@@ -12,5 +12,29 @@ namespace Lutron.Common.Exceptions
                 $"The action number provided is incorrect. Expected {(int) expectedActionNumber} and not {(int) providedActionNumber}")
         {
         }
+
+        public IncorrectActionNumberProvided(
+            EthernetCommandConfigurationNumber providedActionNumber,
+            EthernetCommandConfigurationNumber expectedActionNumber)
+            : base(
+                $"The action number provided is incorrect. Expected {(int) expectedActionNumber} and not {(int) providedActionNumber}")
+        {
+        }
+
+        public IncorrectActionNumberProvided(
+            ShadeGroupCommandActionNumber providedActionNumber,
+            ShadeGroupCommandActionNumber expectedActionNumber)
+            : base(
+                $"The action number provided is incorrect. Expected {(int) expectedActionNumber} and not {(int) providedActionNumber}")
+        {
+        }
+
+        public IncorrectActionNumberProvided(
+            TimeClockCommandActionNumber providedActionNumber,
+            TimeClockCommandActionNumber expectedActionNumber)
+            : base(
+                $"The action number provided is incorrect. Expected {(int) expectedActionNumber} and not {(int) providedActionNumber}")
+        {
+        }
     }
 }

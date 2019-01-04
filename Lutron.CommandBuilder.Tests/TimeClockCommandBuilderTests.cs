@@ -95,7 +95,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectTimeClockCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => TimeClockCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
@@ -195,7 +195,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectTimeClockCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => TimeClockCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
@@ -295,7 +295,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectTimeClockCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => TimeClockCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
@@ -413,7 +413,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectTimeClockCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => TimeClockCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -572,7 +572,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectTimeClockCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => TimeClockCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)

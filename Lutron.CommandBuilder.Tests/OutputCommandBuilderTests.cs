@@ -86,7 +86,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<OutputLevelNotProvided>(()
+                    var exception = Assert.Throws<ParameterNotProvided>(()
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -95,7 +95,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetOutputLevelCommand());
 
-                    Assert.AreEqual("The output level is not provided",
+                    Assert.AreEqual("The parameter, output level, is not provided",
                         exception.Message);
                 }
             }

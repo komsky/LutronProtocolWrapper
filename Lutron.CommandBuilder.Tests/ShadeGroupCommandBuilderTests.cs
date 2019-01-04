@@ -86,7 +86,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<ShadeGroupLevelNotProvided>(()
+                    var exception = Assert.Throws<ParameterNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -95,7 +95,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetShadeGroupLevelCommand());
 
-                    Assert.AreEqual("The output level is not provided",
+                    Assert.AreEqual("The parameter, shade group level, is not provided",
                         exception.Message);
                 }
             }
@@ -184,7 +184,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -287,7 +287,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
@@ -387,7 +387,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -487,7 +487,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -587,7 +587,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -687,7 +687,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
@@ -722,14 +722,14 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<PresetNumberNotProvided>(()
+                    var exception = Assert.Throws<ParameterNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.CurrentPreset)
                             .BuildSetCurrentPresetCommand());
 
-                    Assert.AreEqual("The preset number is not provided", exception.Message);
+                    Assert.AreEqual("The parameter, preset number, is not provided", exception.Message);
                 }
             }
 
@@ -805,7 +805,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -984,7 +984,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -1239,7 +1239,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -1339,7 +1339,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -1439,7 +1439,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -1539,7 +1539,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -1639,7 +1639,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -1739,7 +1739,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -1839,7 +1839,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
@@ -1978,7 +1978,7 @@ namespace Lutron.CommandBuilder.Tests
                 [Test]
                 public void ShouldReturnCommandString()
                 {
-                    var exception = Assert.Throws<IncorrectShadeGroupCommandActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)

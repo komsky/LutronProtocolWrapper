@@ -155,7 +155,7 @@ namespace Lutron.CommandBuilder
         {
             if (_actionNumber != expectedActionNumber)
             {
-                throw new IncorrectTimeClockCommandActionNumberProvided(_actionNumber,
+                throw new IncorrectActionNumberProvided(_actionNumber,
                     expectedActionNumber);
             }
         }

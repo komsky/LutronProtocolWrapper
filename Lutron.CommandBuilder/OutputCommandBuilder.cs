@@ -457,7 +457,7 @@ namespace Lutron.CommandBuilder
         {
             if (_outputLevel is null)
             {
-                throw new OutputLevelNotProvided();
+                throw new ParameterNotProvided("output level");
             }
         }
 

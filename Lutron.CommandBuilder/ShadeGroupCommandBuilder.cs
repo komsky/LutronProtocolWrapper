@@ -382,7 +382,7 @@ namespace Lutron.CommandBuilder
         {
             if (_presetNumber is null)
             {
-                throw new PresetNumberNotProvided();
+                throw new ParameterNotProvided("preset number");
             }
         }
 
@@ -430,7 +430,7 @@ namespace Lutron.CommandBuilder
         {
             if (_outputLevel is null)
             {
-                throw new ShadeGroupLevelNotProvided();
+                throw new ParameterNotProvided("shade group level");
             }
         }
 
@@ -438,7 +438,7 @@ namespace Lutron.CommandBuilder
         {
             if (_actionNumber != expectedActionNumber)
             {
-                throw new IncorrectShadeGroupCommandActionNumberProvided(_actionNumber,
+                throw new IncorrectActionNumberProvided(_actionNumber,
                     expectedActionNumber);
             }
         }
