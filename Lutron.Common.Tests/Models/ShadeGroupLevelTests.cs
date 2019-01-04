@@ -37,9 +37,9 @@ namespace Lutron.Common.Tests.Models
             [Test]
             public void ShouldReturnLevel()
             {
-                var fade = new ShadeGroupLevel(34);
+                var shadeGroupLevel = new ShadeGroupLevel(34);
 
-                Assert.AreEqual("34", fade.ToString());
+                Assert.AreEqual("34", shadeGroupLevel.ToString());
             }
         }
     }

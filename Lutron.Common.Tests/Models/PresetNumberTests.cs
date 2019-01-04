@@ -37,9 +37,9 @@ namespace Lutron.Common.Tests.Models
             [Test]
             public void ShouldReturnLevel()
             {
-                var fade = new PresetNumber(15);
+                var presetNumber = new PresetNumber(15);
 
-                Assert.AreEqual("15", fade.ToString());
+                Assert.AreEqual("15", presetNumber.ToString());
             }
         }
     }

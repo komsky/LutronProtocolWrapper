@@ -90,9 +90,9 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldIncludeSecondsAndFractionalOnly()
                 {
-                    var fade = new Delay(0, 0, 4, 25);
+                    var delay = new Delay(0, 0, 4, 25);
 
-                    Assert.AreEqual("4.25", fade.ToString());
+                    Assert.AreEqual("4.25", delay.ToString());
                 }
             }
 
@@ -102,9 +102,9 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldIncludeSecondsOnly()
                 {
-                    var fade = new Delay(0, 0, 4, 0);
+                    var delay = new Delay(0, 0, 4, 0);
 
-                    Assert.AreEqual("4", fade.ToString());
+                    Assert.AreEqual("4", delay.ToString());
                 }
             }
 
@@ -114,9 +114,9 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldIncludeMinutestAndSecondsOnly()
                 {
-                    var fade = new Delay(0, 16, 4, 0);
+                    var delay = new Delay(0, 16, 4, 0);
 
-                    Assert.AreEqual("16:04", fade.ToString());
+                    Assert.AreEqual("16:04", delay.ToString());
                 }
             }
 
@@ -126,9 +126,9 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldIncludeHoursMinutesAndSecondsOnly()
                 {
-                    var fade = new Delay(3, 16, 4, 0);
+                    var delay = new Delay(3, 16, 4, 0);
 
-                    Assert.AreEqual("03:16:04", fade.ToString());
+                    Assert.AreEqual("03:16:04", delay.ToString());
                 }
             }
 
@@ -138,9 +138,9 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldReturnZeroString()
                 {
-                    var fade = new Delay();
+                    var delay = new Delay();
 
-                    Assert.AreEqual("0", fade.ToString());
+                    Assert.AreEqual("0", delay.ToString());
                 }
             }
 
@@ -150,9 +150,9 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldReturnMinutesAndZeroSecondsOnly()
                 {
-                    var fade = new Delay(minutes: 15);
+                    var delay = new Delay(minutes: 15);
 
-                    Assert.AreEqual("15:00", fade.ToString());
+                    Assert.AreEqual("15:00", delay.ToString());
                 }
             }
 
@@ -162,9 +162,9 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldReturnHoursMinutesAndZeroSecondsOnly()
                 {
-                    var fade = new Delay(hours: 2, minutes: 15);
+                    var delay = new Delay(hours: 2, minutes: 15);
 
-                    Assert.AreEqual("02:15:00", fade.ToString());
+                    Assert.AreEqual("02:15:00", delay.ToString());
                 }
             }
 
@@ -174,9 +174,9 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldReturnHoursZeroMinutesAndZeroSecondsOnly()
                 {
-                    var fade = new Delay(hours: 2);
+                    var delay = new Delay(hours: 2);
 
-                    Assert.AreEqual("02:00:00", fade.ToString());
+                    Assert.AreEqual("02:00:00", delay.ToString());
                 }
             }
         }

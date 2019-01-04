@@ -37,9 +37,9 @@ namespace Lutron.Common.Tests.Models
             [Test]
             public void ShouldReturnLiftLevel()
             {
-                var fade = new LiftLevel(34);
+                var liftLevel = new LiftLevel(34);
 
-                Assert.AreEqual("34", fade.ToString());
+                Assert.AreEqual("34", liftLevel.ToString());
             }
         }
     }

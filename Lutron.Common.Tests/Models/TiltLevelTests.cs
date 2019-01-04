@@ -37,9 +37,9 @@ namespace Lutron.Common.Tests.Models
             [Test]
             public void ShouldReturnTiltLevel()
             {
-                var fade = new TiltLevel(34);
+                var tiltLevel = new TiltLevel(34);
 
-                Assert.AreEqual("34", fade.ToString());
+                Assert.AreEqual("34", tiltLevel.ToString());
             }
         }
     }
