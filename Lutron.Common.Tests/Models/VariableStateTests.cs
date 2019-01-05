@@ -1,4 +1,3 @@
-using System;
 using Lutron.Common.Models;
 using NUnit.Framework;
 

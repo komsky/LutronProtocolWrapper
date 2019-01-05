@@ -1,5 +1,3 @@
-using System;
-
 namespace Lutron.Common.Models
 {
     public class VariableState
