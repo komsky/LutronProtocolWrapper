@@ -39,9 +39,4 @@ namespace Lutron.Service
             return outputLevel;
         }
     }
-
-    public class OutputLevelResponse
-    {
-        public double Level { get; set; }
-    }
 }
