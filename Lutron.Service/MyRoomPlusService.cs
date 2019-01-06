@@ -41,13 +41,15 @@ namespace Lutron.Service
             return outputLevel;
         }
 
-        public void SetOutputLevel(int integrationId, double outputLevel)
+        public void SetOutputLevel(int integrationId, double outputLevel, Fade fade = null, Delay delay = null)
         {
             var commandString = OutputCommandBuilder.Create()
                 .WithOperation(CommandOperation.Set)
                 .WithIntegrationId(integrationId)
                 .WithAction(OutputCommandActionNumber.OutputLevel)
                 .WithOutputLevel(new OutputLevel(outputLevel))
+                .WithFade(fade)
+                .WithDelay(delay)
                 .BuildSetOutputLevelCommand();
 
             _connector.Execute(commandString);
