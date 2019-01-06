@@ -18,7 +18,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(OutputCommandActionNumber.OutputLevel)
-                    .WithLevel(new OutputLevel(70))
+                    .WithOutputLevel(new OutputLevel(70))
                     .WithFade(new Fade(seconds: 4))
                     .WithDelay(new Delay(seconds: 2))
                     .BuildSetOutputLevelCommand();
@@ -36,7 +36,7 @@ namespace Lutron.CommandBuilder.Tests
                         .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(OutputCommandActionNumber.OutputLevel)
-                        .WithLevel(new OutputLevel(70))
+                        .WithOutputLevel(new OutputLevel(70))
                         .BuildSetOutputLevelCommand();
 
                     Assert.AreEqual("#OUTPUT,2,1,70<CR><LF>", command);
@@ -53,7 +53,7 @@ namespace Lutron.CommandBuilder.Tests
                         .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
                         .WithAction(OutputCommandActionNumber.OutputLevel)
-                        .WithLevel(new OutputLevel(70))
+                        .WithOutputLevel(new OutputLevel(70))
                         .WithFade(new Fade(seconds: 4))
                         .BuildSetOutputLevelCommand();
 
@@ -72,7 +72,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(OutputCommandActionNumber.OutputLevel)
-                            .WithLevel(new OutputLevel(70))
+                            .WithOutputLevel(new OutputLevel(70))
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetOutputLevelCommand());
 
@@ -110,7 +110,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
                             .WithAction(OutputCommandActionNumber.OutputLevel)
-                            .WithLevel(new OutputLevel(70))
+                            .WithOutputLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetOutputLevelCommand());
@@ -130,7 +130,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(OutputCommandActionNumber.OutputLevel)
-                            .WithLevel(new OutputLevel(70))
+                            .WithOutputLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetOutputLevelCommand());
@@ -150,7 +150,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithAction(OutputCommandActionNumber.OutputLevel)
-                            .WithLevel(new OutputLevel(70))
+                            .WithOutputLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetOutputLevelCommand());
@@ -169,7 +169,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithLevel(new OutputLevel(70))
+                            .WithOutputLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetOutputLevelCommand());
@@ -189,7 +189,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
-                            .WithLevel(new OutputLevel(70))
+                            .WithOutputLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
                             .BuildSetOutputLevelCommand());

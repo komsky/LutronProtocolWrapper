@@ -47,7 +47,7 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
-        public OutputCommandBuilder WithLevel(OutputLevel outputLevel)
+        public OutputCommandBuilder WithOutputLevel(OutputLevel outputLevel)
         {
             _outputLevel = outputLevel;
             return this;

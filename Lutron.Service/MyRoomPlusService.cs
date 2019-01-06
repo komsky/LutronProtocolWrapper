@@ -47,7 +47,7 @@ namespace Lutron.Service
                 .WithOperation(CommandOperation.Set)
                 .WithIntegrationId(integrationId)
                 .WithAction(OutputCommandActionNumber.OutputLevel)
-                .WithLevel(new OutputLevel(outputLevel))
+                .WithOutputLevel(new OutputLevel(outputLevel))
                 .BuildSetOutputLevelCommand();
 
             _connector.Execute(commandString);
