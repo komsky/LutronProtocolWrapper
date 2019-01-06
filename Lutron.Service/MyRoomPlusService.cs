@@ -1,6 +1,7 @@
 using Lutron.CommandBuilder;
 using Lutron.Common.Enums;
 using Lutron.Common.Interfaces;
+using Lutron.Common.Models;
 
 namespace Lutron.Service
 {
@@ -12,6 +13,7 @@ namespace Lutron.Service
         {
             _connector = connector;
         }
+
         public OutputLevelResponse GetOutputLevel(int integrationId)
         {
             var commandString = OutputCommandBuilder.Create()
@@ -37,6 +39,18 @@ namespace Lutron.Service
 
             var outputLevel = double.Parse(responseValues[responseValues.Length - 1]);
             return outputLevel;
+        }
+
+        public void SetOutputLevel(int integrationId, double outputLevel)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.OutputLevel)
+                .WithLevel(new OutputLevel(outputLevel))
+                .BuildSetOutputLevelCommand();
+
+            _connector.Execute(commandString);
         }
     }
 }
