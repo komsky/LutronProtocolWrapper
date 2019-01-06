@@ -22,7 +22,7 @@ namespace Lutron.Service.Tests
                 var outputLevel = service.GetOutputLevel(2);
 
                 connector.Received(1).Query(commandString);
-                Assert.AreEqual(48,outputLevel.Level);
+                Assert.AreEqual(48,outputLevel);
             }
         }
 

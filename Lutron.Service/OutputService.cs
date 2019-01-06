@@ -14,7 +14,7 @@ namespace Lutron.Service
             _connector = connector;
         }
 
-        public OutputLevelResponse GetOutputLevel(int integrationId)
+        public double GetOutputLevel(int integrationId)
         {
             var commandString = OutputCommandBuilder.Create()
                 .WithOperation(CommandOperation.Get)
@@ -23,12 +23,8 @@ namespace Lutron.Service
                 .BuildGetOutputLevelCommand();
 
             var response = _connector.Query(commandString);
-            var outputLevel = ExtractOutputLevel(response);
 
-            return new OutputLevelResponse
-            {
-                Level = outputLevel
-            };
+            return ExtractOutputLevel(response);
         }
 
         private double ExtractOutputLevel(string response)
