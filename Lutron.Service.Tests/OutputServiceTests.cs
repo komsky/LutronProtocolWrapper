@@ -1,4 +1,3 @@
-using System;
 using Lutron.Common.Interfaces;
 using Lutron.Common.Models;
 using NSubstitute;
@@ -7,7 +6,7 @@ using NUnit.Framework;
 namespace Lutron.Service.Tests
 {
     [TestFixture]
-    public class MyRoomPlusServiceTests
+    public class OutputServiceTests
     {
         [TestFixture]
         public class GetOutputLevel
@@ -18,7 +17,7 @@ namespace Lutron.Service.Tests
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "?OUTPUT,2,1<CR><LF>";
                 connector.Query(commandString).Returns("~OUTPUT,2,1,48<CR><LF>");
-                var service = new MyRoomPlusService(connector);
+                var service = new OutputService(connector);
                 
                 var outputLevel = service.GetOutputLevel(2);
 
@@ -35,7 +34,7 @@ namespace Lutron.Service.Tests
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,1,48<CR><LF>";
-                var service = new MyRoomPlusService(connector);
+                var service = new OutputService(connector);
                 
                 service.SetOutputLevel(2,48);
 
@@ -50,7 +49,7 @@ namespace Lutron.Service.Tests
                 {
                     var connector = Substitute.For<IMyRoomPlusConnector>();
                     var commandString = "#OUTPUT,2,1,48,20<CR><LF>";
-                    var service = new MyRoomPlusService(connector);
+                    var service = new OutputService(connector);
                 
                     service.SetOutputLevel(2,48, new Fade(seconds:20));
 
@@ -66,7 +65,7 @@ namespace Lutron.Service.Tests
                 {
                     var connector = Substitute.For<IMyRoomPlusConnector>();
                     var commandString = "#OUTPUT,2,1,48,0,15<CR><LF>";
-                    var service = new MyRoomPlusService(connector);
+                    var service = new OutputService(connector);
                 
                     service.SetOutputLevel(2,48, new Fade(), new Delay(seconds:15));
 
