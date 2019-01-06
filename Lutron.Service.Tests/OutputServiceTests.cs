@@ -78,13 +78,29 @@ namespace Lutron.Service.Tests
         public class StartRaisingOutputLevel
         {
             [Test]
-            public void ShouldSetOutputLevel()
+            public void ShouldStartRaisingOutputLevel()
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,2<CR><LF>";
                 var service = new OutputService(connector);
                 
                 service.StartRaisingOutputLevel(2);
+
+                connector.Received(1).Execute(commandString);
+            }
+        }
+
+        [TestFixture]
+        public class StartLoweringOutputLevel
+        {
+            [Test]
+            public void ShouldStartLoweringOutputLevel()
+            {
+                var connector = Substitute.For<IMyRoomPlusConnector>();
+                var commandString = "#OUTPUT,2,3<CR><LF>";
+                var service = new OutputService(connector);
+                
+                service.StartLoweringOutputLevel(2);
 
                 connector.Received(1).Execute(commandString);
             }
