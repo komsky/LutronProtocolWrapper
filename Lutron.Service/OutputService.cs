@@ -72,5 +72,16 @@ namespace Lutron.Service
 
             _connector.Execute(commandString);
         }
+
+        public void StopRaisingOrLoweringOutputLevel(int integrationId)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringOutputLevel)
+                .BuildStopRaisingOrLoweringOutputLevelCommand();
+
+            _connector.Execute(commandString);
+        }
     }
 }

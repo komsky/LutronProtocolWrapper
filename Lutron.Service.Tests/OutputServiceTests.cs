@@ -106,5 +106,21 @@ namespace Lutron.Service.Tests
             }
         }
 
+        [TestFixture]
+        public class StopRaisingOrLoweringOutputLevel
+        {
+            [Test]
+            public void ShouldStartLoweringOutputLevel()
+            {
+                var connector = Substitute.For<IMyRoomPlusConnector>();
+                var commandString = "#OUTPUT,2,4<CR><LF>";
+                var service = new OutputService(connector);
+                
+                service.StopRaisingOrLoweringOutputLevel(2);
+
+                connector.Received(1).Execute(commandString);
+            }
+        }
+
     }
 }
