@@ -175,6 +175,39 @@ namespace Lutron.Service
             _connector.Execute(commandString);
         }
 
+        public void StartRaisingLift(int integrationId)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.StartRaisingLift)
+                .BuildStartRaisingLiftCommand();
+
+            _connector.Execute(commandString);
+        }
+
+        public void StartLoweringLift(int integrationId)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.StartLoweringLift)
+                .BuildStartLoweringLiftCommand();
+
+            _connector.Execute(commandString);
+        }
+
+        public void StopRaisingOrLoweringLift(int integrationId)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringLift)
+                .BuildStopRaisingOrLoweringLiftCommand();
+
+            _connector.Execute(commandString);
+        }
+
         private double ExtractOutputLevel(string response)
         {
             var responseValues = response.Replace("~OUTPUT", "")

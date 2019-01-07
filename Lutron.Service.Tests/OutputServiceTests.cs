@@ -319,5 +319,53 @@ namespace Lutron.Service.Tests
                 connector.Received(1).Execute(commandString);
             }
         }        
+
+        [TestFixture]
+        public class StartRaisingLift
+        {
+            [Test]
+            public void ShouldStartRaisingOutputLevel()
+            {
+                var connector = Substitute.For<IMyRoomPlusConnector>();
+                var commandString = "#OUTPUT,2,14<CR><LF>";
+                var service = new OutputService(connector);
+
+                service.StartRaisingLift(2);
+
+                connector.Received(1).Execute(commandString);
+            }
+        }
+
+        [TestFixture]
+        public class StartLoweringLift
+        {
+            [Test]
+            public void ShouldStartLoweringOutputLevel()
+            {
+                var connector = Substitute.For<IMyRoomPlusConnector>();
+                var commandString = "#OUTPUT,2,15<CR><LF>";
+                var service = new OutputService(connector);
+
+                service.StartLoweringLift(2);
+
+                connector.Received(1).Execute(commandString);
+            }
+        }
+
+        [TestFixture]
+        public class StopRaisingOrLoweringLift
+        {
+            [Test]
+            public void ShouldStartLoweringOutputLevel()
+            {
+                var connector = Substitute.For<IMyRoomPlusConnector>();
+                var commandString = "#OUTPUT,2,16<CR><LF>";
+                var service = new OutputService(connector);
+
+                service.StopRaisingOrLoweringLift(2);
+
+                connector.Received(1).Execute(commandString);
+            }
+        }        
     }
 }
