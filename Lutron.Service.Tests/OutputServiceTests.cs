@@ -122,5 +122,36 @@ namespace Lutron.Service.Tests
             }
         }
 
+        [TestFixture]
+        public class SetFlashFrequency
+        {
+            [Test]
+            public void ShouldSetFlashFrequency()
+            {
+                var connector = Substitute.For<IMyRoomPlusConnector>();
+                var commandString = "#OUTPUT,2,5<CR><LF>";
+                var service = new OutputService(connector);
+                
+                service.SetFlashFrequency(2);
+
+                connector.Received(1).Execute(commandString);
+            }
+
+            public class GivenFadeAndDelay
+            {
+                [Test]
+                public void ShouldSetFlashFrequency()
+                {
+                    var connector = Substitute.For<IMyRoomPlusConnector>();
+                    var commandString = "#OUTPUT,2,5,20,10<CR><LF>";
+                    var service = new OutputService(connector);
+                
+                    service.SetFlashFrequency(2, new Fade(seconds:20), new Delay(seconds:10));
+
+                    connector.Received(1).Execute(commandString);
+                }                
+            }
+        }
+
     }
 }

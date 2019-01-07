@@ -83,5 +83,17 @@ namespace Lutron.Service
 
             _connector.Execute(commandString);
         }
+
+        public void SetFlashFrequency(int integrationId, Fade fade = null, Delay delay = null)
+        {            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.FlashFrequency)
+                .WithFade(fade)
+                .WithDelay(delay)
+                .BuildSetFlashFrequencyCommand();
+
+            _connector.Execute(commandString);
+        }
     }
 }
