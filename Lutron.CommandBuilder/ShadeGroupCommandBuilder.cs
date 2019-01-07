@@ -88,9 +88,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetShadeGroupLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -119,24 +119,24 @@ namespace Lutron.CommandBuilder
         public string BuildGetShadeGroupLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(ShadeGroupCommandActionNumber.ShadeGroupLevel);
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int)_actionNumber}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildStartRaisingShadeGroupLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -149,9 +149,9 @@ namespace Lutron.CommandBuilder
         public string BuildStartLoweringShadeGroupLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -164,24 +164,24 @@ namespace Lutron.CommandBuilder
         public string BuildStopRaisingOrLoweringShadeGroupLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(ShadeGroupCommandActionNumber.StopRaisingOrLoweringShadeGroupLevel);
-            
+
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildGetCurrentPresetCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -194,9 +194,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetCurrentPresetCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -211,9 +211,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetTiltLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -221,7 +221,7 @@ namespace Lutron.CommandBuilder
             CheckIfProvidedActionNumberIsCorrect(ShadeGroupCommandActionNumber.TiltLevel);
 
             CheckIfTiltLevelParameterIsProvided();
-            
+
             CheckIfFadeParameterIsProvided();
 
             if (_fade != null && _delay != null)
@@ -242,9 +242,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetLiftAndTiltLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -254,7 +254,7 @@ namespace Lutron.CommandBuilder
             CheckIfLiftLevelParameterIsProvided();
 
             CheckIfTiltLevelParameterIsProvided();
-            
+
             CheckIfFadeParameterIsProvided();
 
             if (_fade != null && _delay != null)
@@ -276,9 +276,9 @@ namespace Lutron.CommandBuilder
         public string BuildStartRaisingTiltCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -291,7 +291,7 @@ namespace Lutron.CommandBuilder
         public string BuildStartLoweringTiltCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
@@ -306,7 +306,7 @@ namespace Lutron.CommandBuilder
         public string BuildStopRaisingOrLoweringTiltCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
@@ -321,7 +321,7 @@ namespace Lutron.CommandBuilder
         public string BuildStartRaisingLiftCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
@@ -336,7 +336,7 @@ namespace Lutron.CommandBuilder
         public string BuildStartLoweringLiftCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
@@ -351,7 +351,7 @@ namespace Lutron.CommandBuilder
         public string BuildStopRaisingOrLoweringLiftCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();

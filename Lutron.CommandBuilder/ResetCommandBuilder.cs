@@ -30,9 +30,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetResetCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             return
                 $"{(char) _operation}{_command},{(int) _actionNumber}<CR><LF>";
         }

@@ -7,7 +7,7 @@ namespace Lutron.CommandBuilder.Tests
 {
     [TestFixture]
     public class SystemVariableCommandBuilderTests
-    {        
+    {
         [TestFixture]
         public class BuildGetSystemVariableStateCommand
         {

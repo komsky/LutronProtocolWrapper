@@ -87,9 +87,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetOutputLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -118,24 +118,24 @@ namespace Lutron.CommandBuilder
         public string BuildGetOutputLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.OutputLevel);
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int)_actionNumber}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildStartRaisingOutputLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -148,9 +148,9 @@ namespace Lutron.CommandBuilder
         public string BuildStartLoweringOutputLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -163,24 +163,24 @@ namespace Lutron.CommandBuilder
         public string BuildStopRaisingOrLoweringOutputLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.StopRaisingOrLoweringOutputLevel);
-            
+
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildGetFlashFrequencyCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -193,15 +193,15 @@ namespace Lutron.CommandBuilder
         public string BuildSetFlashFrequencyCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.FlashFrequency);
-            
+
             CheckIfFadeParameterIsProvided();
 
             if (_fade is null && _delay is null)
@@ -221,9 +221,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetContactClosureOutputPulseTimeCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -246,9 +246,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetTiltLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -256,7 +256,7 @@ namespace Lutron.CommandBuilder
             CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.TiltLevel);
 
             CheckIfTiltLevelParameterIsProvided();
-            
+
             CheckIfFadeParameterIsProvided();
 
             if (_fade != null && _delay != null)
@@ -277,9 +277,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetLiftAndTiltLevelCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -289,7 +289,7 @@ namespace Lutron.CommandBuilder
             CheckIfLiftLevelParameterIsProvided();
 
             CheckIfTiltLevelParameterIsProvided();
-            
+
             CheckIfFadeParameterIsProvided();
 
             if (_fade != null && _delay != null)
@@ -311,9 +311,9 @@ namespace Lutron.CommandBuilder
         public string BuildStartRaisingTiltCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -326,7 +326,7 @@ namespace Lutron.CommandBuilder
         public string BuildStartLoweringTiltCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
@@ -341,7 +341,7 @@ namespace Lutron.CommandBuilder
         public string BuildStopRaisingOrLoweringTiltCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
@@ -356,7 +356,7 @@ namespace Lutron.CommandBuilder
         public string BuildStartRaisingLiftCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
@@ -371,7 +371,7 @@ namespace Lutron.CommandBuilder
         public string BuildStartLoweringLiftCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();
@@ -386,7 +386,7 @@ namespace Lutron.CommandBuilder
         public string BuildStopRaisingOrLoweringLiftCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
 
             CheckIfIntegrationIdIsProvided();

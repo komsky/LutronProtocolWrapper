@@ -13,9 +13,9 @@ namespace Lutron.Common.Enums
         StartRaisingTilt = 11,
         StartLoweringTilt = 12,
         StopRaisingOrLoweringTilt = 13,
-        StartRaisingLift=14,
-        StartLoweringLift=15,
-        StopRaisingOrLoweringLift=16,
-        HorizontalSheerShadeRegion=28
+        StartRaisingLift = 14,
+        StartLoweringLift = 15,
+        StopRaisingOrLoweringLift = 16,
+        HorizontalSheerShadeRegion = 28
     }
 }

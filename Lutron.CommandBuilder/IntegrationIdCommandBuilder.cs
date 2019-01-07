@@ -45,22 +45,22 @@ namespace Lutron.CommandBuilder
         public string BuildGetIntegrationIdForSerialNumberCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfActionNumberIsProvided();
 
             CheckIfSerialNumberIsProvided();
 
-            return $"{(char) _operation}{_command},{(int)_actionNumber},{_serialNumber}<CR><LF>";
+            return $"{(char) _operation}{_command},{(int) _actionNumber},{_serialNumber}<CR><LF>";
         }
 
         public string BuildGetInfoFromIdCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfActionNumberIsProvided();
 
             CheckIfIntegrationIdIsProvided();

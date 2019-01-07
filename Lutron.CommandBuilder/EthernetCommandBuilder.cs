@@ -58,9 +58,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetIpAddressCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfProvidedActionNumberIsCorrect(EthernetCommandConfigurationNumber.IpAddress);
 
             CheckIfIpAddressParameterIsProvided();
@@ -72,22 +72,22 @@ namespace Lutron.CommandBuilder
         public string BuildGetIpAddressCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfProvidedActionNumberIsCorrect(EthernetCommandConfigurationNumber.IpAddress);
 
-            return $"{(char) _operation}{_command},{(int)_actionNumber}<CR><LF>";
+            return $"{(char) _operation}{_command},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildSetGatewayAddressCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfProvidedActionNumberIsCorrect(EthernetCommandConfigurationNumber.GatewayAddress);
-            
+
             CheckIfGatewayAddressParameterIsProvided();
 
             return $"{(char) _operation}{_command},{(int) _actionNumber},{_gatewayAddress}<CR><LF>";
@@ -96,9 +96,9 @@ namespace Lutron.CommandBuilder
         public string BuildGetGatewayAddressCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfProvidedActionNumberIsCorrect(EthernetCommandConfigurationNumber.GatewayAddress);
 
             return $"{(char) _operation}{_command},{(int) _actionNumber}<CR><LF>";
@@ -107,22 +107,22 @@ namespace Lutron.CommandBuilder
         public string BuildSetSubnetMaskCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfProvidedActionNumberIsCorrect(EthernetCommandConfigurationNumber.SubnetMask);
-            
+
             CheckIfSubnetMaskParameterIsProvided();
-            
+
             return $"{(char) _operation}{_command},{(int) _actionNumber},{_subnetMask}<CR><LF>";
         }
 
         public string BuildGetSubnetMaskCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfProvidedActionNumberIsCorrect(EthernetCommandConfigurationNumber.SubnetMask);
 
             return $"{(char) _operation}{_command},{(int) _actionNumber}<CR><LF>";
@@ -131,22 +131,22 @@ namespace Lutron.CommandBuilder
         public string BuildGetDhcpCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfProvidedActionNumberIsCorrect(EthernetCommandConfigurationNumber.Dhcp);
-            
+
             return $"{(char) _operation}{_command},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildSetMulticastAddressCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfProvidedActionNumberIsCorrect(EthernetCommandConfigurationNumber.MulticastAddress);
-            
+
             CheckIfMulticastAddressParameterIsProvided();
 
             return $"{(char) _operation}{_command},{(int) _actionNumber},{_multicastAddress}<CR><LF>";
@@ -155,11 +155,11 @@ namespace Lutron.CommandBuilder
         public string BuildGetMulticastAddressCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfProvidedActionNumberIsCorrect(EthernetCommandConfigurationNumber.MulticastAddress);
-            
+
             return $"{(char) _operation}{_command},{(int) _actionNumber}<CR><LF>";
         }
 
@@ -221,6 +221,5 @@ namespace Lutron.CommandBuilder
                     expectedActionNumber);
             }
         }
-
     }
 }

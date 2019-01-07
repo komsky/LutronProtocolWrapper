@@ -18,11 +18,11 @@ namespace Lutron.Service.Tests
                 var commandString = "?OUTPUT,2,1<CR><LF>";
                 connector.Query(commandString).Returns("~OUTPUT,2,1,48<CR><LF>");
                 var service = new OutputService(connector);
-                
+
                 var outputLevel = service.GetOutputLevel(2);
 
                 connector.Received(1).Query(commandString);
-                Assert.AreEqual(48,outputLevel);
+                Assert.AreEqual(48, outputLevel);
             }
         }
 
@@ -35,12 +35,12 @@ namespace Lutron.Service.Tests
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,1,48<CR><LF>";
                 var service = new OutputService(connector);
-                
-                service.SetOutputLevel(2,48);
+
+                service.SetOutputLevel(2, 48);
 
                 connector.Received(1).Execute(commandString);
             }
-            
+
             [TestFixture]
             public class GivenFadeTime
             {
@@ -50,13 +50,13 @@ namespace Lutron.Service.Tests
                     var connector = Substitute.For<IMyRoomPlusConnector>();
                     var commandString = "#OUTPUT,2,1,48,20<CR><LF>";
                     var service = new OutputService(connector);
-                
-                    service.SetOutputLevel(2,48, new Fade(seconds:20));
+
+                    service.SetOutputLevel(2, 48, new Fade(seconds: 20));
 
                     connector.Received(1).Execute(commandString);
                 }
             }
-            
+
             [TestFixture]
             public class GivenDelayTime
             {
@@ -66,8 +66,8 @@ namespace Lutron.Service.Tests
                     var connector = Substitute.For<IMyRoomPlusConnector>();
                     var commandString = "#OUTPUT,2,1,48,0,15<CR><LF>";
                     var service = new OutputService(connector);
-                
-                    service.SetOutputLevel(2,48, new Fade(), new Delay(seconds:15));
+
+                    service.SetOutputLevel(2, 48, new Fade(), new Delay(seconds: 15));
 
                     connector.Received(1).Execute(commandString);
                 }
@@ -83,7 +83,7 @@ namespace Lutron.Service.Tests
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,2<CR><LF>";
                 var service = new OutputService(connector);
-                
+
                 service.StartRaisingOutputLevel(2);
 
                 connector.Received(1).Execute(commandString);
@@ -99,7 +99,7 @@ namespace Lutron.Service.Tests
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,3<CR><LF>";
                 var service = new OutputService(connector);
-                
+
                 service.StartLoweringOutputLevel(2);
 
                 connector.Received(1).Execute(commandString);
@@ -115,7 +115,7 @@ namespace Lutron.Service.Tests
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,4<CR><LF>";
                 var service = new OutputService(connector);
-                
+
                 service.StopRaisingOrLoweringOutputLevel(2);
 
                 connector.Received(1).Execute(commandString);
@@ -131,7 +131,7 @@ namespace Lutron.Service.Tests
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,5<CR><LF>";
                 var service = new OutputService(connector);
-                
+
                 service.SetFlashFrequency(2);
 
                 connector.Received(1).Execute(commandString);
@@ -146,11 +146,11 @@ namespace Lutron.Service.Tests
                     var connector = Substitute.For<IMyRoomPlusConnector>();
                     var commandString = "#OUTPUT,2,5,20,10<CR><LF>";
                     var service = new OutputService(connector);
-                
-                    service.SetFlashFrequency(2, new Fade(seconds:20), new Delay(seconds:10));
+
+                    service.SetFlashFrequency(2, new Fade(seconds: 20), new Delay(seconds: 10));
 
                     connector.Received(1).Execute(commandString);
-                }                
+                }
             }
         }
 
@@ -179,32 +179,64 @@ namespace Lutron.Service.Tests
             public class GivenPulse
             {
                 [Test]
-                public void ShouldSetFlashFrequency()
+                public void ShouldSetContactClosureOutputPulseTime()
                 {
                     var connector = Substitute.For<IMyRoomPlusConnector>();
                     var commandString = "#OUTPUT,2,6,15<CR><LF>";
                     var service = new OutputService(connector);
-                
-                    service.SetContactClosureOutputPulseTime(2, new Pulse(seconds:15));
+
+                    service.SetContactClosureOutputPulseTime(2, new Pulse(seconds: 15));
 
                     connector.Received(1).Execute(commandString);
-                }   
+                }
             }
 
             [TestFixture]
             public class GivenDelay
             {
                 [Test]
-                public void ShouldSetFlashFrequency()
+                public void ShouldSetContactClosureOutputPulseTime()
                 {
                     var connector = Substitute.For<IMyRoomPlusConnector>();
                     var commandString = "#OUTPUT,2,6,30<CR><LF>";
                     var service = new OutputService(connector);
-                
-                    service.SetContactClosureOutputPulseTime(2, delay: new Delay(seconds:30));
+
+                    service.SetContactClosureOutputPulseTime(2, delay: new Delay(seconds: 30));
 
                     connector.Received(1).Execute(commandString);
-                }                
+                }
+            }
+        }
+
+        [TestFixture]
+        public class SetTiltLevel
+        {
+            [Test]
+            public void ShouldSetTiltLevel()
+            {
+                var connector = Substitute.For<IMyRoomPlusConnector>();
+                var commandString = "#OUTPUT,2,9,45<CR><LF>";
+                var service = new OutputService(connector);
+
+                service.SetTiltLevel(2, new TiltLevel(45));
+
+                connector.Received(1).Execute(commandString);
+            }
+
+            [TestFixture]
+            public class GivenFadeAndDelay
+            {
+                [Test]
+                public void ShouldSetTiltLevel()
+                {
+                    var connector = Substitute.For<IMyRoomPlusConnector>();
+                    var commandString = "#OUTPUT,2,9,45,10,30<CR><LF>";
+                    var service = new OutputService(connector);
+
+                    service.SetTiltLevel(2, new TiltLevel(45), new Fade(seconds: 10), delay: new Delay(seconds: 30));
+
+                    connector.Received(1).Execute(commandString);
+                }
             }
         }
     }

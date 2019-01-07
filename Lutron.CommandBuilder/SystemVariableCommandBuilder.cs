@@ -45,22 +45,22 @@ namespace Lutron.CommandBuilder
         public string BuildGetSystemVariableStateCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int)_actionNumber}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildSetSystemVariableStateCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();

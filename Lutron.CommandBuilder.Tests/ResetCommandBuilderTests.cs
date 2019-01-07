@@ -6,7 +6,7 @@ namespace Lutron.CommandBuilder.Tests
 {
     [TestFixture]
     public class ResetCommandBuilderTests
-    {        
+    {
         [TestFixture]
         public class BuildSetResetCommand
         {

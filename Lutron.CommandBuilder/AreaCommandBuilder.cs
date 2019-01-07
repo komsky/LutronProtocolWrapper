@@ -32,18 +32,18 @@ namespace Lutron.CommandBuilder
             _actionNumber = actionNumber;
             return this;
         }
-        
+
         public string BuildGetOccupancyStateCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int)_actionNumber}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         private void CheckIfCorrectOperationIsProvided(CommandOperation expectedOperation)

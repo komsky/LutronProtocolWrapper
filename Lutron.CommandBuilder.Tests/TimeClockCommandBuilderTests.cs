@@ -107,7 +107,7 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
-        
+
         [TestFixture]
         public class BuildGetSunsetTimeCommand
         {
@@ -207,7 +207,7 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
-        
+
         [TestFixture]
         public class BuildGetDaysScheduleCommand
         {
@@ -444,7 +444,7 @@ namespace Lutron.CommandBuilder.Tests
                         .BuildSetIndexedEventEnableStateCommand();
 
                     Assert.AreEqual("#TIMECLOCK,2,6,3,1<CR><LF>", command);
-                }                
+                }
             }
 
             [TestFixture]
@@ -462,7 +462,7 @@ namespace Lutron.CommandBuilder.Tests
                         .BuildSetIndexedEventEnableStateCommand();
 
                     Assert.AreEqual("#TIMECLOCK,2,6,3,2<CR><LF>", command);
-                }                
+                }
             }
 
             [TestFixture]
@@ -584,6 +584,5 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
-
     }
 }

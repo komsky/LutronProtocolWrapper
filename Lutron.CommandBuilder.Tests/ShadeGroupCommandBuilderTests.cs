@@ -710,7 +710,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(ShadeGroupCommandActionNumber.CurrentPreset)
-                    .WithPresetNumber(new PresetNumber( 2))
+                    .WithPresetNumber(new PresetNumber(2))
                     .BuildSetCurrentPresetCommand();
 
                 Assert.AreEqual("#SHADEGRP,2,6,2<CR><LF>", command);
@@ -816,7 +816,6 @@ namespace Lutron.CommandBuilder.Tests
                         exception.Message);
                 }
             }
-
         }
 
         [TestFixture]
@@ -1166,7 +1165,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
                 }
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1266,7 +1265,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#SHADEGRP,2,16<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1366,7 +1365,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#SHADEGRP,2,17<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1466,7 +1465,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#SHADEGRP,2,18<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1566,7 +1565,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#SHADEGRP,2,19<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1666,7 +1665,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#SHADEGRP,2,20<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1766,7 +1765,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#SHADEGRP,2,21<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {

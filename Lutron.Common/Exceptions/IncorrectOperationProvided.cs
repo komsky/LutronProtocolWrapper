@@ -9,7 +9,7 @@ namespace Lutron.Common.Exceptions
             CommandOperation providedOperation,
             CommandOperation expectedOperation)
             : base(
-                $"The operation provided is incorrect. Expected {(char)expectedOperation} and not {(char)providedOperation}")
+                $"The operation provided is incorrect. Expected {(char) expectedOperation} and not {(char) providedOperation}")
         {
         }
     }

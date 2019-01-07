@@ -7,7 +7,7 @@ namespace Lutron.CommandBuilder.Tests
 {
     [TestFixture]
     public class IntegrationIdCommandBuilderTests
-    {        
+    {
         [TestFixture]
         public class BuildGetIntegrationIdForSerialNumberCommand
         {

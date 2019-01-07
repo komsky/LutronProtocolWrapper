@@ -110,7 +110,20 @@ namespace Lutron.Service
                 .BuildSetContactClosureOutputPulseTimeCommand();
 
             _connector.Execute(commandString);
-            
+        }
+
+        public void SetTiltLevel(int integrationId, TiltLevel tiltLevel, Fade fade = null, Delay delay = null)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.TiltLevel)
+                .WithTiltLevel(tiltLevel)
+                .WithFade(fade)
+                .WithDelay(delay)
+                .BuildSetTiltLevelCommand();
+
+            _connector.Execute(commandString);
         }
 
         private double ExtractOutputLevel(string response)

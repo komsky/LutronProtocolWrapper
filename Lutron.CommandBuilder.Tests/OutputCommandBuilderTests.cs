@@ -1338,7 +1338,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
                 }
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1422,7 +1422,7 @@ namespace Lutron.CommandBuilder.Tests
                         exception.Message);
                 }
             }
- }
+        }
 
         [TestFixture]
         public class BuildStartRaisingTiltCommand
@@ -1438,7 +1438,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#OUTPUT,2,11<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1538,7 +1538,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#OUTPUT,2,12<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1638,7 +1638,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#OUTPUT,2,13<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1738,7 +1738,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#OUTPUT,2,14<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1838,7 +1838,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#OUTPUT,2,15<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {
@@ -1938,7 +1938,7 @@ namespace Lutron.CommandBuilder.Tests
 
                 Assert.AreEqual("#OUTPUT,2,16<CR><LF>", command);
             }
-       
+
             [TestFixture]
             public class GivenNoOperation
             {

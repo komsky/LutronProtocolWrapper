@@ -39,54 +39,54 @@ namespace Lutron.CommandBuilder
         public string BuildGetSunriseTimeCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(TimeClockCommandActionNumber.SunriseTime);
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int)_actionNumber}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildGetSunsetTimeCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(TimeClockCommandActionNumber.SunsetTime);
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int)_actionNumber}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildGetDaysScheduleCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(TimeClockCommandActionNumber.DaysSchedule);
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int)_actionNumber}<CR><LF>";
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildSetExecuteIndexedEventCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -102,9 +102,9 @@ namespace Lutron.CommandBuilder
         public string BuildSetIndexedEventEnableStateCommand()
         {
             CheckIfOperationIsProvided();
-            
+
             CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-            
+
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
@@ -112,11 +112,11 @@ namespace Lutron.CommandBuilder
             CheckIfProvidedActionNumberIsCorrect(TimeClockCommandActionNumber.IndexedEventEnableState);
 
             CheckIfEventIndexParameterIsProvided();
-            
+
             CheckIfEnableStateParameterIsProvided();
 
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_eventIndex},{(int)_enableState}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_eventIndex},{(int) _enableState}<CR><LF>";
         }
 
         private void CheckIfEnableStateParameterIsProvided()

@@ -6,7 +6,7 @@ namespace Lutron.CommandBuilder.Tests
 {
     [TestFixture]
     public class AreaCommandBuilderTests
-    {        
+    {
         [TestFixture]
         public class BuildGetOccupancyStateCommand
         {
@@ -88,6 +88,5 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
-
     }
 }
