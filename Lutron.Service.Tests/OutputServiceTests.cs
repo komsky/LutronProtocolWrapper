@@ -153,5 +153,22 @@ namespace Lutron.Service.Tests
             }
         }
 
+        [TestFixture]
+        public class GetFlashFrequency
+        {
+            [Test]
+            public void ShouldGetFlashFrequency()
+            {
+                var commandString = "?OUTPUT,2,5<CR><LF>";
+                var connector = Substitute.For<IMyRoomPlusConnector>();
+                connector.Query(commandString).Returns("~OUTPUT,2,5,50<CR><LF>");
+                var service = new OutputService(connector);
+
+                var flashFrequency = service.GetFlashFrequency(2);
+
+                connector.Received(1).Query(commandString);
+                Assert.AreEqual(50, flashFrequency);
+            }
+        }
     }
 }

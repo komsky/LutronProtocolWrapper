@@ -27,16 +27,6 @@ namespace Lutron.Service
             return ExtractOutputLevel(response);
         }
 
-        private double ExtractOutputLevel(string response)
-        {
-            var responseValues = response.Replace("~OUTPUT", "")
-                .Replace("<CR><LF>", "")
-                .Split(',');
-
-            var outputLevel = double.Parse(responseValues[responseValues.Length - 1]);
-            return outputLevel;
-        }
-
         public void SetOutputLevel(int integrationId, double outputLevel, Fade fade = null, Delay delay = null)
         {
             var commandString = OutputCommandBuilder.Create()
@@ -95,5 +85,38 @@ namespace Lutron.Service
 
             _connector.Execute(commandString);
         }
+
+        public double GetFlashFrequency(int integrationId)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Get)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.FlashFrequency)
+                .BuildGetFlashFrequencyCommand();
+
+            var response = _connector.Query(commandString);
+            return ExtractFlashFrequency(response);
+        }
+        
+        private double ExtractOutputLevel(string response)
+        {
+            var responseValues = response.Replace("~OUTPUT", "")
+                .Replace("<CR><LF>", "")
+                .Split(',');
+
+            var outputLevel = double.Parse(responseValues[responseValues.Length - 1]);
+            return outputLevel;
+        }
+        
+        private double ExtractFlashFrequency(string response)
+        {
+            var responseValues = response.Replace("~OUTPUT", "")
+                .Replace("<CR><LF>", "")
+                .Split(',');
+
+            var outputLevel = double.Parse(responseValues[responseValues.Length - 1]);
+            return outputLevel;
+        }
+
     }
 }
