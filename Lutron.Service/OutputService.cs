@@ -5,7 +5,7 @@ using Lutron.Common.Models;
 
 namespace Lutron.Service
 {
-    public class OutputService
+    public class OutputService : IOutputService
     {
         private readonly IMyRoomPlusConnector _connector;
 
