@@ -126,7 +126,8 @@ namespace Lutron.Service
             _connector.Execute(commandString);
         }
 
-        public void SetLiftAndTiltLevels(int integrationId, LiftLevel liftLevel, TiltLevel tiltLevel, Fade fade=null, Delay delay=null)
+        public void SetLiftAndTiltLevels(int integrationId, LiftLevel liftLevel, TiltLevel tiltLevel, Fade fade = null,
+            Delay delay = null)
         {
             var commandString = OutputCommandBuilder.Create()
                 .WithOperation(CommandOperation.Set)
@@ -141,6 +142,39 @@ namespace Lutron.Service
             _connector.Execute(commandString);
         }
 
+        public void StartRaisingTilt(int integrationId)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.StartRaisingTilt)
+                .BuildStartRaisingTiltCommand();
+
+            _connector.Execute(commandString);
+        }
+
+        public void StartLoweringTilt(int integrationId)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.StartLoweringTilt)
+                .BuildStartLoweringTiltCommand();
+
+            _connector.Execute(commandString);
+        }
+
+        public void StopRaisingOrLoweringTilt(int integrationId)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.StopRaisingOrLoweringTilt)
+                .BuildStopRaisingOrLoweringTiltCommand();
+
+            _connector.Execute(commandString);
+        }
+
         private double ExtractOutputLevel(string response)
         {
             var responseValues = response.Replace("~OUTPUT", "")
@@ -150,6 +184,7 @@ namespace Lutron.Service
             var outputLevel = double.Parse(responseValues[responseValues.Length - 1]);
             return outputLevel;
         }
+
 
         private double ExtractFlashFrequency(string response)
         {
