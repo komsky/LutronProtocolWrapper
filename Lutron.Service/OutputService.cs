@@ -208,6 +208,19 @@ namespace Lutron.Service
             _connector.Execute(commandString);
         }
 
+        public double GetHorizontalSheerShadeRegion(int integrationId, HorizontalSheerShadeRegion region)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Get)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.HorizontalSheerShadeRegion)
+                .WithHorizontalSheerShadeRegion(region)
+                .BuildGetHorizontalSheerShadeRegionCommand();
+
+            var response = _connector.Query(commandString);
+            return ExtractHorizontalSheerRegionLevel(response);
+        }
+
         private double ExtractOutputLevel(string response)
         {
             var responseValues = response.Replace("~OUTPUT", "")
@@ -220,6 +233,16 @@ namespace Lutron.Service
 
 
         private double ExtractFlashFrequency(string response)
+        {
+            var responseValues = response.Replace("~OUTPUT", "")
+                .Replace("<CR><LF>", "")
+                .Split(',');
+
+            var outputLevel = double.Parse(responseValues[responseValues.Length - 1]);
+            return outputLevel;
+        }
+        
+        private double ExtractHorizontalSheerRegionLevel(string response)
         {
             var responseValues = response.Replace("~OUTPUT", "")
                 .Replace("<CR><LF>", "")

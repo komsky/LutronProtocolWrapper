@@ -1,3 +1,4 @@
+using Lutron.Common.Enums;
 using Lutron.Common.Interfaces;
 using Lutron.Common.Models;
 using NSubstitute;
@@ -276,7 +277,7 @@ namespace Lutron.Service.Tests
         public class StartRaisingTilt
         {
             [Test]
-            public void ShouldStartRaisingOutputLevel()
+            public void ShouldStartRaisingTilt()
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,11<CR><LF>";
@@ -292,7 +293,7 @@ namespace Lutron.Service.Tests
         public class StartLoweringTilt
         {
             [Test]
-            public void ShouldStartLoweringOutputLevel()
+            public void ShouldStartLoweringTilt()
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,12<CR><LF>";
@@ -308,7 +309,7 @@ namespace Lutron.Service.Tests
         public class StopRaisingOrLoweringTilt
         {
             [Test]
-            public void ShouldStartLoweringOutputLevel()
+            public void ShouldStopRaisingOrLoweringTilt()
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,13<CR><LF>";
@@ -324,7 +325,7 @@ namespace Lutron.Service.Tests
         public class StartRaisingLift
         {
             [Test]
-            public void ShouldStartRaisingOutputLevel()
+            public void ShouldStartRaisingLift()
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,14<CR><LF>";
@@ -340,7 +341,7 @@ namespace Lutron.Service.Tests
         public class StartLoweringLift
         {
             [Test]
-            public void ShouldStartLoweringOutputLevel()
+            public void ShouldStartLoweringLift()
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,15<CR><LF>";
@@ -356,7 +357,7 @@ namespace Lutron.Service.Tests
         public class StopRaisingOrLoweringLift
         {
             [Test]
-            public void ShouldStartLoweringOutputLevel()
+            public void ShouldStopRaisingOrLoweringLift()
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#OUTPUT,2,16<CR><LF>";
@@ -366,6 +367,46 @@ namespace Lutron.Service.Tests
 
                 connector.Received(1).Execute(commandString);
             }
-        }        
+        }  
+        
+        [TestFixture]
+        public class GetHorizontalSheerShadeRegion
+        {
+            [TestFixture]
+            public class GivenLiftRegion
+            {
+                [Test]
+                public void ShouldGetHorizontalSheerShadeRegion()
+                {
+                    var commandString = "?OUTPUT,2,28,0<CR><LF>";
+                    var connector = Substitute.For<IMyRoomPlusConnector>();
+                    connector.Query(commandString).Returns("~OUTPUT,2,28,50<CR><LF>");
+                    var service = new OutputService(connector);
+
+                    var result = service.GetHorizontalSheerShadeRegion(2, HorizontalSheerShadeRegion.Lift);
+
+                    connector.Received(1).Query(commandString);
+                    Assert.AreEqual(50, result);
+                }                
+            }
+            
+            [TestFixture]
+            public class GivenTiltRegion
+            {
+                [Test]
+                public void ShouldGetHorizontalSheerShadeRegion()
+                {
+                    var commandString = "?OUTPUT,2,28,1<CR><LF>";
+                    var connector = Substitute.For<IMyRoomPlusConnector>();
+                    connector.Query(commandString).Returns("~OUTPUT,2,28,35<CR><LF>");
+                    var service = new OutputService(connector);
+
+                    var result = service.GetHorizontalSheerShadeRegion(2, HorizontalSheerShadeRegion.Tilt);
+
+                    connector.Received(1).Query(commandString);
+                    Assert.AreEqual(35, result);
+                }                
+            }
+        }
     }
 }
