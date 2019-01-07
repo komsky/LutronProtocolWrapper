@@ -137,6 +137,7 @@ namespace Lutron.Service.Tests
                 connector.Received(1).Execute(commandString);
             }
 
+            [TestFixture]
             public class GivenFadeAndDelay
             {
                 [Test]
@@ -168,6 +169,42 @@ namespace Lutron.Service.Tests
 
                 connector.Received(1).Query(commandString);
                 Assert.AreEqual(50, flashFrequency);
+            }
+        }
+
+        [TestFixture]
+        public class SetContactClosureOutputPulseTime
+        {
+            [TestFixture]
+            public class GivenPulse
+            {
+                [Test]
+                public void ShouldSetFlashFrequency()
+                {
+                    var connector = Substitute.For<IMyRoomPlusConnector>();
+                    var commandString = "#OUTPUT,2,6,15<CR><LF>";
+                    var service = new OutputService(connector);
+                
+                    service.SetContactClosureOutputPulseTime(2, new Pulse(seconds:15));
+
+                    connector.Received(1).Execute(commandString);
+                }   
+            }
+
+            [TestFixture]
+            public class GivenDelay
+            {
+                [Test]
+                public void ShouldSetFlashFrequency()
+                {
+                    var connector = Substitute.For<IMyRoomPlusConnector>();
+                    var commandString = "#OUTPUT,2,6,30<CR><LF>";
+                    var service = new OutputService(connector);
+                
+                    service.SetContactClosureOutputPulseTime(2, delay: new Delay(seconds:30));
+
+                    connector.Received(1).Execute(commandString);
+                }                
             }
         }
     }

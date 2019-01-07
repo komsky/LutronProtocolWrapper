@@ -75,7 +75,8 @@ namespace Lutron.Service
         }
 
         public void SetFlashFrequency(int integrationId, Fade fade = null, Delay delay = null)
-        {            var commandString = OutputCommandBuilder.Create()
+        {
+            var commandString = OutputCommandBuilder.Create()
                 .WithOperation(CommandOperation.Set)
                 .WithIntegrationId(integrationId)
                 .WithAction(OutputCommandActionNumber.FlashFrequency)
@@ -97,7 +98,21 @@ namespace Lutron.Service
             var response = _connector.Query(commandString);
             return ExtractFlashFrequency(response);
         }
-        
+
+        public void SetContactClosureOutputPulseTime(int integrationId, Pulse pulse = null, Delay delay = null)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.ContactClosureOutputPulseTime)
+                .WithPulse(pulse)
+                .WithDelay(delay)
+                .BuildSetContactClosureOutputPulseTimeCommand();
+
+            _connector.Execute(commandString);
+            
+        }
+
         private double ExtractOutputLevel(string response)
         {
             var responseValues = response.Replace("~OUTPUT", "")
@@ -107,7 +122,7 @@ namespace Lutron.Service
             var outputLevel = double.Parse(responseValues[responseValues.Length - 1]);
             return outputLevel;
         }
-        
+
         private double ExtractFlashFrequency(string response)
         {
             var responseValues = response.Replace("~OUTPUT", "")
@@ -117,6 +132,5 @@ namespace Lutron.Service
             var outputLevel = double.Parse(responseValues[responseValues.Length - 1]);
             return outputLevel;
         }
-
     }
 }
