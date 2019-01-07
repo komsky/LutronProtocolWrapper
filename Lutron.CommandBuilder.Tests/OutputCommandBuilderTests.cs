@@ -188,7 +188,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .WithOutputLevel(new OutputLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
@@ -291,7 +291,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildGetOutputLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 1 and not 10",
@@ -391,7 +391,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartRaisingOutputLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 2 and not 10",
@@ -491,7 +491,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 3 and not 10",
@@ -591,7 +591,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildStopRaisingOrLoweringOutputLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 4 and not 10",
@@ -691,7 +691,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildGetFlashFrequencyCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 5 and not 10",
@@ -793,7 +793,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildSetFlashFrequencyCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 5 and not 10",
@@ -982,7 +982,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildSetContactClosureOutputPulseTimeCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 6 and not 10",
@@ -1160,7 +1160,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildSetTiltLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 9 and not 10",
@@ -1235,10 +1235,10 @@ namespace Lutron.CommandBuilder.Tests
                     var command = OutputCommandBuilder.Create()
                         .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                        .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(45))
-                        .BuildSetLiftAndTiltLevelCommand();
+                        .BuildSetLiftAndTiltLevelsCommand();
 
                     Assert.AreEqual("#OUTPUT,2,10,30,45<CR><LF>", command);
                 }
@@ -1254,9 +1254,9 @@ namespace Lutron.CommandBuilder.Tests
                         OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .WithTiltLevel(new TiltLevel(45))
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The parameter, lift level, is not provided", exception.Message);
                 }
@@ -1272,9 +1272,9 @@ namespace Lutron.CommandBuilder.Tests
                         OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .WithLiftLevel(new LiftLevel(30))
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The parameter, tilt level, is not provided", exception.Message);
                 }
@@ -1289,12 +1289,12 @@ namespace Lutron.CommandBuilder.Tests
                     var command = OutputCommandBuilder.Create()
                         .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                        .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
                         .WithDelay(new Delay(seconds: 21))
-                        .BuildSetLiftAndTiltLevelCommand();
+                        .BuildSetLiftAndTiltLevelsCommand();
 
                     Assert.AreEqual("#OUTPUT,2,10,30,10,13,21<CR><LF>", command);
                 }
@@ -1309,11 +1309,11 @@ namespace Lutron.CommandBuilder.Tests
                     var command = OutputCommandBuilder.Create()
                         .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                        .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
-                        .BuildSetLiftAndTiltLevelCommand();
+                        .BuildSetLiftAndTiltLevelsCommand();
 
                     Assert.AreEqual("#OUTPUT,2,10,30,10,13<CR><LF>", command);
                 }
@@ -1329,11 +1329,11 @@ namespace Lutron.CommandBuilder.Tests
                         OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .WithLiftLevel(new LiftLevel(30))
                             .WithTiltLevel(new TiltLevel(10))
                             .WithDelay(new Delay(seconds: 21))
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
                 }
@@ -1348,8 +1348,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<OperationNotProvided>(()
                         => OutputCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -1365,8 +1365,8 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
                         exception.Message);
@@ -1382,8 +1382,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -1399,7 +1399,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
@@ -1416,7 +1416,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(OutputCommandActionNumber.StartLoweringOutputLevel)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 10 and not 3",
                         exception.Message);
@@ -1515,7 +1515,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartRaisingTiltCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 11 and not 10",
@@ -1615,7 +1615,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartLoweringTiltCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 12 and not 10",
@@ -1715,7 +1715,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildStopRaisingOrLoweringTiltCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 13 and not 10",
@@ -1815,7 +1815,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartRaisingLiftCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 14 and not 10",
@@ -1915,7 +1915,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartLoweringLiftCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 15 and not 10",
@@ -2015,7 +2015,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildStopRaisingOrLoweringLiftCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 16 and not 10",
@@ -2154,7 +2154,7 @@ namespace Lutron.CommandBuilder.Tests
                         => OutputCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
                             .BuildGetHorizontalSheerShadeRegionCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 28 and not 10",

@@ -126,6 +126,21 @@ namespace Lutron.Service
             _connector.Execute(commandString);
         }
 
+        public void SetLiftAndTiltLevels(int integrationId, LiftLevel liftLevel, TiltLevel tiltLevel, Fade fade=null, Delay delay=null)
+        {
+            var commandString = OutputCommandBuilder.Create()
+                .WithOperation(CommandOperation.Set)
+                .WithIntegrationId(integrationId)
+                .WithAction(OutputCommandActionNumber.LiftAndTiltLevels)
+                .WithLiftLevel(liftLevel)
+                .WithTiltLevel(tiltLevel)
+                .WithFade(fade)
+                .WithDelay(delay)
+                .BuildSetLiftAndTiltLevelsCommand();
+
+            _connector.Execute(commandString);
+        }
+
         private double ExtractOutputLevel(string response)
         {
             var responseValues = response.Replace("~OUTPUT", "")

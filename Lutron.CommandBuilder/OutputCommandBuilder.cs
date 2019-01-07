@@ -274,7 +274,7 @@ namespace Lutron.CommandBuilder
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_tiltLevel}<CR><LF>";
         }
 
-        public string BuildSetLiftAndTiltLevelCommand()
+        public string BuildSetLiftAndTiltLevelsCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -284,7 +284,7 @@ namespace Lutron.CommandBuilder
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.LiftAndTiltLevel);
+            CheckIfProvidedActionNumberIsCorrect(OutputCommandActionNumber.LiftAndTiltLevels);
 
             CheckIfLiftLevelParameterIsProvided();
 

@@ -9,7 +9,7 @@ namespace Lutron.Common.Enums
         FlashFrequency = 5,
         ContactClosureOutputPulseTime = 6,
         TiltLevel = 9,
-        LiftAndTiltLevel = 10,
+        LiftAndTiltLevels = 10,
         StartRaisingTilt = 11,
         StartLoweringTilt = 12,
         StopRaisingOrLoweringTilt = 13,

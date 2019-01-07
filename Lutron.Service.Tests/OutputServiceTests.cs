@@ -239,5 +239,37 @@ namespace Lutron.Service.Tests
                 }
             }
         }
+
+        [TestFixture]
+        public class SetLiftAndTiltLevels
+        {
+            [Test]
+            public void ShouldSetTiltLevel()
+            {
+                var connector = Substitute.For<IMyRoomPlusConnector>();
+                var commandString = "#OUTPUT,2,10,25,45<CR><LF>";
+                var service = new OutputService(connector);
+
+                service.SetLiftAndTiltLevels(2,new LiftLevel(25), new TiltLevel(45));
+
+                connector.Received(1).Execute(commandString);
+            }
+
+            [TestFixture]
+            public class GivenFadeAndDelay
+            {
+                [Test]
+                public void ShouldSetTiltLevel()
+                {
+                    var connector = Substitute.For<IMyRoomPlusConnector>();
+                    var commandString = "#OUTPUT,2,10,25,45,10,30<CR><LF>";
+                    var service = new OutputService(connector);
+
+                    service.SetLiftAndTiltLevels(2,new LiftLevel(25), new TiltLevel(45), new Fade(seconds: 10), delay: new Delay(seconds: 30));
+
+                    connector.Received(1).Execute(commandString);
+                }
+            }
+        }
     }
 }
