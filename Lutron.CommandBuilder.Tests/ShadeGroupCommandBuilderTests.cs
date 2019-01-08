@@ -188,7 +188,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .WithLevel(new ShadeGroupLevel(70))
                             .WithFade(new Fade(seconds: 4))
                             .WithDelay(new Delay(seconds: 2))
@@ -291,7 +291,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildGetShadeGroupLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 1 and not 15",
@@ -391,7 +391,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartRaisingShadeGroupLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 2 and not 15",
@@ -491,7 +491,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartLoweringShadeGroupLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 3 and not 15",
@@ -591,7 +591,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildStopRaisingOrLoweringShadeGroupLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 4 and not 15",
@@ -691,7 +691,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildGetCurrentPresetCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 6 and not 15",
@@ -809,7 +809,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildSetCurrentPresetCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 6 and not 15",
@@ -987,7 +987,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildSetTiltLevelCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 14 and not 15",
@@ -1062,10 +1062,10 @@ namespace Lutron.CommandBuilder.Tests
                     var command = ShadeGroupCommandBuilder.Create()
                         .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                        .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(45))
-                        .BuildSetLiftAndTiltLevelCommand();
+                        .BuildSetLiftAndTiltLevelsCommand();
 
                     Assert.AreEqual("#SHADEGRP,2,15,30,45<CR><LF>", command);
                 }
@@ -1081,9 +1081,9 @@ namespace Lutron.CommandBuilder.Tests
                         ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .WithTiltLevel(new TiltLevel(45))
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The parameter, lift level, is not provided", exception.Message);
                 }
@@ -1099,9 +1099,9 @@ namespace Lutron.CommandBuilder.Tests
                         ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .WithLiftLevel(new LiftLevel(30))
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The parameter, tilt level, is not provided", exception.Message);
                 }
@@ -1116,12 +1116,12 @@ namespace Lutron.CommandBuilder.Tests
                     var command = ShadeGroupCommandBuilder.Create()
                         .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                        .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
                         .WithDelay(new Delay(seconds: 21))
-                        .BuildSetLiftAndTiltLevelCommand();
+                        .BuildSetLiftAndTiltLevelsCommand();
 
                     Assert.AreEqual("#SHADEGRP,2,15,30,10,13,21<CR><LF>", command);
                 }
@@ -1136,11 +1136,11 @@ namespace Lutron.CommandBuilder.Tests
                     var command = ShadeGroupCommandBuilder.Create()
                         .WithOperation(CommandOperation.Set)
                         .WithIntegrationId(2)
-                        .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                        .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                         .WithLiftLevel(new LiftLevel(30))
                         .WithTiltLevel(new TiltLevel(10))
                         .WithFade(new Fade(seconds: 13))
-                        .BuildSetLiftAndTiltLevelCommand();
+                        .BuildSetLiftAndTiltLevelsCommand();
 
                     Assert.AreEqual("#SHADEGRP,2,15,30,10,13<CR><LF>", command);
                 }
@@ -1156,11 +1156,11 @@ namespace Lutron.CommandBuilder.Tests
                         ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .WithLiftLevel(new LiftLevel(30))
                             .WithTiltLevel(new TiltLevel(10))
                             .WithDelay(new Delay(seconds: 21))
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The parameter, fade, is not provided", exception.Message);
                 }
@@ -1175,8 +1175,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<OperationNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -1192,8 +1192,8 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
                         exception.Message);
@@ -1209,8 +1209,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -1226,7 +1226,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
@@ -1243,7 +1243,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(ShadeGroupCommandActionNumber.StartLoweringShadeGroupLevel)
-                            .BuildSetLiftAndTiltLevelCommand());
+                            .BuildSetLiftAndTiltLevelsCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 15 and not 3",
                         exception.Message);
@@ -1342,7 +1342,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartRaisingTiltCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 16 and not 15",
@@ -1442,7 +1442,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartLoweringTiltCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 17 and not 15",
@@ -1542,7 +1542,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildStopRaisingOrLoweringTiltCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 18 and not 15",
@@ -1642,7 +1642,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartRaisingLiftCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 19 and not 15",
@@ -1742,7 +1742,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildStartLoweringLiftCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 20 and not 15",
@@ -1842,7 +1842,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildStopRaisingOrLoweringLiftCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 21 and not 15",
@@ -1981,7 +1981,7 @@ namespace Lutron.CommandBuilder.Tests
                         => ShadeGroupCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevel)
+                            .WithAction(ShadeGroupCommandActionNumber.LiftAndTiltLevels)
                             .BuildGetHorizontalSheerShadeRegionCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 28 and not 15",

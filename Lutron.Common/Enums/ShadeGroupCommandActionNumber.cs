@@ -8,7 +8,7 @@ namespace Lutron.Common.Enums
         StopRaisingOrLoweringShadeGroupLevel = 4,
         CurrentPreset = 6,
         TiltLevel = 14,
-        LiftAndTiltLevel = 15,
+        LiftAndTiltLevels = 15,
         StartRaisingTilt = 16,
         StartLoweringTilt = 17,
         StopRaisingOrLoweringTilt = 18,
