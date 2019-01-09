@@ -1,4 +1,3 @@
-using Lutron.Common.Enums;
 using Lutron.Common.Interfaces;
 using Lutron.Common.Models;
 using NSubstitute;
@@ -13,7 +12,7 @@ namespace Lutron.Service.Tests
         public class GetSystemVariable
         {
             [Test]
-            public void ShouldReturnSunriseTime()
+            public void ShouldReturnSystemVariable()
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "?SYSVAR,2,1<CR><LF>";
@@ -31,7 +30,7 @@ namespace Lutron.Service.Tests
         public class SetSystemVariable
         {
             [Test]
-            public void ShouldSetIndexedEventEnableState()
+            public void ShouldSetSystemVariable()
             {
                 var connector = Substitute.For<IMyRoomPlusConnector>();
                 var commandString = "#SYSVAR,2,1,3<CR><LF>";

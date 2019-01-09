@@ -1,4 +1,3 @@
-using Lutron.Common.Enums;
 using Lutron.Common.Models;
 
 namespace Lutron.Common.Interfaces
