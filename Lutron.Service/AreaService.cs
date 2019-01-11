@@ -1,7 +1,6 @@
 using Lutron.CommandBuilder;
 using Lutron.Common.Enums;
 using Lutron.Common.Interfaces;
-using Lutron.Common.Models;
 
 namespace Lutron.Service
 {

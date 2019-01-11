@@ -1,5 +1,4 @@
 using Lutron.Common.Interfaces;
-using Lutron.Common.Models;
 using NSubstitute;
 using NUnit.Framework;
 
