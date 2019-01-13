@@ -14,19 +14,14 @@ namespace Lutron.Connector.Tests
             [Test]
             public void ShouldSendDataThroughTheTcpConnection()
             {
-                var stream = Substitute.For<INetworkStream>();
                 var client = Substitute.For<IMyRoomPlusClient>();
-                client.GetStream().Returns(stream);
-                var connector = new MyRoomPlusConnector(client);
+                var connector = new MyRoomPlusConnector(client, Substitute.For<IMyRoomPlusClientConfiguration>());
                 var commandString = "#AREA,2,1,70,4,2<CR><LF>";
                 var data = Encoding.ASCII.GetBytes(commandString);
                 
                 connector.Execute(commandString);
                 
-                client.Received(1).GetStream();
-                stream.Received(1).Write(Arg.Is<byte[]>(a => a[0] == data[0]), 0, data.Length);
-                stream.Received(1).Close();
-                client.Received(1).Close();
+                client.Received(1).Write(Arg.Is<byte[]>(a => a[0] == data[0]), 0, data.Length);
             }
         }       
         
@@ -42,22 +37,18 @@ namespace Lutron.Connector.Tests
                 var bytesRead = Encoding.ASCII.GetBytes(expected);
                 var buffer = new byte[256];
 
-                var stream = Substitute.For<INetworkStream>();
-                stream.Read(Arg.Do(GetBytes()), 0, buffer.Length).Returns(bytesRead.Length);
-
                 var client = Substitute.For<IMyRoomPlusClient>();
-                client.GetStream().Returns(stream);
+                client.Read(Arg.Do(GetBytes()), 0, buffer.Length).Returns(bytesRead.Length);
 
-                var connector = new MyRoomPlusConnector(client);
+                var myRoomConfiguration = Substitute.For<IMyRoomPlusClientConfiguration>();
+                myRoomConfiguration.GetResponseBufferSize().Returns(256);
+                var connector = new MyRoomPlusConnector(client, myRoomConfiguration);
 
                 var response = connector.Query(commandString);
 
                 Assert.AreEqual(expected, response);
-                stream.Received(1).Read(Arg.Any<byte[]>(),0,buffer.Length);
-                client.Received(1).GetStream();
-                stream.Received(1).Write(Arg.Is<byte[]>(a => a[0] == bytesWritten[0]), 0, bytesWritten.Length);
-                stream.Received(1).Close();
-                client.Received(1).Close();
+                client.Received(1).Read(Arg.Any<byte[]>(),0,buffer.Length);
+                client.Received(1).Write(Arg.Is<byte[]>(a => a[0] == bytesWritten[0]), 0, bytesWritten.Length);
 
                 Action<byte[]> GetBytes()
                 {

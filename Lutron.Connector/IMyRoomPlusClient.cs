@@ -1,8 +1,10 @@
+using System.Net;
+
 namespace Lutron.Connector
 {
     public interface IMyRoomPlusClient
     {
-        INetworkStream GetStream();
-        void Close();
+        void Write(byte[] buffer, int offset, int size);
+        int Read(byte[] buffer, int offset, int size);
     }
 }
