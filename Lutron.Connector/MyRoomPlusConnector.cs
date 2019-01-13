@@ -15,7 +15,15 @@ namespace Lutron.Connector
 
         public string Query(string commandString)
         {
-            throw new NotImplementedException();
+            var stream = _client.GetStream();
+            var data = Encoding.ASCII.GetBytes(commandString);
+            stream.Write(data,0, data.Length);
+            var buffer = new byte[256];
+            var numberOfBytesRead = stream.Read(buffer, 0 , buffer.Length);
+            var response = Encoding.ASCII.GetString(buffer, 0, numberOfBytesRead);
+            stream.Close();
+            _client.Close();
+            return response;
         }
 
         public void Execute(string commandString)
