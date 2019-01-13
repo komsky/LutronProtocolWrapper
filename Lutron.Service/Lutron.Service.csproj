@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Lutron.CommandBuilder\Lutron.CommandBuilder.csproj" />
     <ProjectReference Include="..\Lutron.Common\Lutron.Common.csproj" />
+    <ProjectReference Include="..\Lutron.Connector\Lutron.Connector.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-namespace Lutron.Common.Interfaces
+namespace Lutron.Connector
 {
     public interface IMyRoomPlusConnector
     {

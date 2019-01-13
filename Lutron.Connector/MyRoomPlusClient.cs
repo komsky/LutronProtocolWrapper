@@ -4,7 +4,7 @@ using System.Net.Sockets;
 namespace Lutron.Connector
 {
     public class MyRoomPlusClient : IMyRoomPlusClient
-    {       
+    {
         private readonly string _ipString;
         private readonly int _port;
 
@@ -16,23 +16,20 @@ namespace Lutron.Connector
 
         public void Write(byte[] buffer, int offset, int size)
         {
-            var client = new TcpClient();
-            client.Connect(IPAddress.Parse(_ipString), _port);
-            var stream = client.GetStream();
-            stream.Write(buffer,offset,size);
-            stream.Close();
-            client.Close();
+            using (var client = new TcpClient(new IPEndPoint(IPAddress.Parse(_ipString), _port)))
+            using (var stream = client.GetStream())
+            {
+                stream.Write(buffer, offset, size);
+            }
         }
 
         public int Read(byte[] buffer, int offset, int size)
         {
-            var client = new TcpClient();
-            client.Connect(IPAddress.Parse(_ipString), _port);
-            var stream = client.GetStream();
-            var numberOfBytesRead = stream.Read(buffer,offset,size);
-            stream.Close();
-            client.Close();
-            return numberOfBytesRead;
+            using (var client = new TcpClient(new IPEndPoint(IPAddress.Parse(_ipString), _port)))
+            using (var stream = client.GetStream())
+            {
+                return stream.Read(buffer, offset, size);
+            }
         }
     }
 }

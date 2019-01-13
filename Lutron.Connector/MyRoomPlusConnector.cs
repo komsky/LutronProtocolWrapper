@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Lutron.Common.Interfaces;
 
 namespace Lutron.Connector
 {
