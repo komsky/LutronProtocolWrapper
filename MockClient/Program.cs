@@ -10,12 +10,7 @@ namespace MockClient
     {
         public static void Main(string[] args)
         {
-            var builder = new ContainerBuilder();
-            builder.RegisterType<OutputService>().As<IOutputService>();
-            builder.RegisterType<MyRoomPlusConnector>().As<IMyRoomPlusConnector>();
-            builder.RegisterType<MyRoomPlusClient>().As<IMyRoomPlusClient>();
-            builder.RegisterType<MyRoomPlusClientConfiguration>().As<IMyRoomPlusClientConfiguration>();
-            var container = builder.Build();
+            var container = GetDependencyContainer();
 
             using (var lifetimeScope = container.BeginLifetimeScope())
             {
@@ -24,6 +19,17 @@ namespace MockClient
                 Console.WriteLine(outputLevel);
                 Console.ReadLine();
             }
+        }
+
+        private static IContainer GetDependencyContainer()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<OutputService>().As<IOutputService>();
+            builder.RegisterType<MyRoomPlusConnector>().As<IMyRoomPlusConnector>();
+            builder.RegisterType<MyRoomPlusClient>().As<IMyRoomPlusClient>();
+            builder.RegisterType<MyRoomPlusClientConfiguration>().As<IMyRoomPlusClientConfiguration>();
+            var container = builder.Build();
+            return container;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace MockDevice
 
             try
             {
-                server = new TcpListener(IPAddress.Parse("127.0.0.1"), 13175);
+                server = new TcpListener(IPAddress.Any, 13175);
                 server.Start();
                 while (true)
                 {
