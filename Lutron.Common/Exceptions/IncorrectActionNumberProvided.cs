@@ -36,5 +36,12 @@ namespace Lutron.Common.Exceptions
                 $"The action number provided is incorrect. Expected {(int) expectedActionNumber} and not {(int) providedActionNumber}")
         {
         }
+        public IncorrectActionNumberProvided(
+            DeviceCommandActionNumber providedActionNumber,
+            DeviceCommandActionNumber expectedActionNumber)
+            : base(
+                $"The action number provided is incorrect. Expected {(int) expectedActionNumber} and not {(int) providedActionNumber}")
+        {
+        }
     }
 }
