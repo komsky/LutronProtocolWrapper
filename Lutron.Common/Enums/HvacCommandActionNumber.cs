@@ -2,7 +2,8 @@ namespace Lutron.Common.Enums
 {
     public enum HvacCommandActionNumber
     {
-        CurrentTemparature = 1,
-        SetPoint = 2
+        CurrentTemperature = 1,
+        HeatAndCoolSetPoints = 2,
+        OperatingMode = 3
     }
 }
