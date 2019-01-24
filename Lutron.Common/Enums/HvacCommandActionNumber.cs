@@ -4,6 +4,7 @@ namespace Lutron.Common.Enums
     {
         CurrentTemperature = 1,
         HeatAndCoolSetPoints = 2,
-        OperatingMode = 3
+        OperatingMode = 3,
+        FanMode =4,
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Lutron.Common.Enums;
 using Lutron.Common.Exceptions;
 using Lutron.Common.Models;
@@ -13,6 +14,7 @@ namespace Lutron.CommandBuilder
         private Temperature _temperature;
         private SetPointHeat _setPointHeat;
         private SetPointCool _setPointCool;
+        private HvacOperatingMode _operatingMode;
 
         public static HvacCommandBuilder Create()
         {
@@ -56,6 +58,12 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
+        public HvacCommandBuilder WithOperatingMode(HvacOperatingMode operatingMode)
+        {
+            _operatingMode = operatingMode;
+            return this;
+        }
+
         public string BuildGetCurrentTemperatureCommand()
         {
             CheckIfOperationIsProvided();
@@ -65,7 +73,7 @@ namespace Lutron.CommandBuilder
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
-            
+
             CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.CurrentTemperature);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
@@ -98,7 +106,7 @@ namespace Lutron.CommandBuilder
             CheckIfIntegrationIdIsProvided();
 
             CheckIfActionNumberIsProvided();
-            
+
             CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPoints);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
@@ -117,16 +125,50 @@ namespace Lutron.CommandBuilder
             CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPoints);
 
             CheckIfParameterIsProvided(_setPointHeat, "set point heat");
-            
+
             CheckIfParameterIsProvided(_setPointCool, "set point cool");
 
             return
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_setPointHeat},{_setPointCool}<CR><LF>";
         }
 
-        private void CheckIfParameterIsProvided(object temperature, string parameterName)
+        public string BuildGetOperatingModeCommand()
         {
-            if (temperature is null)
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.OperatingMode);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildSetOperatingModeCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.OperatingMode);
+
+            CheckIfParameterIsProvided(_operatingMode, "operating mode");
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int)_operatingMode}<CR><LF>";
+        }
+
+        private void CheckIfParameterIsProvided(object parameter, string parameterName)
+        {
+            if (parameter is null || (parameter is HvacOperatingMode operatingMode &&
+                                      operatingMode == default(HvacOperatingMode)))
             {
                 throw new ParameterNotProvided(parameterName);
             }
