@@ -16,6 +16,7 @@ namespace Lutron.CommandBuilder
         private SetPointCool _setPointCool;
         private HvacOperatingMode _operatingMode;
         private HvacFanMode _fanMode;
+        private HvacEcoMode _ecoMode;
 
         public static HvacCommandBuilder Create()
         {
@@ -68,6 +69,12 @@ namespace Lutron.CommandBuilder
         public HvacCommandBuilder WithFanMode(HvacFanMode fanMode)
         {
             _fanMode = fanMode;
+            return this;
+        }
+
+        public HvacCommandBuilder WithEcoMode(HvacEcoMode ecoMode)
+        {
+            _ecoMode = ecoMode;
             return this;
         }
 
@@ -205,11 +212,46 @@ namespace Lutron.CommandBuilder
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _fanMode}<CR><LF>";
         }
 
+        public string BuildGetEcoModeCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.EcoMode);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildSetEcoModeCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.EcoMode);
+
+            CheckIfParameterIsProvided(_ecoMode, "eco mode");
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _ecoMode}<CR><LF>";
+        }
+
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
         {
             if (parameter is null ||
-                (parameter is HvacOperatingMode operatingMode && operatingMode == default(HvacOperatingMode)) ||
-                (parameter is HvacFanMode fanMode && fanMode == default(HvacFanMode)))
+                parameter is HvacOperatingMode operatingMode && operatingMode == default(HvacOperatingMode) ||
+                parameter is HvacFanMode fanMode && fanMode == default(HvacFanMode) ||
+                parameter is HvacEcoMode ecoMode && ecoMode == default(HvacEcoMode)
+                )
             {
                 throw new ParameterNotProvided(parameterName);
             }
