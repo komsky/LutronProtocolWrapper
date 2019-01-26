@@ -15,6 +15,7 @@ namespace Lutron.CommandBuilder
         private SetPointHeat _setPointHeat;
         private SetPointCool _setPointCool;
         private HvacOperatingMode _operatingMode;
+        private HvacFanMode _fanMode;
 
         public static HvacCommandBuilder Create()
         {
@@ -61,6 +62,12 @@ namespace Lutron.CommandBuilder
         public HvacCommandBuilder WithOperatingMode(HvacOperatingMode operatingMode)
         {
             _operatingMode = operatingMode;
+            return this;
+        }
+
+        public HvacCommandBuilder WithFanMode(HvacFanMode fanMode)
+        {
+            _fanMode = fanMode;
             return this;
         }
 
@@ -162,13 +169,47 @@ namespace Lutron.CommandBuilder
             CheckIfParameterIsProvided(_operatingMode, "operating mode");
 
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int)_operatingMode}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _operatingMode}<CR><LF>";
+        }
+
+        public string BuildGetFanModeCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.FanMode);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildSetFanModeCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.FanMode);
+
+            CheckIfParameterIsProvided(_fanMode, "fan mode");
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _fanMode}<CR><LF>";
         }
 
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
         {
-            if (parameter is null || (parameter is HvacOperatingMode operatingMode &&
-                                      operatingMode == default(HvacOperatingMode)))
+            if (parameter is null ||
+                (parameter is HvacOperatingMode operatingMode && operatingMode == default(HvacOperatingMode)) ||
+                (parameter is HvacFanMode fanMode && fanMode == default(HvacFanMode)))
             {
                 throw new ParameterNotProvided(parameterName);
             }

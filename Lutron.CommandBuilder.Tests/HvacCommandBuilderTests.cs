@@ -681,5 +681,222 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
+        [TestFixture]
+        public class BuildGetFanModeCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.FanMode)
+                    .BuildGetFanModeCommand();
+
+                Assert.AreEqual("?HVAC,2,4<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.FanMode)
+                            .BuildGetFanModeCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.FanMode)
+                            .BuildGetFanModeCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithAction(HvacCommandActionNumber.FanMode)
+                            .BuildGetFanModeCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetFanModeCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+            
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.EcoMode)
+                            .BuildGetFanModeCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 4 and not 5",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetFanModeCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.FanMode)
+                    .WithFanMode(HvacFanMode.Top)
+                    .BuildSetFanModeCommand();
+
+                Assert.AreEqual("#HVAC,2,4,8<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoFanModeParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.FanMode)
+                            .BuildSetFanModeCommand());
+
+                    Assert.AreEqual("The parameter, fan mode, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.FanMode)
+                            .BuildSetFanModeCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.FanMode)
+                            .BuildSetFanModeCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(HvacCommandActionNumber.FanMode)
+                            .BuildSetFanModeCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetFanModeCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.EcoMode)
+                            .BuildSetFanModeCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 4 and not 5",
+                        exception.Message);
+                }
+            }
+        }
     }
 }
