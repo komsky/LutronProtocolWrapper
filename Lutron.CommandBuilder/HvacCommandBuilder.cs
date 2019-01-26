@@ -245,6 +245,21 @@ namespace Lutron.CommandBuilder
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _ecoMode}<CR><LF>";
         }
 
+        public string BuildGetEcoOffsetCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.EcoOffset);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
         {
             if (parameter is null ||

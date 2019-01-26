@@ -8,5 +8,6 @@ namespace Lutron.Common.Enums
         FanMode = 4,
         EcoMode = 5,
         EcoOffset = 6,
+        ScheduleStatus = 7,
     }
 }
