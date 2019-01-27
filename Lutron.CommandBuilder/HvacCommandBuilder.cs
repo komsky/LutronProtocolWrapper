@@ -315,7 +315,23 @@ namespace Lutron.CommandBuilder
 
             CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.TemperatureSensorConnectionStatus);
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";        }
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildGetScheduleEventCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.ScheduleEvent);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
 
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
         {
