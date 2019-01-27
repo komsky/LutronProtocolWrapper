@@ -12,5 +12,6 @@ namespace Lutron.Common.Enums
         TemperatureSensorConnectionStatus = 8,
         ScheduleEvent = 9,
         ScheduleDayAssignment = 10,
+        SystemMode = 11,
     }
 }
