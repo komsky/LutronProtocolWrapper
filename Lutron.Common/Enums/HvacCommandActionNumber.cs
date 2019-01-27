@@ -13,6 +13,7 @@ namespace Lutron.Common.Enums
         ScheduleEvent = 9,
         ScheduleDayAssignment = 10,
         SystemMode = 11,
-        HeatAndCoolSetPointsWithEcoEffset = 12,
+        HeatAndCoolSetPointsWithoutEcoOffset = 12,
+        EmergencyHeatAvailable = 13,
     }
 }
