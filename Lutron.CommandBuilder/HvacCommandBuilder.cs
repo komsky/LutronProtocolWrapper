@@ -17,6 +17,7 @@ namespace Lutron.CommandBuilder
         private HvacOperatingMode _operatingMode;
         private HvacFanMode _fanMode;
         private HvacEcoMode _ecoMode;
+        private HvacScheduleStatus _scheduleStatus;
 
         public static HvacCommandBuilder Create()
         {
@@ -75,6 +76,12 @@ namespace Lutron.CommandBuilder
         public HvacCommandBuilder WithEcoMode(HvacEcoMode ecoMode)
         {
             _ecoMode = ecoMode;
+            return this;
+        }
+
+        public HvacCommandBuilder WithScheduleStatus(HvacScheduleStatus scheduleStatus)
+        {
+            _scheduleStatus = scheduleStatus;
             return this;
         }
 
@@ -260,13 +267,49 @@ namespace Lutron.CommandBuilder
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
+        public string BuildGetScheduleStatusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.ScheduleStatus);
+
+            CheckIfProvidedParameterIsAGetScheduleStatus(_scheduleStatus);
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _scheduleStatus}<CR><LF>";
+        }
+
+        public string BuildSetScheduleStatusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.ScheduleStatus);
+
+            CheckIfProvidedParameterIsASetScheduleStatus(_scheduleStatus);
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _scheduleStatus}<CR><LF>";
+        }
+
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
         {
             if (parameter is null ||
                 parameter is HvacOperatingMode operatingMode && operatingMode == default(HvacOperatingMode) ||
                 parameter is HvacFanMode fanMode && fanMode == default(HvacFanMode) ||
                 parameter is HvacEcoMode ecoMode && ecoMode == default(HvacEcoMode)
-                )
+            )
             {
                 throw new ParameterNotProvided(parameterName);
             }
@@ -311,6 +354,36 @@ namespace Lutron.CommandBuilder
             if (_integrationId == default(int))
             {
                 throw new IntegrationIdNotProvided();
+            }
+        }
+
+        private void CheckIfProvidedParameterIsAGetScheduleStatus(HvacScheduleStatus scheduleStatus)
+        {
+            if (scheduleStatus == HvacScheduleStatus.FollowingSchedule)
+            {
+                throw new IncorrectScheduleStatusProvided(HvacScheduleStatus.FollowingSchedule,
+                    HvacScheduleStatus.ScheduleUnavailable, HvacScheduleStatus.TemporaryHold);
+            }
+
+            if (scheduleStatus == HvacScheduleStatus.PermanentHold)
+            {
+                throw new IncorrectScheduleStatusProvided(HvacScheduleStatus.PermanentHold,
+                    HvacScheduleStatus.ScheduleUnavailable, HvacScheduleStatus.TemporaryHold);
+            }
+        }
+
+        private void CheckIfProvidedParameterIsASetScheduleStatus(HvacScheduleStatus scheduleStatus)
+        {
+            if (scheduleStatus == HvacScheduleStatus.ScheduleUnavailable)
+            {
+                throw new IncorrectScheduleStatusProvided(HvacScheduleStatus.ScheduleUnavailable,
+                    HvacScheduleStatus.FollowingSchedule, HvacScheduleStatus.PermanentHold);
+            }
+
+            if (scheduleStatus == HvacScheduleStatus.TemporaryHold)
+            {
+                throw new IncorrectScheduleStatusProvided(HvacScheduleStatus.TemporaryHold,
+                    HvacScheduleStatus.FollowingSchedule, HvacScheduleStatus.PermanentHold);
             }
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using Lutron.Common.Enums;
 using Lutron.Common.Exceptions;
 using Lutron.Common.Models;
@@ -88,7 +89,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
             }
-            
+
             [TestFixture]
             public class GivenIncorrectActionNumber
             {
@@ -306,7 +307,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
             }
-            
+
             [TestFixture]
             public class GivenIncorrectActionNumber
             {
@@ -544,7 +545,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
             }
-            
+
             [TestFixture]
             public class GivenIncorrectActionNumber
             {
@@ -681,7 +682,7 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
-        
+
         [TestFixture]
         public class BuildGetFanModeCommand
         {
@@ -762,7 +763,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
             }
-            
+
             [TestFixture]
             public class GivenIncorrectActionNumber
             {
@@ -899,7 +900,7 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
-        
+
         [TestFixture]
         public class BuildGetEcoModeCommand
         {
@@ -980,7 +981,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
             }
-            
+
             [TestFixture]
             public class GivenIncorrectActionNumber
             {
@@ -1117,7 +1118,7 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
-        
+
         [TestFixture]
         public class BuildGetEcoOffsetCommand
         {
@@ -1198,7 +1199,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
             }
-            
+
             [TestFixture]
             public class GivenIncorrectActionNumber
             {
@@ -1213,6 +1214,284 @@ namespace Lutron.CommandBuilder.Tests
                             .BuildGetEcoOffsetCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 6 and not 7",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildGetScheduleStatusCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                    .WithScheduleStatus(HvacScheduleStatus.ScheduleUnavailable)
+                    .BuildGetScheduleStatusCommand();
+
+                Assert.AreEqual("?HVAC,2,7,0<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenFollowingScheduleScheduleStatusParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectScheduleStatusProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .WithScheduleStatus(HvacScheduleStatus.FollowingSchedule)
+                            .BuildGetScheduleStatusCommand());
+
+                    Assert.AreEqual("The schedule status provided is incorrect. Expected 0 or 3, not 1"
+                        , exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenPermanentHoldScheduleStatusParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectScheduleStatusProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .WithScheduleStatus(HvacScheduleStatus.PermanentHold)
+                            .BuildGetScheduleStatusCommand());
+
+                    Assert.AreEqual("The schedule status provided is incorrect. Expected 0 or 3, not 2"
+                        , exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .BuildGetScheduleStatusCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .BuildGetScheduleStatusCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .BuildGetScheduleStatusCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetScheduleStatusCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.TemperatureSensorConnectionStatus)
+                            .BuildGetScheduleStatusCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 7 and not 8",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetScheduleStatusCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                    .WithScheduleStatus(HvacScheduleStatus.FollowingSchedule)
+                    .BuildSetScheduleStatusCommand();
+
+                Assert.AreEqual("#HVAC,2,7,1<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenScheduleUnavailableScheduleStatusParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectScheduleStatusProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .WithScheduleStatus(HvacScheduleStatus.ScheduleUnavailable)
+                            .BuildSetScheduleStatusCommand());
+
+                    Assert.AreEqual("The schedule status provided is incorrect. Expected 1 or 2, not 0"
+                        , exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenTemporaryHoldScheduleStatusParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectScheduleStatusProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .WithScheduleStatus(HvacScheduleStatus.TemporaryHold)
+                            .BuildSetScheduleStatusCommand());
+
+                    Assert.AreEqual("The schedule status provided is incorrect. Expected 1 or 2, not 3"
+                        , exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .BuildSetScheduleStatusCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .BuildSetScheduleStatusCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(HvacCommandActionNumber.ScheduleStatus)
+                            .BuildSetScheduleStatusCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetScheduleStatusCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.TemperatureSensorConnectionStatus)
+                            .BuildSetScheduleStatusCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 7 and not 8",
                         exception.Message);
                 }
             }

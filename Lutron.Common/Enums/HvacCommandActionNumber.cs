@@ -9,5 +9,6 @@ namespace Lutron.Common.Enums
         EcoMode = 5,
         EcoOffset = 6,
         ScheduleStatus = 7,
+        TemperatureSensorConnectionStatus = 8
     }
 }
