@@ -15,5 +15,6 @@ namespace Lutron.Common.Enums
         SystemMode = 11,
         HeatAndCoolSetPointsWithoutEcoOffset = 12,
         EmergencyHeatAvailable = 13,
+        CallStatus = 14,
     }
 }
