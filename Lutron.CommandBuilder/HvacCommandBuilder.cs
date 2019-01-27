@@ -345,7 +345,23 @@ namespace Lutron.CommandBuilder
 
             CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.ScheduleDayAssignment);
 
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";        }
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildGetSystemModeCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.SystemMode);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
 
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
         {
