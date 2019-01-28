@@ -18,6 +18,7 @@ namespace Lutron.CommandBuilder
         private HvacFanMode _fanMode;
         private HvacEcoMode _ecoMode;
         private HvacScheduleStatus _scheduleStatus;
+        private HvacCallStatus _callStatus;
 
         public static HvacCommandBuilder Create()
         {
@@ -85,6 +86,12 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
+        public HvacCommandBuilder WithCallStatus(HvacCallStatus callStatus)
+        {
+            _callStatus = callStatus;
+            return this;
+        }
+
         public string BuildGetCurrentTemperatureCommand()
         {
             CheckIfOperationIsProvided();
@@ -95,7 +102,7 @@ namespace Lutron.CommandBuilder
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.CurrentTemperature);
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.CurrentTemperatureFahrenheit);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -110,7 +117,7 @@ namespace Lutron.CommandBuilder
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.CurrentTemperature);
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.CurrentTemperatureFahrenheit);
 
             CheckIfParameterIsProvided(_temperature, "temperature");
 
@@ -128,7 +135,7 @@ namespace Lutron.CommandBuilder
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPoints);
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -143,7 +150,7 @@ namespace Lutron.CommandBuilder
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPoints);
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit);
 
             CheckIfParameterIsProvided(_setPointHeat, "set point heat");
 
@@ -262,7 +269,7 @@ namespace Lutron.CommandBuilder
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.EcoOffset);
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.EcoOffsetFahrenheit);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -373,7 +380,8 @@ namespace Lutron.CommandBuilder
 
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPointsWithoutEcoOffset);
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber
+                .HeatAndCoolSetPointsWithoutEcoOffsetFahrenheit);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
@@ -391,6 +399,38 @@ namespace Lutron.CommandBuilder
             CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.EmergencyHeatAvailable);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildGetCallStatusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.CallStatus);
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildSetCallStatusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.CallStatus);
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{(int) _callStatus}<CR><LF>";
         }
 
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
