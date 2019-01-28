@@ -467,6 +467,8 @@ namespace Lutron.CommandBuilder
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.CurrentTemperatureCelsius);
+            
+            CheckIfParameterIsProvided(_temperatureCelsius, "temperature");
 
             return
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_temperatureCelsius}<CR><LF>";

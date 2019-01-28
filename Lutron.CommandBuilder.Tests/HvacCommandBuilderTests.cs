@@ -2415,6 +2415,23 @@ namespace Lutron.CommandBuilder.Tests
             }
 
             [TestFixture]
+            public class GivenNoTemperatureParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
+                            .BuildSetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The parameter, temperature, is not provided", exception.Message);
+                }
+            }
+            
+            [TestFixture]
             public class GivenNoOperation
             {
                 [Test]
