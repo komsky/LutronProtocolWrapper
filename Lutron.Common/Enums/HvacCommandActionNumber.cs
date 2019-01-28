@@ -17,5 +17,6 @@ namespace Lutron.Common.Enums
         EmergencyHeatAvailable = 13,
         CallStatus = 14,
         CurrentTemperatureCelsius = 15,
+        HeatAndCoolSetPointsCelsius = 16,
     }
 }

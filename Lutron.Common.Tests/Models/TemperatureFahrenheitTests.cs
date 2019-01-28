@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Lutron.Common.Tests.Models
 {
     [TestFixture]
-    public class TemperatureTests
+    public class TemperatureFahrenheitTests
     {       
         [TestFixture]
         public class Constructor
@@ -16,7 +16,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Temperature(31));
+                    Assert.Throws<ArgumentException>(() => new TemperatureFahrenheit(31));
                 }
             }
 
@@ -26,7 +26,7 @@ namespace Lutron.Common.Tests.Models
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new Temperature(213));
+                    Assert.Throws<ArgumentException>(() => new TemperatureFahrenheit(213));
                 }
             }
         }
@@ -37,7 +37,7 @@ namespace Lutron.Common.Tests.Models
             [Test]
             public void ShouldReturnTemperature()
             {
-                var temperature = new Temperature(34);
+                var temperature = new TemperatureFahrenheit(34);
 
                 Assert.AreEqual("34", temperature.ToString());
             }

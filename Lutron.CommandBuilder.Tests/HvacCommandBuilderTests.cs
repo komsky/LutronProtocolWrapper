@@ -119,7 +119,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(HvacCommandActionNumber.CurrentTemperatureFahrenheit)
-                    .WithTemperature(new Temperature(34))
+                    .WithTemperature(new TemperatureFahrenheit(34))
                     .BuildSetCurrentTemperatureCommand();
 
                 Assert.AreEqual("#HVAC,2,1,34<CR><LF>", command);
@@ -2293,6 +2293,207 @@ namespace Lutron.CommandBuilder.Tests
                             .BuildSetCallStatusCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 14 and not 15",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildGetCurrentTemperatureCelsiusCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
+                    .BuildGetCurrentTemperatureCelsiusCommand();
+
+                Assert.AreEqual("?HVAC,2,15<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
+                            .BuildGetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
+                            .BuildGetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
+                            .BuildGetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .BuildGetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 15 and not 16",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetCurrentTemperatureCelsiusCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
+                    .WithCurrentTemperatureCelsius(new TemperatureCelsius(34))
+                    .BuildSetCurrentTemperatureCelsiusCommand();
+
+                Assert.AreEqual("#HVAC,2,15,34<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
+                            .BuildSetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
+                            .BuildSetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
+                            .BuildSetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .BuildSetCurrentTemperatureCelsiusCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 15 and not 16",
                         exception.Message);
                 }
             }
