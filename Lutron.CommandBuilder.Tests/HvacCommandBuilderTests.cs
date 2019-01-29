@@ -3252,5 +3252,265 @@ namespace Lutron.CommandBuilder.Tests
             }
         }
 
+        [TestFixture]
+        public class BuildGetSingleSetPointAndDriftsCelsiusCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                    .BuildGetSingleSetPointAndDriftsCelsiusCommand();
+
+                Assert.AreEqual("?HVAC,2,19<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.CurrentTemperatureFahrenheit)
+                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 19 and not 1",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetSingleSetPointAndDriftsCelsiusCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                    .WithSingleSetPoint(new SingleSetPointCelsius(34))
+                    .WithNegativeDrift(new NegativeDriftCelsius(5))
+                    .WithPositiveDrift(new PositiveDriftCelsius(5))
+                    .BuildSetSingleSetPointAndDriftsCelsiusCommand();
+
+                Assert.AreEqual("#HVAC,2,19,34,5,5<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoSingleSetPointParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                            .WithNegativeDrift(new NegativeDriftCelsius(5))
+                            .WithPositiveDrift(new PositiveDriftCelsius(5))
+                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The parameter, single set point, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoNegativeDriftParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                            .WithSingleSetPoint(new SingleSetPointCelsius(34))
+                            .WithPositiveDrift(new PositiveDriftCelsius(5))
+                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The parameter, negative drift, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoPositiveDriftParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                            .WithSingleSetPoint(new SingleSetPointCelsius(34))
+                            .WithNegativeDrift(new NegativeDriftCelsius(5))
+                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The parameter, positive drift, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius)
+                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.CurrentTemperatureFahrenheit)
+                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 19 and not 1",
+                        exception.Message);
+                }
+            }
+        }
+
     }
 }

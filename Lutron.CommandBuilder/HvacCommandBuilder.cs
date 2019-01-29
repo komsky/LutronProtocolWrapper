@@ -637,6 +637,43 @@ namespace Lutron.CommandBuilder
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_singleSetPointFahrenheit},{_negativeDriftFahrenheit},{_positiveDriftFahrenheit}<CR><LF>";
         }
 
+        public string BuildGetSingleSetPointAndDriftsCelsiusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildSetSingleSetPointAndDriftsCelsiusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.SingleSetPointAndDriftsCelsius);
+
+            CheckIfParameterIsProvided(_singleSetPointCelsius, "single set point");
+
+            CheckIfParameterIsProvided(_negativeDriftCelsius, "negative drift");
+
+            CheckIfParameterIsProvided(_positiveDriftCelsius, "positive drift");
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_singleSetPointCelsius},{_negativeDriftCelsius},{_positiveDriftCelsius}<CR><LF>";
+        }
+
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
         {
             if (parameter is null ||
