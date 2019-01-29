@@ -22,6 +22,12 @@ namespace Lutron.CommandBuilder
         private TemperatureCelsius _temperatureCelsius;
         private HeatSetPointCelsius _heatSetPointCelsius;
         private CoolSetPointCelsius _coolSetPointCelsius;
+        private SingleSetPointFahrenheit _singleSetPointFahrenheit;
+        private NegativeDriftFahrenheit _negativeDriftFahrenheit;
+        private PositiveDriftFahrenheit _positiveDriftFahrenheit;
+        private SingleSetPointCelsius _singleSetPointCelsius;
+        private NegativeDriftCelsius _negativeDriftCelsius;
+        private PositiveDriftCelsius _positiveDriftCelsius;
 
         public static HvacCommandBuilder Create()
         {
@@ -110,6 +116,42 @@ namespace Lutron.CommandBuilder
         public HvacCommandBuilder WithCallStatus(HvacCallStatus callStatus)
         {
             _callStatus = callStatus;
+            return this;
+        }
+
+        public HvacCommandBuilder WithSingleSetPoint(SingleSetPointFahrenheit setPoint)
+        {
+            _singleSetPointFahrenheit = setPoint;
+            return this;
+        }
+
+        public HvacCommandBuilder WithNegativeDrift(NegativeDriftFahrenheit negativeDriftFahrenheit)
+        {
+            _negativeDriftFahrenheit = negativeDriftFahrenheit;
+            return this;
+        }
+
+        public HvacCommandBuilder WithPositiveDrift(PositiveDriftFahrenheit positiveDriftFahrenheit)
+        {
+            _positiveDriftFahrenheit = positiveDriftFahrenheit;
+            return this;
+        }
+
+        public HvacCommandBuilder WithSingleSetPoint(SingleSetPointCelsius singleSetPointCelsius)
+        {
+            _singleSetPointCelsius = singleSetPointCelsius;
+            return this;
+        }
+
+        public HvacCommandBuilder WithNegativeDrift(NegativeDriftCelsius negativeDriftCelsius)
+        {
+            _negativeDriftCelsius = negativeDriftCelsius;
+            return this;
+        }
+
+        public HvacCommandBuilder WithPositiveDrift(PositiveDriftCelsius positiveDriftCelsius)
+        {
+            _positiveDriftCelsius = positiveDriftCelsius;
             return this;
         }
 
@@ -558,6 +600,43 @@ namespace Lutron.CommandBuilder
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_heatSetPointCelsius},{_coolSetPointCelsius}<CR><LF>";
         }
 
+        public string BuildGetSingleSetPointAndDriftsFahrenheitCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.SingleSetPointAndDriftsFahrenheit);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildSetSingleSetPointAndDriftsFahrenheitCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.SingleSetPointAndDriftsFahrenheit);
+
+            CheckIfParameterIsProvided(_singleSetPointFahrenheit, "single set point");
+
+            CheckIfParameterIsProvided(_negativeDriftFahrenheit, "negative drift");
+
+            CheckIfParameterIsProvided(_positiveDriftFahrenheit, "positive drift");
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_singleSetPointFahrenheit},{_negativeDriftFahrenheit},{_positiveDriftFahrenheit}<CR><LF>";
+        }
+
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
         {
             if (parameter is null ||
@@ -626,6 +705,7 @@ namespace Lutron.CommandBuilder
                     HvacScheduleStatus.ScheduleUnavailable, HvacScheduleStatus.TemporaryHold);
             }
         }
+
 
         private void CheckIfProvidedParameterIsASetScheduleStatus(HvacScheduleStatus scheduleStatus)
         {
