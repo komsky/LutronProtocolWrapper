@@ -228,7 +228,7 @@ namespace Lutron.CommandBuilder.Tests
         }
 
         [TestFixture]
-        public class BuildGetHeatAndCoolSetPointsCommand
+        public class BuildGetHeatAndCoolSetPointsFahrenheitCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -237,7 +237,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
                     .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                    .BuildGetHeatAndCoolSetPointsCommand();
+                    .BuildGetHeatAndCoolSetPointsFahrenheitCommand();
 
                 Assert.AreEqual("?HVAC,2,2<CR><LF>", command);
             }
@@ -252,7 +252,7 @@ namespace Lutron.CommandBuilder.Tests
                         => HvacCommandBuilder.Create()
                             .WithIntegrationId(2)
                             .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                            .BuildGetHeatAndCoolSetPointsCommand());
+                            .BuildGetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -269,7 +269,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                            .BuildGetHeatAndCoolSetPointsCommand());
+                            .BuildGetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
                         exception.Message);
@@ -286,7 +286,7 @@ namespace Lutron.CommandBuilder.Tests
                         => HvacCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                            .BuildGetHeatAndCoolSetPointsCommand());
+                            .BuildGetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -302,7 +302,7 @@ namespace Lutron.CommandBuilder.Tests
                         => HvacCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .BuildGetHeatAndCoolSetPointsCommand());
+                            .BuildGetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
@@ -319,7 +319,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(HvacCommandActionNumber.OperatingMode)
-                            .BuildGetHeatAndCoolSetPointsCommand());
+                            .BuildGetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 2 and not 3",
                         exception.Message);
@@ -328,7 +328,7 @@ namespace Lutron.CommandBuilder.Tests
         }
 
         [TestFixture]
-        public class BuildSetHeatAndCoolSetPointsCommand
+        public class BuildSetHeatAndCoolSetPointsFahrenheitCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -337,9 +337,9 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                    .WithSetPointHeat(new SetPointHeat(34))
-                    .WithSetPointCool(new SetPointCool(34))
-                    .BuildSetHeatAndCoolSetPointsCommand();
+                    .WithSetPointHeat(new HeatSetPointFahrenheit(34))
+                    .WithSetPointCool(new CoolSetPointFahrenheit(34))
+                    .BuildSetHeatAndCoolSetPointsFahrenheitCommand();
 
                 Assert.AreEqual("#HVAC,2,2,34,34<CR><LF>", command);
             }
@@ -355,8 +355,8 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                            .WithSetPointCool(new SetPointCool(55))
-                            .BuildSetHeatAndCoolSetPointsCommand());
+                            .WithSetPointCool(new CoolSetPointFahrenheit(55))
+                            .BuildSetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The parameter, set point heat, is not provided", exception.Message);
                 }
@@ -373,8 +373,8 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                            .WithSetPointHeat(new SetPointHeat(98))
-                            .BuildSetHeatAndCoolSetPointsCommand());
+                            .WithSetPointHeat(new HeatSetPointFahrenheit(98))
+                            .BuildSetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The parameter, set point cool, is not provided", exception.Message);
                 }
@@ -390,7 +390,7 @@ namespace Lutron.CommandBuilder.Tests
                         => HvacCommandBuilder.Create()
                             .WithIntegrationId(2)
                             .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                            .BuildSetHeatAndCoolSetPointsCommand());
+                            .BuildSetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -407,7 +407,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                            .BuildSetHeatAndCoolSetPointsCommand());
+                            .BuildSetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
                         exception.Message);
@@ -424,7 +424,7 @@ namespace Lutron.CommandBuilder.Tests
                         => HvacCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit)
-                            .BuildSetHeatAndCoolSetPointsCommand());
+                            .BuildSetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -440,7 +440,7 @@ namespace Lutron.CommandBuilder.Tests
                         => HvacCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .BuildSetHeatAndCoolSetPointsCommand());
+                            .BuildSetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The action number is not provided", exception.Message);
                 }
@@ -457,7 +457,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(HvacCommandActionNumber.OperatingMode)
-                            .BuildSetHeatAndCoolSetPointsCommand());
+                            .BuildSetHeatAndCoolSetPointsFahrenheitCommand());
 
                     Assert.AreEqual("The action number provided is incorrect. Expected 2 and not 3",
                         exception.Message);
@@ -2408,7 +2408,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithAction(HvacCommandActionNumber.CurrentTemperatureCelsius)
-                    .WithCurrentTemperatureCelsius(new TemperatureCelsius(34))
+                    .WithTemperature(new TemperatureCelsius(34))
                     .BuildSetCurrentTemperatureCelsiusCommand();
 
                 Assert.AreEqual("#HVAC,2,15,34<CR><LF>", command);
@@ -2515,5 +2515,244 @@ namespace Lutron.CommandBuilder.Tests
                 }
             }
         }
+
+        [TestFixture]
+        public class BuildGetHeatAndCoolSetPointsCelsiusCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                    .BuildGetHeatAndCoolSetPointsCelsiusCommand();
+
+                Assert.AreEqual("?HVAC,2,16<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsWithoutEcoOffsetCelsius)
+                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 16 and not 17",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetHeatAndCoolSetPointsCelsiusCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = HvacCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                    .WithSetPointHeat(new HeatSetPointCelsius(34))
+                    .WithSetPointCool(new CoolSetPointCelsius(34))
+                    .BuildSetHeatAndCoolSetPointsCelsiusCommand();
+
+                Assert.AreEqual("#HVAC,2,16,34,34<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoSetPointHeatParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .WithSetPointCool(new CoolSetPointFahrenheit(55))
+                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The parameter, set point heat, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoSetPointCoolParameter
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ParameterNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .WithSetPointHeat(new HeatSetPointCelsius(98))
+                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The parameter, set point cool, is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius)
+                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The action number is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                        => HvacCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(HvacCommandActionNumber.HeatAndCoolSetPointsWithoutEcoOffsetCelsius)
+                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
+
+                    Assert.AreEqual("The action number provided is incorrect. Expected 16 and not 17",
+                        exception.Message);
+                }
+            }
+        }
+
     }
 }

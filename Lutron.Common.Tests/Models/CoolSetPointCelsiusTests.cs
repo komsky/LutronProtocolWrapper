@@ -5,38 +5,38 @@ using NUnit.Framework;
 namespace Lutron.Common.Tests.Models
 {
     [TestFixture]
-    public class SetPointHeatTests
+    public class CoolSetPointCelsiusTests
     {       
         [TestFixture]
         public class Constructor
         {
             [TestFixture]
-            public class WhenSetPointHeatIsLessThan32
+            public class WhenCoolSetPointIsLessThan0
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new SetPointHeat(31));
+                    Assert.Throws<ArgumentException>(() => new CoolSetPointCelsius(-1));
                 }
             }
 
             [TestFixture]
-            public class WhenSetPointHeatIsGreaterThan212
+            public class WhenCoolSetPointIsGreaterThan100
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new SetPointHeat(213));
+                    Assert.Throws<ArgumentException>(() => new CoolSetPointCelsius(101));
                 }
             }
 
             [TestFixture]
-            public class WhenSetPointHeatIs255
+            public class WhenCoolSetPointIs255
             {
                 [Test]
                 public void ShouldNotThrowException()
                 {
-                    Assert.DoesNotThrow(() => new SetPointHeat(255));
+                    Assert.DoesNotThrow(() => new CoolSetPointCelsius(255));
                 }
             }
         }
@@ -45,11 +45,11 @@ namespace Lutron.Common.Tests.Models
         public class WhenToString
         {
             [Test]
-            public void ShouldReturnSetPointHeat()
+            public void ShouldReturnSetPointCool()
             {
-                var setPointHeat = new SetPointHeat(34);
+                var coolSetPoint = new CoolSetPointCelsius(34);
 
-                Assert.AreEqual("34", setPointHeat.ToString());
+                Assert.AreEqual("34", coolSetPoint.ToString());
             }
         }
     }

@@ -5,38 +5,38 @@ using NUnit.Framework;
 namespace Lutron.Common.Tests.Models
 {
     [TestFixture]
-    public class SetPointCoolTests
+    public class HeatSetPointCelsiusTests
     {       
         [TestFixture]
         public class Constructor
         {
             [TestFixture]
-            public class WhenSetPointCoolIsLessThan32
+            public class WhenHeatSetPointIsLessThan0
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new SetPointCool(31));
+                    Assert.Throws<ArgumentException>(() => new HeatSetPointCelsius(-1));
                 }
             }
 
             [TestFixture]
-            public class WhenSetPointCoolIsGreaterThan212
+            public class WhenHeatSetPointIsGreaterThan100
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    Assert.Throws<ArgumentException>(() => new SetPointCool(213));
+                    Assert.Throws<ArgumentException>(() => new HeatSetPointCelsius(101));
                 }
             }
 
             [TestFixture]
-            public class WhenSetPointCoolIs255
+            public class WhenHeatSetPointIs255
             {
                 [Test]
                 public void ShouldNotThrowException()
                 {
-                    Assert.DoesNotThrow(() => new SetPointCool(255));
+                    Assert.DoesNotThrow(() => new HeatSetPointCelsius(255));
                 }
             }
         }
@@ -45,11 +45,11 @@ namespace Lutron.Common.Tests.Models
         public class WhenToString
         {
             [Test]
-            public void ShouldReturnSetPointCool()
+            public void ShouldReturnHeatSetPoint()
             {
-                var setPointCool = new SetPointCool(34);
+                var heatSetPoint = new HeatSetPointCelsius(34);
 
-                Assert.AreEqual("34", setPointCool.ToString());
+                Assert.AreEqual("34", heatSetPoint.ToString());
             }
         }
     }

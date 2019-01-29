@@ -12,14 +12,16 @@ namespace Lutron.CommandBuilder
         private int _integrationId;
         private readonly string _command = "HVAC";
         private TemperatureFahrenheit _temperatureFahrenheit;
-        private SetPointHeat _setPointHeat;
-        private SetPointCool _setPointCool;
+        private HeatSetPointFahrenheit _heatSetPointFahrenheit;
+        private CoolSetPointFahrenheit _coolSetPointFahrenheit;
         private HvacOperatingMode _operatingMode;
         private HvacFanMode _fanMode;
         private HvacEcoMode _ecoMode;
         private HvacScheduleStatus _scheduleStatus;
         private HvacCallStatus _callStatus;
         private TemperatureCelsius _temperatureCelsius;
+        private HeatSetPointCelsius _heatSetPointCelsius;
+        private CoolSetPointCelsius _coolSetPointCelsius;
 
         public static HvacCommandBuilder Create()
         {
@@ -51,15 +53,33 @@ namespace Lutron.CommandBuilder
             return this;
         }
 
-        public HvacCommandBuilder WithSetPointHeat(SetPointHeat setPointHeat)
+        public HvacCommandBuilder WithTemperature(TemperatureCelsius temperatureCelsius)
         {
-            _setPointHeat = setPointHeat;
+            _temperatureCelsius = temperatureCelsius;
             return this;
         }
 
-        public HvacCommandBuilder WithSetPointCool(SetPointCool setPointCool)
+        public HvacCommandBuilder WithSetPointHeat(HeatSetPointFahrenheit heatSetPointFahrenheit)
         {
-            _setPointCool = setPointCool;
+            _heatSetPointFahrenheit = heatSetPointFahrenheit;
+            return this;
+        }
+
+        public HvacCommandBuilder WithSetPointCool(CoolSetPointFahrenheit coolSetPointFahrenheit)
+        {
+            _coolSetPointFahrenheit = coolSetPointFahrenheit;
+            return this;
+        }
+
+        public HvacCommandBuilder WithSetPointHeat(HeatSetPointCelsius heatSetPointCelsius)
+        {
+            _heatSetPointCelsius = heatSetPointCelsius;
+            return this;
+        }
+
+        public HvacCommandBuilder WithSetPointCool(CoolSetPointCelsius coolSetPointCelsius)
+        {
+            _coolSetPointCelsius = coolSetPointCelsius;
             return this;
         }
 
@@ -90,12 +110,6 @@ namespace Lutron.CommandBuilder
         public HvacCommandBuilder WithCallStatus(HvacCallStatus callStatus)
         {
             _callStatus = callStatus;
-            return this;
-        }
-
-        public HvacCommandBuilder WithCurrentTemperatureCelsius(TemperatureCelsius temperatureCelsius)
-        {
-            _temperatureCelsius = temperatureCelsius;
             return this;
         }
 
@@ -132,7 +146,7 @@ namespace Lutron.CommandBuilder
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_temperatureFahrenheit}<CR><LF>";
         }
 
-        public string BuildGetHeatAndCoolSetPointsCommand()
+        public string BuildGetHeatAndCoolSetPointsFahrenheitCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -147,7 +161,7 @@ namespace Lutron.CommandBuilder
             return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
         }
 
-        public string BuildSetHeatAndCoolSetPointsCommand()
+        public string BuildSetHeatAndCoolSetPointsFahrenheitCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -159,12 +173,12 @@ namespace Lutron.CommandBuilder
 
             CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPointsFahrenheit);
 
-            CheckIfParameterIsProvided(_setPointHeat, "set point heat");
+            CheckIfParameterIsProvided(_heatSetPointFahrenheit, "set point heat");
 
-            CheckIfParameterIsProvided(_setPointCool, "set point cool");
+            CheckIfParameterIsProvided(_coolSetPointFahrenheit, "set point cool");
 
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_setPointHeat},{_setPointCool}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_heatSetPointFahrenheit},{_coolSetPointFahrenheit}<CR><LF>";
         }
 
         public string BuildGetOperatingModeCommand()
@@ -467,11 +481,46 @@ namespace Lutron.CommandBuilder
             CheckIfActionNumberIsProvided();
 
             CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.CurrentTemperatureCelsius);
-            
+
             CheckIfParameterIsProvided(_temperatureCelsius, "temperature");
 
             return
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_temperatureCelsius}<CR><LF>";
+        }
+
+        public string BuildGetHeatAndCoolSetPointsCelsiusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildSetHeatAndCoolSetPointsCelsiusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPointsCelsius);
+
+            CheckIfParameterIsProvided(_heatSetPointCelsius, "set point heat");
+
+            CheckIfParameterIsProvided(_coolSetPointCelsius, "set point cool");
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_heatSetPointCelsius},{_coolSetPointCelsius}<CR><LF>";
         }
 
         private void CheckIfParameterIsProvided(object parameter, string parameterName)

@@ -18,5 +18,6 @@ namespace Lutron.Common.Enums
         CallStatus = 14,
         CurrentTemperatureCelsius = 15,
         HeatAndCoolSetPointsCelsius = 16,
+        HeatAndCoolSetPointsWithoutEcoOffsetCelsius = 17,
     }
 }
