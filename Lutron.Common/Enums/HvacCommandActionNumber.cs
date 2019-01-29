@@ -19,5 +19,6 @@ namespace Lutron.Common.Enums
         CurrentTemperatureCelsius = 15,
         HeatAndCoolSetPointsCelsius = 16,
         HeatAndCoolSetPointsWithoutEcoOffsetCelsius = 17,
+        SingSetPointAndDriftsFahrenheit = 18,
     }
 }

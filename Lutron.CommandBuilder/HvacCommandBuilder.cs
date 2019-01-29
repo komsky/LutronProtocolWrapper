@@ -523,6 +523,41 @@ namespace Lutron.CommandBuilder
                 $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_heatSetPointCelsius},{_coolSetPointCelsius}<CR><LF>";
         }
 
+        public string BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPointsWithoutEcoOffsetCelsius);
+
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfActionNumberIsProvided();
+
+            CheckIfProvidedActionNumberIsCorrect(HvacCommandActionNumber.HeatAndCoolSetPointsWithoutEcoOffsetCelsius);
+
+            CheckIfParameterIsProvided(_heatSetPointCelsius, "set point heat");
+
+            CheckIfParameterIsProvided(_coolSetPointCelsius, "set point cool");
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _actionNumber},{_heatSetPointCelsius},{_coolSetPointCelsius}<CR><LF>";
+        }
+
         private void CheckIfParameterIsProvided(object parameter, string parameterName)
         {
             if (parameter is null ||
