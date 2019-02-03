@@ -83,26 +83,27 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.DiagnosticMonitoring)
                             .BuildGetDiagnosticMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.EventMonitoring)
                             .BuildGetDiagnosticMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 1 and not 2",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 1 and not 2",
                         exception.Message);
                 }
             }
@@ -204,7 +205,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithMonitoringType(MonitoringType.DiagnosticMonitoring)
                             .BuildSetDiagnosticMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
         }
@@ -284,26 +285,27 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ButtonMonitoring)
                             .BuildGetEventMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.ButtonMonitoring)
                             .BuildGetEventMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 2 and not 3",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 2 and not 3",
                         exception.Message);
                 }
             }
@@ -391,7 +393,7 @@ namespace Lutron.CommandBuilder.Tests
                     Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
-            
+
             [TestFixture]
             public class GivenNoActionNumber
             {
@@ -404,24 +406,24 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildSetEventMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.ButtonMonitoring)
                             .BuildSetEventMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 2 and not 3",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 2 and not 3",
                         exception.Message);
                 }
             }
@@ -503,26 +505,27 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ButtonMonitoring)
                             .BuildGetButtonMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GiveIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.LedMonitoring)
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
                             .BuildGetButtonMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 3 and not 4",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 3 and not 4",
                         exception.Message);
                 }
             }
@@ -640,24 +643,24 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildSetButtonMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.LedMonitoring)
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
                             .BuildSetButtonMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 3 and not 4",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 3 and not 4",
                         exception.Message);
                 }
             }
@@ -672,9 +675,9 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MonitoringCommandBuilder.Create()
                     .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.LedMonitoring)
+                    .WithMonitoringType(MonitoringType.LEDMonitoring)
                     .WithAction(MonitoringCommandActionNumber.Enable)
-                    .BuildGetLedMonitoringCommand();
+                    .BuildGetLEDMonitoringCommand();
 
                 Assert.AreEqual("?MONITORING,2,4<CR><LF>", command);
             }
@@ -688,8 +691,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<OperationNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.LedMonitoring)
-                            .BuildGetLedMonitoringCommand());
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
+                            .BuildGetLEDMonitoringCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -705,8 +708,8 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.LedMonitoring)
-                            .BuildGetLedMonitoringCommand());
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
+                            .BuildGetLEDMonitoringCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
                         exception.Message);
@@ -722,8 +725,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
-                            .WithMonitoringType(MonitoringType.LedMonitoring)
-                            .BuildGetLedMonitoringCommand());
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
+                            .BuildGetLEDMonitoringCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -739,26 +742,27 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .BuildGetLedMonitoringCommand());
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
+                            .BuildGetLEDMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.ZoneMonitoring)
-                            .BuildGetLedMonitoringCommand());
+                            .BuildGetLEDMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 4 and not 5",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 4 and not 5",
                         exception.Message);
                 }
             }
@@ -773,9 +777,9 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MonitoringCommandBuilder.Create()
                     .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.LedMonitoring)
+                    .WithMonitoringType(MonitoringType.LEDMonitoring)
                     .WithAction(MonitoringCommandActionNumber.Enable)
-                    .BuildSetLedMonitoringCommand();
+                    .BuildSetLEDMonitoringCommand();
 
                 Assert.AreEqual("#MONITORING,2,4,2<CR><LF>", command);
             }
@@ -790,8 +794,8 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.LedMonitoring)
-                            .BuildSetLedMonitoringCommand());
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
+                            .BuildSetLEDMonitoringCommand());
 
                     Assert.AreEqual("The parameter, fan mode, is not provided", exception.Message);
                 }
@@ -806,8 +810,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<OperationNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.LedMonitoring)
-                            .BuildSetLedMonitoringCommand());
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
+                            .BuildSetLEDMonitoringCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -823,8 +827,8 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.LedMonitoring)
-                            .BuildSetLedMonitoringCommand());
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
+                            .BuildSetLEDMonitoringCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
                         exception.Message);
@@ -840,8 +844,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
-                            .WithMonitoringType(MonitoringType.LedMonitoring)
-                            .BuildSetLedMonitoringCommand());
+                            .WithMonitoringType(MonitoringType.LEDMonitoring)
+                            .BuildSetLEDMonitoringCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -858,7 +862,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithAction(MonitoringCommandActionNumber.Enable)
-                            .BuildSetLedMonitoringCommand());
+                            .BuildSetLEDMonitoringCommand());
 
                     Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
@@ -874,26 +878,26 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .BuildSetLedMonitoringCommand());
+                            .BuildSetLEDMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.ZoneMonitoring)
-                            .BuildSetLedMonitoringCommand());
+                            .BuildSetLEDMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 4 and not 5",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 4 and not 5",
                         exception.Message);
                 }
             }
@@ -976,24 +980,24 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildGetZoneMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.Occupancy)
                             .BuildGetZoneMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 5 and not 6",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 5 and not 6",
                         exception.Message);
                 }
             }
@@ -1111,24 +1115,24 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildSetZoneMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.Occupancy)
                             .BuildSetZoneMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 5 and not 6",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 5 and not 6",
                         exception.Message);
                 }
             }
@@ -1209,26 +1213,27 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.Occupancy)
                             .BuildGetOccupancyCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.PhotoSensorMonitoring)
                             .BuildGetOccupancyCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 6 and not 7",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 6 and not 7",
                         exception.Message);
                 }
             }
@@ -1329,24 +1334,24 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildGetOccupancyCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.PhotoSensorMonitoring)
                             .BuildSetOccupancyCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 6 and not 7",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 6 and not 7",
                         exception.Message);
                 }
             }
@@ -1429,24 +1434,24 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildGetPhotoSensorMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.Scene)
                             .BuildGetPhotoSensorMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 7 and not 8",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 7 and not 8",
                         exception.Message);
                 }
             }
@@ -1547,24 +1552,24 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildSetPhotoSensorMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.Scene)
                             .BuildSetPhotoSensorMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 7 and not 8",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 7 and not 8",
                         exception.Message);
                 }
             }
@@ -1647,24 +1652,24 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildGetSceneCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.SystemVariable)
                             .BuildGetSceneCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 8 and not 9",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 8 and not 9",
                         exception.Message);
                 }
             }
@@ -1765,29 +1770,29 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildGetSceneCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.SystemVariable)
                             .BuildGetSceneCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 8 and not 9",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 8 and not 9",
                         exception.Message);
                 }
             }
         }
- 
+
         [TestFixture]
         public class BuildGetSystemVariableCommand
         {
@@ -1865,17 +1870,17 @@ namespace Lutron.CommandBuilder.Tests
                             .WithIntegrationId(2)
                             .BuildGetSystemVariableCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
@@ -1883,14 +1888,133 @@ namespace Lutron.CommandBuilder.Tests
                             .WithAction(default(MonitoringCommandActionNumber))
                             .BuildGetSystemVariableCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 9 and not 10",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 9 and not 10",
                         exception.Message);
                 }
             }
-        } 
-        
+        }
+
         [TestFixture]
-        public class BuildGetScheduleDayAssignmentCommand
+        public class BuildSetSystemVariableCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.SystemVariable)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetSystemVariableCommand();
+
+                Assert.AreEqual("?MONITORING,2,10,2<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.SystemVariable)
+                            .BuildSetSystemVariableCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.SystemVariable)
+                            .BuildSetSystemVariableCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithMonitoringType(MonitoringType.SystemVariable)
+                            .BuildSetSystemVariableCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<MonitoringTypeNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MonitoringCommandActionNumber.Enable)
+                            .BuildSetSystemVariableCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetSystemVariableCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.SystemVariable)
+                            .WithAction(default(MonitoringCommandActionNumber))
+                            .BuildSetSystemVariableCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 9 and not 10",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildGetReplyStateCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -1899,9 +2023,9 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
                     .WithMonitoringType(MonitoringType.ReplyState)
-                    .BuildGetScheduleDayAssignmentCommand();
+                    .BuildGetReplyStateCommand();
 
-                Assert.AreEqual("?MONITORING,2,10<CR><LF>", command);
+                Assert.AreEqual("?MONITORING,2,11<CR><LF>", command);
             }
 
             [TestFixture]
@@ -1914,7 +2038,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.ReplyState)
-                            .BuildGetScheduleDayAssignmentCommand());
+                            .BuildGetReplyStateCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -1931,7 +2055,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.ReplyState)
-                            .BuildGetScheduleDayAssignmentCommand());
+                            .BuildGetReplyStateCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
                         exception.Message);
@@ -1948,7 +2072,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithMonitoringType(MonitoringType.ReplyState)
-                            .BuildGetScheduleDayAssignmentCommand());
+                            .BuildGetReplyStateCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -1964,35 +2088,352 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .BuildGetScheduleDayAssignmentCommand());
+                            .BuildGetReplyStateCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.PromptState)
-                            .BuildGetScheduleDayAssignmentCommand());
+                            .BuildGetReplyStateCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 10 and not 11",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 10 and not 11",
                         exception.Message);
                 }
             }
-        } 
-        
+        }
+
         [TestFixture]
-        
+        public class BuildSetReplyStateCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.ReplyState)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetReplyStateCommand();
+
+                Assert.AreEqual("#MONITORING,2,11,2<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ReplyState)
+                            .BuildSetReplyStateCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ReplyState)
+                            .BuildSetReplyStateCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithMonitoringType(MonitoringType.ReplyState)
+                            .BuildSetReplyStateCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<MonitoringTypeNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithAction(MonitoringCommandActionNumber.Enable)
+                            .BuildSetReplyStateCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetReplyStateCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.PromptState)
+                            .BuildSetReplyStateCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 10 and not 11",
+                        exception.Message);
+                }
+            }
+        }
+
         [TestFixture]
-        public class BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCommand
+        public class BuildGetPromptStateCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.PromptState)
+                    .BuildGetPromptStateCommand();
+
+                Assert.AreEqual("?MONITORING,2,12<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.PromptState)
+                            .BuildGetPromptStateCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.PromptState)
+                            .BuildGetPromptStateCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithMonitoringType(MonitoringType.PromptState)
+                            .BuildGetPromptStateCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetPromptStateCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
+                            .BuildGetPromptStateCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 12 and not 13",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetPromptStateCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.PromptState)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetPromptStateCommand();
+
+                Assert.AreEqual("#MONITORING,2,12,2<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.PromptState)
+                            .BuildSetPromptStateCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.PromptState)
+                            .BuildSetPromptStateCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithMonitoringType(MonitoringType.PromptState)
+                            .BuildSetPromptStateCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetPromptStateCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
+                            .BuildSetPromptStateCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 12 and not 13",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildGetOccupancyGroupMonitoringCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -2001,7 +2442,7 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
                     .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
-                    .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCommand();
+                    .BuildGetOccupancyGroupMonitoringCommand();
 
                 Assert.AreEqual("?MONITORING,2,12<CR><LF>", command);
             }
@@ -2016,7 +2457,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCommand());
+                            .BuildGetOccupancyGroupMonitoringCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -2033,7 +2474,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCommand());
+                            .BuildGetOccupancyGroupMonitoringCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
                         exception.Message);
@@ -2050,7 +2491,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCommand());
+                            .BuildGetOccupancyGroupMonitoringCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -2066,44 +2507,46 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCommand());
+                            .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
+                            .BuildGetOccupancyGroupMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCommand());
+                            .BuildGetOccupancyGroupMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 12 and not 13",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 12 and not 13",
                         exception.Message);
                 }
             }
         }
-        
+
         [TestFixture]
-        public class BuildGetEmergencyHeatAvailableCommand
+        public class BuildSetOccupancyGroupMonitoringCommand
         {
             [Test]
             public void ShouldReturnCommandString()
             {
                 var command = MonitoringCommandBuilder.Create()
-                    .WithOperation(CommandOperation.Get)
+                    .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
-                    .BuildGetEmergencyHeatAvailableCommand();
+                    .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetOccupancyGroupMonitoringCommand();
 
-                Assert.AreEqual("?MONITORING,2,13<CR><LF>", command);
+                Assert.AreEqual("#MONITORING,2,13,2<CR><LF>", command);
             }
 
             [TestFixture]
@@ -2115,8 +2558,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<OperationNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
-                            .BuildGetEmergencyHeatAvailableCommand());
+                            .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
+                            .BuildSetOccupancyGroupMonitoringCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -2130,12 +2573,12 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IncorrectOperationProvided>(()
                         => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
+                            .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
-                            .BuildGetEmergencyHeatAvailableCommand());
+                            .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
+                            .BuildSetOccupancyGroupMonitoringCommand());
 
-                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
                         exception.Message);
                 }
             }
@@ -2148,9 +2591,9 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
-                            .BuildGetEmergencyHeatAvailableCommand());
+                            .WithOperation(CommandOperation.Set)
+                            .WithMonitoringType(MonitoringType.OccupancyGroupMonitoring)
+                            .BuildSetOccupancyGroupMonitoringCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -2164,35 +2607,35 @@ namespace Lutron.CommandBuilder.Tests
                 {
                     var exception = Assert.Throws<ActionNumberNotProvided>(()
                         => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .BuildGetEmergencyHeatAvailableCommand());
+                            .BuildSetOccupancyGroupMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
+                            .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
-                            .BuildGetEmergencyHeatAvailableCommand());
+                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                            .BuildSetOccupancyGroupMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 13 and not 14",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 12 and not 13",
                         exception.Message);
                 }
             }
         }
 
         [TestFixture]
-        public class BuildGetCallStatusCommand
+        public class BuildGetDeviceLockStateMonitoringCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -2200,8 +2643,8 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MonitoringCommandBuilder.Create()
                     .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.SequenceMonitoring)
-                    .BuildGetCallStatusCommand();
+                    .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                    .BuildGetDeviceLockStateMonitoringCommand();
 
                 Assert.AreEqual("?MONITORING,2,14<CR><LF>", command);
             }
@@ -2215,8 +2658,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<OperationNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
-                            .BuildGetCallStatusCommand());
+                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                            .BuildGetDeviceLockStateMonitoringCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -2232,8 +2675,8 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
-                            .BuildGetCallStatusCommand());
+                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                            .BuildGetDeviceLockStateMonitoringCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
                         exception.Message);
@@ -2249,8 +2692,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
-                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
-                            .BuildGetCallStatusCommand());
+                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                            .BuildGetDeviceLockStateMonitoringCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -2266,599 +2709,144 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .BuildGetCallStatusCommand());
+                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                            .BuildGetDeviceLockStateMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.HvacMonitoring)
-                            .BuildGetCallStatusCommand());
+                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
+                            .BuildGetDeviceLockStateMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 14 and not 15",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 14 and not 16",
                         exception.Message);
                 }
             }
         }
 
         [TestFixture]
-        public class BuildSetCallStatusCommand
+        public class BuildSetDeviceLockStateMonitoringCommand
         {
             [Test]
             public void ShouldReturnCommandString()
             {
                 var command = MonitoringCommandBuilder.Create()
-                    .WithOperation(CommandOperation.Set)
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildGetDeviceLockStateMonitoringCommand();
+
+                Assert.AreEqual("#MONITORING,2,14,2<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                            .BuildSetDeviceLockStateMonitoringCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                            .BuildSetDeviceLockStateMonitoringCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithMonitoringType(MonitoringType.DeviceLockStateMonitoring)
+                            .BuildSetDeviceLockStateMonitoringCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetDeviceLockStateMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
+                            .BuildSetDeviceLockStateMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 14 and not 15",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildGetSequenceMonitoringCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
                     .WithMonitoringType(MonitoringType.SequenceMonitoring)
-                    .WithCallStatus(MonitoringCallStatus.NoneLastWasCool)
-                    .BuildSetCallStatusCommand();
-
-                Assert.AreEqual("#MONITORING,2,14,5<CR><LF>", command);
-            }
-
-            [TestFixture]
-            public class GivenNoOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<OperationNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
-                            .BuildSetCallStatusCommand());
-
-                    Assert.AreEqual("The operation is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
-                            .BuildSetCallStatusCommand());
-
-                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
-                        exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoIntegrationId
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
-                            .BuildSetCallStatusCommand());
-
-                    Assert.AreEqual("The integration id is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .BuildSetCallStatusCommand());
-
-                    Assert.AreEqual("The action number is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.HvacMonitoring)
-                            .BuildSetCallStatusCommand());
-
-                    Assert.AreEqual("The action number provided is incorrect. Expected 14 and not 15",
-                        exception.Message);
-                }
-            }
-        }
-
-        [TestFixture]
-        public class BuildGetCurrentTemperatureCelsiusCommand
-        {
-            [Test]
-            public void ShouldReturnCommandString()
-            {
-                var command = MonitoringCommandBuilder.Create()
-                    .WithOperation(CommandOperation.Get)
-                    .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.HvacMonitoring)
-                    .BuildGetCurrentTemperatureCelsiusCommand();
-
-                Assert.AreEqual("?MONITORING,2,15<CR><LF>", command);
-            }
-
-            [TestFixture]
-            public class GivenNoOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<OperationNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.HvacMonitoring)
-                            .BuildGetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The operation is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.HvacMonitoring)
-                            .BuildGetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
-                        exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoIntegrationId
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithMonitoringType(MonitoringType.HvacMonitoring)
-                            .BuildGetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The integration id is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithIntegrationId(2)
-                            .BuildGetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The action number is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .BuildGetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The action number provided is incorrect. Expected 15 and not 16",
-                        exception.Message);
-                }
-            }
-        }
-
-        [TestFixture]
-        public class BuildSetCurrentTemperatureCelsiusCommand
-        {
-            [Test]
-            public void ShouldReturnCommandString()
-            {
-                var command = MonitoringCommandBuilder.Create()
-                    .WithOperation(CommandOperation.Set)
-                    .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.HvacMonitoring)
-                    .WithTemperature(new TemperatureCelsius(34))
-                    .BuildSetCurrentTemperatureCelsiusCommand();
-
-                Assert.AreEqual("#MONITORING,2,15,34<CR><LF>", command);
-            }
-
-            [TestFixture]
-            public class GivenNoTemperatureParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.HvacMonitoring)
-                            .BuildSetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The parameter, temperature, is not provided", exception.Message);
-                }
-            }
-            
-            [TestFixture]
-            public class GivenNoOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<OperationNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.HvacMonitoring)
-                            .BuildSetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The operation is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.HvacMonitoring)
-                            .BuildSetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
-                        exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoIntegrationId
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithMonitoringType(MonitoringType.HvacMonitoring)
-                            .BuildSetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The integration id is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .BuildSetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The action number is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .BuildSetCurrentTemperatureCelsiusCommand());
-
-                    Assert.AreEqual("The action number provided is incorrect. Expected 15 and not 16",
-                        exception.Message);
-                }
-            }
-        }
-
-        [TestFixture]
-        public class BuildGetHeatAndCoolSetPointsCelsiusCommand
-        {
-            [Test]
-            public void ShouldReturnCommandString()
-            {
-                var command = MonitoringCommandBuilder.Create()
-                    .WithOperation(CommandOperation.Get)
-                    .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.ModeMonitoring)
-                    .BuildGetHeatAndCoolSetPointsCelsiusCommand();
-
-                Assert.AreEqual("?MONITORING,2,16<CR><LF>", command);
-            }
-
-            [TestFixture]
-            public class GivenNoOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<OperationNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The operation is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
-                        exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoIntegrationId
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The integration id is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithIntegrationId(2)
-                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The action number is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .BuildGetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The action number provided is incorrect. Expected 16 and not 17",
-                        exception.Message);
-                }
-            }
-        }
-
-        [TestFixture]
-        public class BuildSetHeatAndCoolSetPointsCelsiusCommand
-        {
-            [Test]
-            public void ShouldReturnCommandString()
-            {
-                var command = MonitoringCommandBuilder.Create()
-                    .WithOperation(CommandOperation.Set)
-                    .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.ModeMonitoring)
-                    .WithSetPointHeat(new HeatSetPointCelsius(34))
-                    .WithSetPointCool(new CoolSetPointCelsius(34))
-                    .BuildSetHeatAndCoolSetPointsCelsiusCommand();
-
-                Assert.AreEqual("#MONITORING,2,16,34,34<CR><LF>", command);
-            }
-
-            [TestFixture]
-            public class GivenNoSetPointHeatParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .WithSetPointCool(new CoolSetPointFahrenheit(55))
-                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The parameter, set point heat, is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoSetPointCoolParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .WithSetPointHeat(new HeatSetPointCelsius(98))
-                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The parameter, set point cool, is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<OperationNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The operation is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectOperation
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectOperationProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Get)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
-                        exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoIntegrationId
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithMonitoringType(MonitoringType.ModeMonitoring)
-                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The integration id is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ActionNumberNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The action number is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenIncorrectActionNumber
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .BuildSetHeatAndCoolSetPointsCelsiusCommand());
-
-                    Assert.AreEqual("The action number provided is incorrect. Expected 16 and not 17",
-                        exception.Message);
-                }
-            }
-        }
-
-        [TestFixture]
-        public class BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand
-        {
-            [Test]
-            public void ShouldReturnCommandString()
-            {
-                var command = MonitoringCommandBuilder.Create()
-                    .WithOperation(CommandOperation.Get)
-                    .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                    .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand();
+                    .BuildGetSequenceMonitoringCommand();
 
                 Assert.AreEqual("?MONITORING,2,17<CR><LF>", command);
             }
@@ -2872,8 +2860,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<OperationNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
+                            .BuildGetSequenceMonitoringCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -2889,8 +2877,8 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
+                            .BuildGetSequenceMonitoringCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
                         exception.Message);
@@ -2906,8 +2894,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
+                            .BuildGetSequenceMonitoringCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -2923,33 +2911,33 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .BuildGetSequenceMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.PartitionWall)
-                            .BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .BuildGetSequenceMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 17 and not 18",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 16 and not 17",
                         exception.Message);
                 }
             }
         }
 
         [TestFixture]
-        public class BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand
+        public class BuildSetSequenceMonitoringCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -2957,48 +2945,11 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MonitoringCommandBuilder.Create()
                     .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                    .WithSetPointHeat(new HeatSetPointCelsius(34))
-                    .WithSetPointCool(new CoolSetPointCelsius(34))
-                    .BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand();
+                    .WithMonitoringType(MonitoringType.SequenceMonitoring)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetSequenceMonitoringCommand();
 
-                Assert.AreEqual("#MONITORING,2,17,34,34<CR><LF>", command);
-            }
-
-            [TestFixture]
-            public class GivenNoSetPointHeatParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .WithSetPointCool(new CoolSetPointFahrenheit(55))
-                            .BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
-
-                    Assert.AreEqual("The parameter, set point heat, is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoSetPointCoolParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .WithSetPointHeat(new HeatSetPointCelsius(98))
-                            .BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
-
-                    Assert.AreEqual("The parameter, set point cool, is not provided", exception.Message);
-                }
+                Assert.AreEqual("#MONITORING,2,16,2<CR><LF>", command);
             }
 
             [TestFixture]
@@ -3010,8 +2961,8 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<OperationNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
+                            .BuildSetSequenceMonitoringCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -3027,8 +2978,8 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
+                            .BuildSetSequenceMonitoringCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
                         exception.Message);
@@ -3044,8 +2995,210 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<IntegrationIdNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
-                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
-                            .BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.SequenceMonitoring)
+                            .BuildSetSequenceMonitoringCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildSetSequenceMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .BuildSetSequenceMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 16 and not 17",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildGetHVACMonitoringCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.HVACMonitoring)
+                    .BuildGetHVACMonitoringCommand();
+
+                Assert.AreEqual("?MONITORING,2,17<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .BuildGetHVACMonitoringCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .BuildGetHVACMonitoringCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .BuildGetHVACMonitoringCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetHVACMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .WithAction(default(MonitoringCommandActionNumber))
+                            .BuildGetHVACMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 17 and not 0",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetHVACMonitoringCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.HVACMonitoring)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetHVACMonitoringCommand();
+
+                Assert.AreEqual("#MONITORING,2,17,2<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .BuildSetHVACMonitoringCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .BuildSetHVACMonitoringCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .BuildSetHVACMonitoringCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -3061,33 +3214,35 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .BuildSetHVACMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.PartitionWall)
-                            .BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.HVACMonitoring)
+                            .WithAction(default(MonitoringCommandActionNumber))
+                            .BuildSetHVACMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 17 and not 18",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 17 and not 0",
                         exception.Message);
                 }
             }
         }
 
         [TestFixture]
-        public class BuildGetSingleSetPointAndDriftsFahrenheitCommand
+        public class BuildGetModeMonitoringCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -3095,8 +3250,8 @@ namespace Lutron.CommandBuilder.Tests
                 var command = MonitoringCommandBuilder.Create()
                     .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
-                    .WithMonitoringType(MonitoringType.PartitionWall)
-                    .BuildGetSingleSetPointAndDriftsFahrenheitCommand();
+                    .WithMonitoringType(MonitoringType.ModeMonitoring)
+                    .BuildGetModeMonitoringCommand();
 
                 Assert.AreEqual("?MONITORING,2,18<CR><LF>", command);
             }
@@ -3110,8 +3265,411 @@ namespace Lutron.CommandBuilder.Tests
                     var exception = Assert.Throws<OperationNotProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ModeMonitoring)
+                            .BuildGetModeMonitoringCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ModeMonitoring)
+                            .BuildGetModeMonitoringCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithMonitoringType(MonitoringType.ModeMonitoring)
+                            .BuildGetModeMonitoringCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ModeMonitoring)
+                            .BuildGetModeMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                            .BuildGetModeMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 16 and not 17",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetModeMonitoringCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.ModeMonitoring)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetModeMonitoringCommand();
+
+                Assert.AreEqual("#MONITORING,2,18,2<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ModeMonitoring)
+                            .BuildSetModeMonitoringCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ModeMonitoring)
+                            .BuildSetModeMonitoringCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithMonitoringType(MonitoringType.ModeMonitoring)
+                            .BuildSetModeMonitoringCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetModeMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                            .BuildSetModeMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 16 and not 17",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildGetShadeGroupMonitoringCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                    .BuildGetShadeGroupMonitoringCommand();
+
+                Assert.AreEqual("?MONITORING,2,23<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                            .BuildGetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                            .BuildGetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                            .BuildGetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.PartitionWall)
-                            .BuildGetSingleSetPointAndDriftsFahrenheitCommand());
+                            .BuildGetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 23 and not 24",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetShadeGroupMonitoringCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetShadeGroupMonitoringCommand();
+
+                Assert.AreEqual("#MONITORING,2,23,2<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                            .BuildSetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                            .BuildSetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithMonitoringType(MonitoringType.ShadeGroupMonitoring)
+                            .BuildSetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.PartitionWall)
+                            .BuildSetShadeGroupMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 23 and not 24",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildGetPartitionWallCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.PartitionWall)
+                    .BuildGetPartitionWallCommand();
+
+                Assert.AreEqual("?MONITORING,2,24<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.PartitionWall)
+                            .BuildGetPartitionWallCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -3128,7 +3686,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.PartitionWall)
-                            .BuildGetSingleSetPointAndDriftsFahrenheitCommand());
+                            .BuildGetPartitionWallCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
                         exception.Message);
@@ -3145,7 +3703,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithMonitoringType(MonitoringType.PartitionWall)
-                            .BuildGetSingleSetPointAndDriftsFahrenheitCommand());
+                            .BuildGetPartitionWallCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -3161,33 +3719,34 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .BuildGetSingleSetPointAndDriftsFahrenheitCommand());
+                            .WithMonitoringType(MonitoringType.PartitionWall)
+                            .BuildGetPartitionWallCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .BuildGetSingleSetPointAndDriftsFahrenheitCommand());
+                            .BuildGetPartitionWallCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 18 and not 19",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 24 and not 27",
                         exception.Message);
                 }
             }
         }
 
         [TestFixture]
-        public class BuildSetSingleSetPointAndDriftsFahrenheitCommand
+        public class BuildSetPartitionWallCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -3196,69 +3755,10 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithMonitoringType(MonitoringType.PartitionWall)
-                    .WithSingleSetPoint(new SingleSetPointFahrenheit(34))
-                    .WithNegativeDrift(new NegativeDriftFahrenheit(5))
-                    .WithPositiveDrift(new PositiveDriftFahrenheit(5))
-                    .BuildSetSingleSetPointAndDriftsFahrenheitCommand();
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetPartitionWallCommand();
 
-                Assert.AreEqual("#MONITORING,2,18,34,5,5<CR><LF>", command);
-            }
-
-            [TestFixture]
-            public class GivenNoSingleSetPointParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.PartitionWall)
-                            .WithNegativeDrift(new NegativeDriftFahrenheit(5))
-                            .WithPositiveDrift(new PositiveDriftFahrenheit(5))
-                            .BuildSetSingleSetPointAndDriftsFahrenheitCommand());
-
-                    Assert.AreEqual("The parameter, single set point, is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoNegativeDriftParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.PartitionWall)
-                            .WithSingleSetPoint(new SingleSetPointFahrenheit(34))
-                            .WithPositiveDrift(new PositiveDriftFahrenheit(5))
-                            .BuildSetSingleSetPointAndDriftsFahrenheitCommand());
-
-                    Assert.AreEqual("The parameter, negative drift, is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoPositiveDriftParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.PartitionWall)
-                            .WithSingleSetPoint(new SingleSetPointFahrenheit(34))
-                            .WithNegativeDrift(new NegativeDriftFahrenheit(5))
-                            .BuildSetSingleSetPointAndDriftsFahrenheitCommand());
-
-                    Assert.AreEqual("The parameter, positive drift, is not provided", exception.Message);
-                }
+                Assert.AreEqual("#MONITORING,2,24,2<CR><LF>", command);
             }
 
             [TestFixture]
@@ -3271,7 +3771,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.PartitionWall)
-                            .BuildSetSingleSetPointAndDriftsFahrenheitCommand());
+                            .BuildSetPartitionWallCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -3288,7 +3788,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.PartitionWall)
-                            .BuildSetSingleSetPointAndDriftsFahrenheitCommand());
+                            .BuildSetPartitionWallCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
                         exception.Message);
@@ -3305,7 +3805,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithMonitoringType(MonitoringType.PartitionWall)
-                            .BuildSetSingleSetPointAndDriftsFahrenheitCommand());
+                            .BuildSetPartitionWallCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -3321,33 +3821,33 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .BuildSetSingleSetPointAndDriftsFahrenheitCommand());
+                            .BuildSetPartitionWallCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .BuildSetSingleSetPointAndDriftsFahrenheitCommand());
+                            .BuildSetPartitionWallCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 18 and not 19",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 24 and not 27",
                         exception.Message);
                 }
             }
         }
 
         [TestFixture]
-        public class BuildGetSingleSetPointAndDriftsCelsiusCommand
+        public class BuildGetTemperatureSensorMonitoringCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -3356,9 +3856,9 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Get)
                     .WithIntegrationId(2)
                     .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                    .BuildGetSingleSetPointAndDriftsCelsiusCommand();
+                    .BuildGetTemperatureSensorMonitoringCommand();
 
-                Assert.AreEqual("?MONITORING,2,19<CR><LF>", command);
+                Assert.AreEqual("?MONITORING,2,27<CR><LF>", command);
             }
 
             [TestFixture]
@@ -3371,7 +3871,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+                            .BuildGetTemperatureSensorMonitoringCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -3388,7 +3888,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+                            .BuildGetTemperatureSensorMonitoringCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
                         exception.Message);
@@ -3405,7 +3905,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+                            .BuildGetTemperatureSensorMonitoringCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -3421,33 +3921,33 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+                            .BuildGetTemperatureSensorMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.DiagnosticMonitoring)
-                            .BuildGetSingleSetPointAndDriftsCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                            .BuildGetTemperatureSensorMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 19 and not 1",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 27 and not 255",
                         exception.Message);
                 }
             }
         }
 
         [TestFixture]
-        public class BuildSetSingleSetPointAndDriftsCelsiusCommand
+        public class BuildSetTemperatureSensorMonitoringCommand
         {
             [Test]
             public void ShouldReturnCommandString()
@@ -3456,69 +3956,10 @@ namespace Lutron.CommandBuilder.Tests
                     .WithOperation(CommandOperation.Set)
                     .WithIntegrationId(2)
                     .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                    .WithSingleSetPoint(new SingleSetPointCelsius(34))
-                    .WithNegativeDrift(new NegativeDriftCelsius(5))
-                    .WithPositiveDrift(new PositiveDriftCelsius(5))
-                    .BuildSetSingleSetPointAndDriftsCelsiusCommand();
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetTemperatureSensorMonitoringCommand();
 
-                Assert.AreEqual("#MONITORING,2,19,34,5,5<CR><LF>", command);
-            }
-
-            [TestFixture]
-            public class GivenNoSingleSetPointParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .WithNegativeDrift(new NegativeDriftCelsius(5))
-                            .WithPositiveDrift(new PositiveDriftCelsius(5))
-                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
-
-                    Assert.AreEqual("The parameter, single set point, is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoNegativeDriftParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .WithSingleSetPoint(new SingleSetPointCelsius(34))
-                            .WithPositiveDrift(new PositiveDriftCelsius(5))
-                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
-
-                    Assert.AreEqual("The parameter, negative drift, is not provided", exception.Message);
-                }
-            }
-
-            [TestFixture]
-            public class GivenNoPositiveDriftParameter
-            {
-                [Test]
-                public void ShouldThrowException()
-                {
-                    var exception = Assert.Throws<ParameterNotProvided>(()
-                        => MonitoringCommandBuilder.Create()
-                            .WithOperation(CommandOperation.Set)
-                            .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .WithSingleSetPoint(new SingleSetPointCelsius(34))
-                            .WithNegativeDrift(new NegativeDriftCelsius(5))
-                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
-
-                    Assert.AreEqual("The parameter, positive drift, is not provided", exception.Message);
-                }
+                Assert.AreEqual("#MONITORING,2,27,2<CR><LF>", command);
             }
 
             [TestFixture]
@@ -3531,7 +3972,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+                            .BuildSetTemperatureSensorMonitoringCommand());
 
                     Assert.AreEqual("The operation is not provided", exception.Message);
                 }
@@ -3548,7 +3989,7 @@ namespace Lutron.CommandBuilder.Tests
                             .WithOperation(CommandOperation.Get)
                             .WithIntegrationId(2)
                             .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+                            .BuildSetTemperatureSensorMonitoringCommand());
 
                     Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
                         exception.Message);
@@ -3565,7 +4006,7 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithMonitoringType(MonitoringType.TemperatureSensorMonitoring)
-                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+                            .BuildSetTemperatureSensorMonitoringCommand());
 
                     Assert.AreEqual("The integration id is not provided", exception.Message);
                 }
@@ -3581,30 +4022,230 @@ namespace Lutron.CommandBuilder.Tests
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+                            .BuildSetTemperatureSensorMonitoringCommand());
 
-                    Assert.AreEqual("The action number is not provided", exception.Message);
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
                 }
             }
 
             [TestFixture]
-            public class GivenIncorrectActionNumber
+            public class GivenIncorrectMonitoringType
             {
                 [Test]
                 public void ShouldThrowException()
                 {
-                    var exception = Assert.Throws<IncorrectActionNumberProvided>(()
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
                         => MonitoringCommandBuilder.Create()
                             .WithOperation(CommandOperation.Set)
                             .WithIntegrationId(2)
-                            .WithMonitoringType(MonitoringType.DiagnosticMonitoring)
-                            .BuildSetSingleSetPointAndDriftsCelsiusCommand());
+                            .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                            .BuildSetTemperatureSensorMonitoringCommand());
 
-                    Assert.AreEqual("The action number provided is incorrect. Expected 19 and not 1",
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 27 and not 255",
                         exception.Message);
                 }
             }
         }
 
+        [TestFixture]
+        public class BuildGetStateOfAllMonitoringCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Get)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                    .BuildGetStateOfAllMonitoringCommand();
+
+                Assert.AreEqual("?MONITORING,2,255<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                            .BuildGetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                            .BuildGetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected ? and not #",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                            .BuildGetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .BuildGetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.DiagnosticMonitoring)
+                            .BuildGetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 255 and not 1",
+                        exception.Message);
+                }
+            }
+        }
+
+        [TestFixture]
+        public class BuildSetStateOfAllMonitoringCommand
+        {
+            [Test]
+            public void ShouldReturnCommandString()
+            {
+                var command = MonitoringCommandBuilder.Create()
+                    .WithOperation(CommandOperation.Set)
+                    .WithIntegrationId(2)
+                    .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                    .WithAction(MonitoringCommandActionNumber.Enable)
+                    .BuildSetStateOfAllMonitoringCommand();
+
+                Assert.AreEqual("#MONITORING,2,255,2<CR><LF>", command);
+            }
+
+            [TestFixture]
+            public class GivenNoOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<OperationNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                            .BuildSetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The operation is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectOperation
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectOperationProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Get)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                            .BuildSetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The operation provided is incorrect. Expected # and not ?",
+                        exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoIntegrationId
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IntegrationIdNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                            .BuildSetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The integration id is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenNoActionNumber
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<ActionNumberNotProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .BuildSetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type is not provided", exception.Message);
+                }
+            }
+
+            [TestFixture]
+            public class GivenIncorrectMonitoringType
+            {
+                [Test]
+                public void ShouldThrowException()
+                {
+                    var exception = Assert.Throws<IncorrectMonitoringTypeProvided>(()
+                        => MonitoringCommandBuilder.Create()
+                            .WithOperation(CommandOperation.Set)
+                            .WithIntegrationId(2)
+                            .WithMonitoringType(MonitoringType.StateOfAllMonitoring)
+                            .BuildSetStateOfAllMonitoringCommand());
+
+                    Assert.AreEqual("The monitoring type provided is incorrect. Expected 255 and not 1",
+                        exception.Message);
+                }
+            }
+        }
     }
 }

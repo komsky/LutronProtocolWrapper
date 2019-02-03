@@ -50,10 +50,10 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.CurrentTemperatureFahrenheit);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.DiagnosticMonitoring);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
@@ -65,14 +65,14 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.DiagnosticMonitoring);
+            
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.CurrentTemperatureFahrenheit);
-
-            CheckIfParameterIsProvided(_temperatureFahrenheit, "temperature");
-
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{_temperatureFahrenheit}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetEventMonitoringCommand()
@@ -83,9 +83,11 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.HeatAndCoolSetPointsFahrenheit);
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.EventMonitoring);
+            
+            CheckIfActionNumberIsProvided();
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
@@ -98,16 +100,14 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.EventMonitoring);
+            
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.HeatAndCoolSetPointsFahrenheit);
-
-            CheckIfParameterIsProvided(_heatSetPointFahrenheit, "set point heat");
-
-            CheckIfParameterIsProvided(_coolSetPointFahrenheit, "set point cool");
-
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{_heatSetPointFahrenheit},{_coolSetPointFahrenheit}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildGetButtonMonitoringCommand()
@@ -118,10 +118,10 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.OperatingMode);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ButtonMonitoring);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
@@ -133,17 +133,17 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ButtonMonitoring);
+            
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.OperatingMode);
-
-            CheckIfParameterIsProvided(_operatingMode, "operating mode");
-
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _operatingMode}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _actionNumber}<CR><LF>";
         }
 
-        public string BuildGetLedMonitoringCommand()
+        public string BuildGetLEDMonitoringCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -151,14 +151,14 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.FanMode);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.LEDMonitoring);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
-        public string BuildSetLedMonitoringCommand()
+        public string BuildSetLEDMonitoringCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -166,14 +166,14 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.LEDMonitoring);
+            
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.FanMode);
-
-            CheckIfParameterIsProvided(_fanMode, "fan mode");
-
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _fanMode}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildGetZoneMonitoringCommand()
@@ -184,10 +184,10 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.EcoMode);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ZoneMonitoring);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
@@ -199,14 +199,14 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ZoneMonitoring);
+            
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.EcoMode);
-
-            CheckIfParameterIsProvided(_ecoMode, "eco mode");
-
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _ecoMode}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildGetOccupancyCommand()
@@ -217,10 +217,10 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.EcoOffsetFahrenheit);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.Occupancy);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
@@ -237,14 +237,12 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.ScheduleStatus);
-
-            CheckIfProvidedParameterIsAGetScheduleStatus(_scheduleStatus);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.PhotoSensorMonitoring);
+            
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _scheduleStatus}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildSetPhotoSensorMonitoringCommand()
@@ -255,14 +253,14 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.PhotoSensorMonitoring);
+            
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.ScheduleStatus);
-
-            CheckIfProvidedParameterIsASetScheduleStatus(_scheduleStatus);
-
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _scheduleStatus}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _actionNumber}<CR><LF>";
         }
 
         public string BuildGetSceneCommand()
@@ -273,10 +271,10 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.TemperatureSensorConnectionStatus);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.Scene);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
@@ -293,14 +291,19 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.ScheduleEvent);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.SystemVariable);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
-        public string BuildGetScheduleDayAssignmentCommand()
+        public string BuildSetSystemVariableCommand()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string BuildGetReplyStateCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -308,14 +311,29 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.ScheduleDayAssignment);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ReplyState);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
-        public string BuildGetSystemModeCommand()
+        public string BuildSetReplyStateCommand()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string BuildGetPromptStateCommand()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string BuildSetPromptStateCommand()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string BuildGetOccupancyGroupMonitoringCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -323,14 +341,19 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.SystemMode);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.OccupancyGroupMonitoring);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
-        public string BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCommand()
+        public string BuildSetOccupancyGroupMonitoringCommand()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string BuildGetDeviceLockStateMonitoringCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -338,15 +361,19 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber
-                .HeatAndCoolSetPointsWithoutEcoOffsetFahrenheit);
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.DeviceLockStateMonitoring);
 
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
-        public string BuildGetEmergencyHeatAvailableCommand()
+        public string BuildSetDeviceLockStateMonitoringCommand()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string BuildGetSequenceMonitoringCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -354,14 +381,43 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.EmergencyHeatAvailable);
-
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.SequenceMonitoring);
+            
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
-        public string BuildGetCallStatusCommand()
+        public string BuildSetSequenceMonitoringCommand()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string BuildGetHVACMonitoringCommand()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string BuildSetHVACMonitoringCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.HVACMonitoring);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _actionNumber}<CR><LF>";
+        }
+
+        public string BuildGetModeMonitoringCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -369,15 +425,47 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.CallStatus);
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ModeMonitoring);
+            
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
+        }
+
+        public string BuildSetModeMonitoringCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ModeMonitoring);
+            
+            CheckIfActionNumberIsProvided();
 
             return
                 $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
-        public string BuildSetCallStatusCommand()
+        public string BuildGetShadeGroupMonitoringCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+            
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ShadeGroupMonitoring);
+            
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
+        }
+
+        public string BuildSetShadeGroupMonitoringCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -385,15 +473,17 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ShadeGroupMonitoring);
+            
             CheckIfActionNumberIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.CallStatus);
-
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int) _callStatus}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
-        public string BuildGetCurrentTemperatureCelsiusCommand()
+        public string BuildGetPartitionWallCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -401,33 +491,31 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.PartitionWall);
+            
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
+        }
+
+        public string BuildSetPartitionWallCommand()
+        {
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.PartitionWall);
+            
             CheckIfActionNumberIsProvided();
-
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.CurrentTemperatureCelsius);
-
             return
                 $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
-        public string BuildSetCurrentTemperatureCelsiusCommand()
-        {
-            CheckIfOperationIsProvided();
-
-            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-
-            CheckIfIntegrationIdIsProvided();
-
-            CheckIfActionNumberIsProvided();
-
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.CurrentTemperatureCelsius);
-
-            CheckIfParameterIsProvided(_temperatureCelsius, "temperature");
-
-            return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{_temperatureCelsius}<CR><LF>";
-        }
-
-        public string BuildGetHeatAndCoolSetPointsCelsiusCommand()
+        public string BuildGetTemperatureSensorMonitoringCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -435,14 +523,14 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
-            CheckIfActionNumberIsProvided();
+            CheckIfMonitoringTypeIsProvided();
 
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.HeatAndCoolSetPointsCelsius);
-
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.TemperatureSensorMonitoring);
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
-        public string BuildSetHeatAndCoolSetPointsCelsiusCommand()
+        public string BuildSetTemperatureSensorMonitoringCommand()
         {
             CheckIfOperationIsProvided();
 
@@ -450,137 +538,24 @@ namespace Lutron.CommandBuilder
 
             CheckIfIntegrationIdIsProvided();
 
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.TemperatureSensorMonitoring);
+            
             CheckIfActionNumberIsProvided();
-
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.HeatAndCoolSetPointsCelsius);
-
-            CheckIfParameterIsProvided(_heatSetPointCelsius, "set point heat");
-
-            CheckIfParameterIsProvided(_coolSetPointCelsius, "set point cool");
 
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{_heatSetPointCelsius},{_coolSetPointCelsius}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
-        public string BuildGetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand()
+        public string BuildGetStateOfAllMonitoringCommand()
         {
-            CheckIfOperationIsProvided();
-
-            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-
-            CheckIfIntegrationIdIsProvided();
-
-            CheckIfActionNumberIsProvided();
-
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.HeatAndCoolSetPointsWithoutEcoOffsetCelsius);
-
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
+            throw new System.NotImplementedException();
         }
 
-        public string BuildSetHeatAndCoolSetPointsWithoutEcoOffsetCelsiusCommand()
+        public string BuildSetStateOfAllMonitoringCommand()
         {
-            CheckIfOperationIsProvided();
-
-            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-
-            CheckIfIntegrationIdIsProvided();
-
-            CheckIfActionNumberIsProvided();
-
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.HeatAndCoolSetPointsWithoutEcoOffsetCelsius);
-
-            CheckIfParameterIsProvided(_heatSetPointCelsius, "set point heat");
-
-            CheckIfParameterIsProvided(_coolSetPointCelsius, "set point cool");
-
-            return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{_heatSetPointCelsius},{_coolSetPointCelsius}<CR><LF>";
-        }
-
-        public string BuildGetSingleSetPointAndDriftsFahrenheitCommand()
-        {
-            CheckIfOperationIsProvided();
-
-            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-
-            CheckIfIntegrationIdIsProvided();
-
-            CheckIfActionNumberIsProvided();
-
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.SingleSetPointAndDriftsFahrenheit);
-
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
-        }
-
-        public string BuildSetSingleSetPointAndDriftsFahrenheitCommand()
-        {
-            CheckIfOperationIsProvided();
-
-            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-
-            CheckIfIntegrationIdIsProvided();
-
-            CheckIfActionNumberIsProvided();
-
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.SingleSetPointAndDriftsFahrenheit);
-
-            CheckIfParameterIsProvided(_singleSetPointFahrenheit, "single set point");
-
-            CheckIfParameterIsProvided(_negativeDriftFahrenheit, "negative drift");
-
-            CheckIfParameterIsProvided(_positiveDriftFahrenheit, "positive drift");
-
-            return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{_singleSetPointFahrenheit},{_negativeDriftFahrenheit},{_positiveDriftFahrenheit}<CR><LF>";
-        }
-
-        public string BuildGetSingleSetPointAndDriftsCelsiusCommand()
-        {
-            CheckIfOperationIsProvided();
-
-            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
-
-            CheckIfIntegrationIdIsProvided();
-
-            CheckIfActionNumberIsProvided();
-
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.SingleSetPointAndDriftsCelsius);
-
-            return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
-        }
-
-        public string BuildSetSingleSetPointAndDriftsCelsiusCommand()
-        {
-            CheckIfOperationIsProvided();
-
-            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
-
-            CheckIfIntegrationIdIsProvided();
-
-            CheckIfActionNumberIsProvided();
-
-            CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber.SingleSetPointAndDriftsCelsius);
-
-            CheckIfParameterIsProvided(_singleSetPointCelsius, "single set point");
-
-            CheckIfParameterIsProvided(_negativeDriftCelsius, "negative drift");
-
-            CheckIfParameterIsProvided(_positiveDriftCelsius, "positive drift");
-
-            return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{_singleSetPointCelsius},{_negativeDriftCelsius},{_positiveDriftCelsius}<CR><LF>";
-        }
-
-        private void CheckIfParameterIsProvided(object parameter, string parameterName)
-        {
-            if (parameter is null ||
-                parameter is MonitoringOperatingMode operatingMode && operatingMode == default(MonitoringOperatingMode) ||
-                parameter is MonitoringFanMode fanMode && fanMode == default(MonitoringFanMode) ||
-                parameter is MonitoringEcoMode ecoMode && ecoMode == default(MonitoringEcoMode)
-            )
-            {
-                throw new ParameterNotProvided(parameterName);
-            }
+            throw new System.NotImplementedException();
         }
 
         private void CheckIfCorrectOperationIsProvided(CommandOperation expectedOperation)
@@ -599,20 +574,28 @@ namespace Lutron.CommandBuilder
             }
         }
 
-        private void CheckIfActionNumberIsProvided()
+        private void CheckIfMonitoringTypeIsProvided()
         {
-            if (_monitoringType == default(MonitoringCommandActionNumber))
+            if (_monitoringType == default(MonitoringType))
             {
-                throw new ActionNumberNotProvided();
+                throw new MonitoringTypeNotProvided();
             }
         }
 
-        private void CheckIfProvidedActionNumberIsCorrect(MonitoringCommandActionNumber expectedActionNumber)
+        private void CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType expectedMonitoringType)
         {
-            if (_monitoringType != expectedActionNumber)
+            if (_monitoringType != expectedMonitoringType)
             {
-                throw new IncorrectActionNumberProvided(_monitoringType,
-                    expectedActionNumber);
+                throw new IncorrectMonitoringTypeProvided(_monitoringType,
+                    expectedMonitoringType);
+            }
+        }
+        
+        private void CheckIfActionNumberIsProvided()
+        {
+            if (_actionNumber == default(MonitoringCommandActionNumber))
+            {
+                throw new ActionNumberNotProvided();
             }
         }
 
@@ -622,37 +605,6 @@ namespace Lutron.CommandBuilder
             if (_integrationId == default(int))
             {
                 throw new IntegrationIdNotProvided();
-            }
-        }
-
-        private void CheckIfProvidedParameterIsAGetScheduleStatus(MonitoringScheduleStatus scheduleStatus)
-        {
-            if (scheduleStatus == MonitoringScheduleStatus.FollowingSchedule)
-            {
-                throw new IncorrectScheduleStatusProvided(MonitoringScheduleStatus.FollowingSchedule,
-                    MonitoringScheduleStatus.ScheduleUnavailable, MonitoringScheduleStatus.TemporaryHold);
-            }
-
-            if (scheduleStatus == MonitoringScheduleStatus.PermanentHold)
-            {
-                throw new IncorrectScheduleStatusProvided(MonitoringScheduleStatus.PermanentHold,
-                    MonitoringScheduleStatus.ScheduleUnavailable, MonitoringScheduleStatus.TemporaryHold);
-            }
-        }
-
-
-        private void CheckIfProvidedParameterIsASetScheduleStatus(MonitoringScheduleStatus scheduleStatus)
-        {
-            if (scheduleStatus == MonitoringScheduleStatus.ScheduleUnavailable)
-            {
-                throw new IncorrectScheduleStatusProvided(MonitoringScheduleStatus.ScheduleUnavailable,
-                    MonitoringScheduleStatus.FollowingSchedule, MonitoringScheduleStatus.PermanentHold);
-            }
-
-            if (scheduleStatus == MonitoringScheduleStatus.TemporaryHold)
-            {
-                throw new IncorrectScheduleStatusProvided(MonitoringScheduleStatus.TemporaryHold,
-                    MonitoringScheduleStatus.FollowingSchedule, MonitoringScheduleStatus.PermanentHold);
             }
         }
     }
