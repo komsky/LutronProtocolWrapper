@@ -87,8 +87,6 @@ namespace Lutron.CommandBuilder
 
             CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.EventMonitoring);
             
-            CheckIfActionNumberIsProvided();
-
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
@@ -121,6 +119,8 @@ namespace Lutron.CommandBuilder
             CheckIfMonitoringTypeIsProvided();
 
             CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ButtonMonitoring);
+            
+            CheckIfActionNumberIsProvided();
             
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
@@ -226,7 +226,20 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetOccupancyCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.Occupancy);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetPhotoSensorMonitoringCommand()
@@ -280,7 +293,20 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetSceneCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.Scene);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetSystemVariableCommand()
@@ -300,7 +326,20 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetSystemVariableCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.SystemVariable);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetReplyStateCommand()
@@ -320,17 +359,52 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetReplyStateCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.ReplyState);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetPromptStateCommand()
         {
-            throw new System.NotImplementedException();
-        }
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.PromptState);
+            
+            return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";        }
 
         public string BuildSetPromptStateCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.PromptState);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetOccupancyGroupMonitoringCommand()
@@ -350,7 +424,20 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetOccupancyGroupMonitoringCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.OccupancyGroupMonitoring);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetDeviceLockStateMonitoringCommand()
@@ -364,13 +451,26 @@ namespace Lutron.CommandBuilder
             CheckIfMonitoringTypeIsProvided();
 
             CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.DeviceLockStateMonitoring);
-
+            
             return $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
         public string BuildSetDeviceLockStateMonitoringCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.DeviceLockStateMonitoring);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetSequenceMonitoringCommand()
@@ -391,12 +491,36 @@ namespace Lutron.CommandBuilder
 
         public string BuildSetSequenceMonitoringCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.SequenceMonitoring);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetHVACMonitoringCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.HVACMonitoring);
+            
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
         public string BuildSetHVACMonitoringCommand()
@@ -447,7 +571,7 @@ namespace Lutron.CommandBuilder
             CheckIfActionNumberIsProvided();
 
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetShadeGroupMonitoringCommand()
@@ -512,7 +636,7 @@ namespace Lutron.CommandBuilder
             
             CheckIfActionNumberIsProvided();
             return
-                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         public string BuildGetTemperatureSensorMonitoringCommand()
@@ -550,12 +674,36 @@ namespace Lutron.CommandBuilder
 
         public string BuildGetStateOfAllMonitoringCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Get);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.StateOfAllMonitoring);
+            
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType}<CR><LF>";
         }
 
         public string BuildSetStateOfAllMonitoringCommand()
         {
-            throw new System.NotImplementedException();
+            CheckIfOperationIsProvided();
+
+            CheckIfCorrectOperationIsProvided(CommandOperation.Set);
+
+            CheckIfIntegrationIdIsProvided();
+
+            CheckIfMonitoringTypeIsProvided();
+
+            CheckIfProvidedMonitoringTypeIsCorrect(MonitoringType.StateOfAllMonitoring);
+            
+            CheckIfActionNumberIsProvided();
+
+            return
+                $"{(char) _operation}{_command},{_integrationId},{(int) _monitoringType},{(int)_actionNumber}<CR><LF>";
         }
 
         private void CheckIfCorrectOperationIsProvided(CommandOperation expectedOperation)
